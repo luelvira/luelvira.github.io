@@ -1,0 +1,52 @@
+/*
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+*/
+
+@use "_variables" as lib;
+@import "_base";
+@import "_utilities";
+@import "components/_header";
+
+:root {
+    --main-color: #{map-get(lib.$primary, '800')};
+    --secondary-color:#{map-get(lib.$secondary, '800')};
+    --background: #{map-get(lib.$background, '50')};
+    --aux-color: #e7d192;
+    --gray-color: #{map-get(lib.$background, '500')};
+    --light-gray: #{map-get(lib.$background, '300')};
+    /*
+    @media (prefers-color-scheme: dark) {
+        --background: #{map-get(lib.$background, '950')};
+    }
+    */
+}
+
+.body {
+    @include flex-col;
+    @include lib.w-('full');
+    @include lib.min-h-('screen');
+    // @include lib.p-(2, 'lr');
+    @include lib.lg {
+        @include lib.max-w-('screen');
+        margin: auto;
+        padding: 0;
+    }
+    background-color: var(--background);
+
+}
+
+.wrap {
+    @include lib.p-(1, 't');
+    @include lib.p-(2, 'lr');
+    .summary {
+      p {
+          @include lib.m-(1, 'b');
+          @include lib.font-size('lg');
+          text-align: justify;
+          text-wrap: balance;
+      }
+      
+    }
+}

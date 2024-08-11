@@ -1,0 +1,29 @@
+{{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
+<!DOCTYPE html>
+<html lang="en">
+  {{ partial "head.html" . }}
+<body class="body">
+
+  {{ partial "header.html" $data }}
+
+<main class="wrap">
+{{ $paragraphs := split .Content "<h2" }}
+
+{{ range $index, $p := $paragraphs }}
+    {{ $pp := trim $p " \n" }}
+    {{ if (eq $index 0) }}
+    <section class="summary">
+        {{ printf "%s\n" $pp | safeHTML }}
+    </section>
+    {{ end }}
+    {{ if and (ne $pp "") (gt $index 0) }}
+    <div class="boxtext">
+        {{ printf "<h2 %s\n" $pp | safeHTML }}
+    </div>
+    {{ end }}
+{{end}}
+
+</main>
+
+</body>
+</html>

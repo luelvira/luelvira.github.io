@@ -1,0 +1,40 @@
+@use "sass:list";
+$fix-size: (
+    xs: (0.75rem, 1rem),
+    sm: (0.875rem, 1.25rem),
+    base: (1rem, 1.5rem),
+    lg: (1.125rem, 1.75rem),
+    xl: (1.25rem, 1.75rem),
+);
+
+$INCR: 1.618;
+$STEPS: 0.125;
+
+@function calculate($size) {
+    $base: 1.25rem;
+    @return $base + $size * $STEPS * $INCR;
+    
+}
+
+
+@mixin size($size, $line: null) {
+    @if map-has-key($fix-size, $size) {
+      font-size: list.nth(map-get($fix-size, $size), 1);
+      line-height: list.nth(map-get($fix-size, $size), 2);
+      --size: #{list.nth(map-get($fix-size, $size), 1)};
+    }
+    @else {
+        font-size: calculate($size);
+        line-height: $line;;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+$slab: Roboto slab;
+$sans:  "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif, system-ui, sans-serif;
+$serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+@mixin slab($w: 400) {
+    font-family: $slab;
+    font-weight: $w;
+}

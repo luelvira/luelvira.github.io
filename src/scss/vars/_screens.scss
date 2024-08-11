@@ -1,0 +1,83 @@
+@function fib($n) {
+    @if $n == 0 {
+        @return 1;
+    } @else if $n == 1 {
+        @return 1;
+    }
+    @else {
+        @return fib($n - 1) + fib($n - 2);
+    }
+}
+   
+$screens: (
+    'sm': 640px,
+    'md': 768px,
+    'lg': 1024px,
+    'xl': 1280px,
+    '2xl': 1536px
+);
+
+$width: (
+    'full': '100dvw',
+    'screen': '100vw',
+    'svw': '100svw',
+    'lvw': '100lvw',
+    'dvw': '100dvw',
+    'min': 'min-content',
+    'max': 'max-content',
+    'fit': 'fit-content'
+);
+
+$height: (
+    'full': '100%',
+    'screen': '100vh',
+    'svh': '100svh',
+    'lvh': '100lvh',
+    'dvh': '100dvh',
+    'min': 'min-content',
+    'max': 'max-content',
+    'fit': 'fit-content',
+);
+
+
+@each $key, $value in $screens {
+    %w-#{$key} {
+        width: $value;
+    }
+}
+
+@mixin __size-($key, $property) {
+    @if map-has-key($screens, $key) {
+     #{$property}: #{map-get($screens, $key)};
+    }
+    @else if map-has-key($height, $key) {
+      #{$property}: #{map-get($height, $key)};
+    }
+    @else {
+      #{$property}: #{fib($key)}rem;
+    }
+}
+
+@mixin h-($size) {@include __size-($size, 'height');}
+
+@mixin min-h-($size) {@include __size-($size, 'min-height');}
+@mixin max-h-($size) {@include __size-($size, 'max-height');}
+
+@mixin w-($size) {@include __size-($size, 'width');}
+@mixin min-w-($size) {@include __size-($size, 'min-width');}
+@mixin max-w-($size) {@include __size-($size, 'max-width');}
+
+
+@mixin breakpoint($size) {
+  @if map-has-key($screens, $size) {
+    @media (min-width: #{map-get($screens, $size)}) {
+            @content;
+        }
+    }
+}
+
+@mixin sm {@include breakpoint(sm);@content;}
+@mixin md {@include breakpoint(md);@content;}
+@mixin lg {@include breakpoint(lg){@content;}}
+@mixin xl {@include breakpoint(xl);@content;}
+@mixin _2xl {@include breakpoint(2xl);@content;}

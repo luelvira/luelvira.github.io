@@ -1,0 +1,41 @@
+/* max width */
+$inc: 1.618rem;
+$base: 0;
+
+@function get-size($i) {
+  @return $i * $inc + $base;
+}
+
+
+
+$margins: (
+    'tb': ('top', 'bottom'),
+    'lr': ('left', 'right'),
+    't': ('top'),
+    'b': ('bottom'),
+    'l': ('left'),
+    'r': ('right')
+);
+
+@mixin __box_sizing($property, $key, $dir: false) {
+      @if not $dir {
+          #{$property}: get-size($key);
+      }
+      @else if  map-has-key($margins, $dir) {
+          @each $mar in map-get($margins, $dir) {
+              .dir-#{map-get($margins, $mar)} {
+                  color: red;
+              }
+              #{$property}-#{$mar}: #{get-size($key)};
+          }
+      }
+}
+
+
+@mixin m-($key, $dir: false) {
+    @include __box_sizing(margin, $key, $dir);
+}
+
+@mixin p-($key, $dir: false) {
+    @include __box_sizing('padding', $key, $dir);
+}
