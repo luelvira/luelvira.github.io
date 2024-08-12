@@ -24,23 +24,34 @@
 }
 
 .body {
+    background-color: var(--background);
     @include flex-col;
     @include lib.w-('full');
     @include lib.min-h-('screen');
-    // @include lib.p-(2, 'lr');
+    //@include lib.m-(2, 'lr');
     @include lib.lg {
-        @include lib.max-w-('screen');
+        @include lib.max-w-('lg');
         margin: auto;
         padding: 0;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: auto auto;
+        grid-template-areas: "header header header header header header header header"
+                             "body body body body body body body body";
+        gap: 1rem;
     }
-    background-color: var(--background);
-
+    @include lib.xxl {
+        @include lib.max-w-('xl');
+    }
 }
 
 .wrap {
     @include lib.p-(1, 't');
-    @include lib.p-(2, 'lr');
     .summary {
+      @include lib.p-(2, 'lr');
+      @include lib.lg {
+        @include lib.p-(3, 'lr');
+      }
       p {
           @include lib.m-(1, 'b');
           @include lib.font-size('lg');
@@ -49,4 +60,35 @@
       }
       
     }
+    .content {
+        @include lib.p-(1, 'lr');
+        @import "components/_home";
+        p {
+            @include lib.m-(1, 'tb');
+        }
+    }
+    @include lib.lg {
+        grid-area: body;
+        padding: 0;
+    }
+
+    @include lib.xxl {
+      display: grid;
+      grid-template-areas: "summary summary summary summary summary summary summary summary"
+                           "experience experience experience experience education education education education";
+      grid-template-columns: subgrid;
+      .summary {
+          grid-area: summary;
+      }
+      .content {
+          &:nth-of-type(2) {
+              grid-area: experience;
+          }
+          grid-area: education;
+      }
+    }
+}
+
+
+@include lib.sm {
 }

@@ -2,8 +2,8 @@
 $inc: 1.618rem;
 $base: 0;
 
-@function get-size($i) {
-  @return $i * $inc + $base;
+@function get-size($i, $step: 1) {
+  @return ($i * $inc * $step) + $base;
 }
 
 
@@ -17,25 +17,28 @@ $margins: (
     'r': ('right')
 );
 
-@mixin __box_sizing($property, $key, $dir: false) {
+@mixin __box_sizing($property, $key, $dir: false, $step) {
       @if not $dir {
           #{$property}: get-size($key);
       }
       @else if  map-has-key($margins, $dir) {
           @each $mar in map-get($margins, $dir) {
-              .dir-#{map-get($margins, $mar)} {
-                  color: red;
-              }
-              #{$property}-#{$mar}: #{get-size($key)};
+              #{$property}-#{$mar}: #{get-size($key, $step)};
           }
       }
 }
 
 
-@mixin m-($key, $dir: false) {
-    @include __box_sizing(margin, $key, $dir);
+@mixin m-($key, $dir: false, $step: 1) {
+    @include __box_sizing(margin, $key, $dir, $step);
 }
 
-@mixin p-($key, $dir: false) {
-    @include __box_sizing('padding', $key, $dir);
+@mixin p-($key, $dir: false, $step: 1) {
+    @include __box_sizing('padding', $key, $dir, $step);
+}
+
+@mixin square($size) {
+    aspect-ratio: 1/1;
+    width: $size;
+    height: $size;
 }

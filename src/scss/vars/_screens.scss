@@ -1,3 +1,4 @@
+@use "sass:math";
 @function fib($n) {
     @if $n == 0 {
         @return 1;
@@ -39,6 +40,14 @@ $height: (
     'fit': 'fit-content',
 );
 
+@for $i from 1 to 11 {
+    @for $j from $i to 11 {
+        $width: map-merge($width, (#{$i}/#{$j}: math.div($i, $j)*100%));
+        $height: map-merge($height, (#{$i}/#{$j}: math.div($i, $j)*100%));
+    }
+}
+
+
 
 @each $key, $value in $screens {
     %w-#{$key} {
@@ -54,7 +63,7 @@ $height: (
       #{$property}: #{map-get($height, $key)};
     }
     @else {
-      #{$property}: #{fib($key)}rem;
+      #{$property}: fib($key) * 1rem;
     }
 }
 
@@ -68,16 +77,29 @@ $height: (
 @mixin max-w-($size) {@include __size-($size, 'max-width');}
 
 
-@mixin breakpoint($size) {
-  @if map-has-key($screens, $size) {
-    @media (min-width: #{map-get($screens, $size)}) {
-            @content;
+@mixin breakpoint($min, $max: null) {
+    @if not $max {
+        @if map-has-key($screens, $min) {
+            @media (min-width: #{map-get($screens, $min)}) {
+                @content;
+            }
+        }
+    } @else {
+        @if map-has-key($screens, $min) and map-has-key($screens, $max) {
+            @media (min-width: #{map-get($screens, $min)}) and (max-width: #{map-get($screens, $max)}) {
+                @content;
+            }
         }
     }
 }
 
-@mixin sm {@include breakpoint(sm);@content;}
-@mixin md {@include breakpoint(md);@content;}
+@mixin sm {@include breakpoint(sm){@content;}}
+@mixin md {@include breakpoint(md){@content;}}
 @mixin lg {@include breakpoint(lg){@content;}}
-@mixin xl {@include breakpoint(xl);@content;}
-@mixin _2xl {@include breakpoint(2xl);@content;}
+@mixin xl {@include breakpoint(xl){@content;}}
+@mixin xxl {@include breakpoint('2xl'){@content;}}
+
+@mixin sm-md {@include breakpoint(sm, md) {@content;}}
+@mixin md-lg {@include breakpoint(md, lg) {@content;}}
+@mixin lg-xl {@include breakpoint(lg, xl) {@content;}}
+@mixin xl-xxl {@include breakpoint(xl, 2xl) {@content;}}

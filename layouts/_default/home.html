@@ -7,9 +7,9 @@
   {{ partial "header.html" $data }}
 
 <main class="wrap">
-{{ $paragraphs := split .Content "<h2" }}
+{{ $sections := split .Content "<h2" }}
 
-{{ range $index, $p := $paragraphs }}
+{{ range $index, $p := $sections }}
     {{ $pp := trim $p " \n" }}
     {{ if (eq $index 0) }}
     <section class="summary">
@@ -17,9 +17,17 @@
     </section>
     {{ end }}
     {{ if and (ne $pp "") (gt $index 0) }}
-    <div class="boxtext">
-        {{ printf "<h2 %s\n" $pp | safeHTML }}
-    </div>
+    <section class="content">
+
+        {{ $articles := split $pp "<h3" }}
+        {{ range $j, $a := $articles }}
+          {{ $aa := trim $a " \n" }}
+          {{ if and (ne $aa "") (gt $j 0) }}
+            {{ printf "<h3 %s" $aa | safeHTML }}
+          {{ end }}
+
+        {{ end }}
+    </section>
     {{ end }}
 {{end}}
 

@@ -1,0 +1,6 @@
+@mixin after($content: "") {
+    &:after {
+        content: $content;
+        @content;
+    }
+}

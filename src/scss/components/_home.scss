@@ -1,0 +1,96 @@
+h3 {
+    @include lib.font-size('2xl');
+    // @include lib.pos-absolute(0);
+    position: relative;
+    @include lib.m-(1, 'tb');
+    color: var(--secondary-color);
+    @include lib.pcs-after {
+        @include lib.pos-absolute(0, $bottom: calc(-1/3 * var(--size)));
+        background-color: var(--aux-color);
+        @include lib.w-('full');
+        height: 0.5rem;
+    }
+
+}
+
+ul {
+    @include lib.m-(2, 't', 0.75);
+    margin: revert;
+    padding: revert;
+    list-style: revert;
+    li {
+        @include lib.font-size('base');
+    }
+}
+
+@at-root {
+.cvevent {
+   h4 {
+    @include lib.w-("4/5");
+    @include lib.font-size(2);
+    color: var(--gray-color);
+   }
+   &-place {
+       color: var(--secondary-color);
+       @include lib.font-size('base');
+   }
+   &-time {
+       color: var(--gray-color);
+       @include lib.font-size('xl');
+   }
+}
+}
+hr {
+    border-color: transparent;
+    border-top: 3px dashed var(--light-gray);
+    display: inline-block;
+    width: 100%;
+}
+
+@at-root {
+    .cvtag {
+        @include lib.font-size('sm');
+        //color: white;
+        border: {
+            radius: 0.625rem;
+            color: #{lib.color(primary, '500')};
+        }
+        background-color: var(--main-color);
+        background-color: #{lib.color(background, '50')};
+        padding: 0.5rem 0.625rem;
+        font-weight: normal;
+        /*
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),
+                    0 1px 10px 0 rgba(0,0,0,0.12),
+                    0 2px 4px -1px rgba(0,0,0,0.3);
+        */
+        $bg: lib.color(background, '500');
+        box-shadow: box-shadow($bg, 5), 0 -2px 2px rgba($bg, 0.05);
+    }
+}
+
+p {
+    @extend .flex-wrap;
+    gap: 0.5rem;
+}
+
+.cvskill {
+    @extend %flex;
+    @include lib.w-("4/5");
+    @include lib.m-(2, 'b', 0.75);
+    &-name {flex-grow: 3;}
+    &-values {
+        flex-grow: 1;
+        @extend .flex__evenly;
+        span {
+            --size: 25px;
+            @include lib.square(var(--size));
+            @include lib.rounded-full;
+            display: inline-block;
+            background-color: var(--light-gray);
+
+        }
+        @include fillCircle;
+
+    }
+}

@@ -2,14 +2,17 @@
     @include flex-col;
     @include lib.m-(1, 't');
     @include lib.p-(2, 'lr');
+    
     &_profile {
         @include lib.rounded-full;
         @include aspect-square;
+        @include lib.max-w-(6);
+        @include lib.max-h-(6);
+        margin: auto;
         /*@include lib.w-('full');
         --origin-size: 100%;
         --final-size: #{lib.get-size(4)};
         */
-        @include lib.w-(4);
         
     }
     &_name {
@@ -20,5 +23,28 @@
     &_tagline {
         @include lib.font-size(3);
         color: var(--secondary-color);
+    }
+}
+
+.header {
+    @include lib.md-lg {
+        @include flex-row;
+        gap: 2rem;
+        &_profile {
+            margin: inherit;
+        }
+        &_name {
+            @include flex-col;
+            justify-content: center;
+        }
+    }
+    @include lib.lg {
+        padding: 0;
+        display: grid;
+        grid-template-columns: subgrid;
+        grid-area: header;
+        &_name {
+            grid-column: 2/8;
+        }
     }
 }

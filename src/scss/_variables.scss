@@ -3,3 +3,5 @@
 @forward "vars/_spacing";
 @forward "vars/_border";
 @forward "vars/_fonts" as font-*;
+@forward "lib/_position.scss" as pos-*;
+@forward "lib/pseudo_class.scss" as pcs-*;
