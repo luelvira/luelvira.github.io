@@ -37,12 +37,18 @@ Node.js and Python.
 
 ### Experience {#experience}
 
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">PhD Student</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div>Sept 2023 -- Ongoing</div><div> Leganés</div></div></div>
 
 -   Professor in Computer Engineering degree, teaching User Interfaces course with web technologies.
 -   Conducting a research in the field of Human-Computer Interaction (HCI), with a focus on Cross Reality.
 
 ---
+
+</article>
+
+<article>
 
 <div class="cvevent"><h4 class="cvevent-title">Master's Scholarship</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div>Sept 2022 -- Spet 23</div><div> Leganés, Spain</div></div></div>
 
@@ -56,6 +62,10 @@ Node.js and Python.
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Research support technician</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> March 2022 -- Sept 2022</div><div> Leganés , Spain</div></div></div>
 
 -   Develop a tool capable of automating the generation of ontologies through text
@@ -67,6 +77,10 @@ Node.js and Python.
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Ericsson</div><div class="cvevent-time flex__between"><div> Oct 2021 -- March 2022</div><div> Madrid, Spain</div></div></div>
 
 -   Work on the development of an application to monitor networks with the smartphone.
@@ -77,6 +91,10 @@ Node.js and Python.
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> March 2021 -- Jul 2021</div><div> Leganés , Spain</div></div></div>
 
 -   Develop an immersive data analytics visualization.
@@ -84,6 +102,10 @@ Node.js and Python.
 <span class="cvtag">ThreeJS</span>
 <span class="cvtag">Aframe</span>
 <span class="cvtag">Virtual Reality</span>
+
+</article>
+
+<article>
 
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> Feb 2020 -- Aug 2020</div><div> Leganés , Spain</div></div></div>
 
@@ -93,6 +115,10 @@ Node.js and Python.
 <span class="cvtag">Boostrap</span>
 
 ---
+
+</article>
+
+<article>
 
 <div class="cvevent"><h4 class="cvevent-title">Web Developer</h4><div class="cvevent-place"> Enredart</div><div class="cvevent-time flex__between"><div> Feb 2019 -- Nov 2019</div><div> Madrid , Spain</div></div></div>
 
@@ -104,6 +130,10 @@ Node.js and Python.
 <span class="cvtag">Electron</span>
 
 ---
+
+</article>
+
+<article>
 
 <div class="cvevent"><h4 class="cvevent-title">Web Developer</h4><div class="cvevent-place"> The Key Talent</div><div class="cvevent-time flex__between"><div> Jul 2017 -- Jan 2018</div><div> Madrid , Spain</div></div></div>
 
@@ -118,6 +148,10 @@ Node.js and Python.
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Observatorio Español del diseño</div><div class="cvevent-time flex__between"><div> Jan 2017 -- Jun 2017</div><div> Madrid , Spain</div></div></div>
 
 -   Design components related to data analysis and visualization, while collecting
@@ -127,6 +161,8 @@ Node.js and Python.
 <span class="cvtag">D3JS</span>
 <span class="cvtag">Web Technologies</span>
 
+</article>
+
 
 ##  {#d41d8c}
 
@@ -134,19 +170,35 @@ Node.js and Python.
 
 ### Education {#education}
 
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">PhD in Computer Science and Technology</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> 2023 -- Ongoing</div><div></div></div></div>
 
 ---
+
+</article>
+
+<article>
 
 <div class="cvevent"><h4 class="cvevent-title">Master in Computer Science and Technology</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> 2022 -- 2023</div><div></div></div></div>
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Degree in Computer engineering</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> 2018 -- 2022</div><div></div></div></div>
 
 ---
 
+</article>
+
+<article>
+
 <div class="cvevent"><h4 class="cvevent-title">Degree in Graphic Design and visual creation</h4><div class="cvevent-place"> ESNE</div><div class="cvevent-time flex__between"><div> 2014 -- 2018</div><div></div></div></div>
+
+</article>
 
 
 ### Skills {#skills}

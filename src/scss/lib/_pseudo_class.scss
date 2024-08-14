@@ -4,3 +4,10 @@
         @content;
     }
 }
+
+@mixin focus {
+    &:focus {
+        outline: none;
+        @content;
+    }
+}

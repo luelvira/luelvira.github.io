@@ -1,10 +1,1 @@
-{{ $profile := resources.Get .BasicInfo.Photo }}
-<header class="header">
-<img class="header_profile" src=" {{ if $profile}}{{$profile.RelPermalink}} {{end }}" alt="profile image">
-<div class="header_name">
-{{ .BasicInfo.FirstName }} {{ .BasicInfo.LastName }}
-<div class="header_tagline">
-  {{ .BasicInfo.Tagline }}
-</div>
-</div>
-</header>
+

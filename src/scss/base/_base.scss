@@ -5,10 +5,15 @@
     box-sizing: border-box;
 }
 
-img, figure, video, object {
+img, figure, video, object, svg {
     width: 100%;
+    height: auto;
 }
 
 body {
     font-family: sans-serif;
+}
+a {
+    color: inherit;
+    text-decoration: none;
 }

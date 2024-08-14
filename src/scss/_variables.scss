@@ -1,7 +1,12 @@
-@forward "vars/_colors";
+@forward "lib/colors";
 @forward "vars/_screens";
 @forward "vars/_spacing";
 @forward "vars/_border";
 @forward "vars/_fonts" as font-*;
 @forward "lib/_position.scss" as pos-*;
-@forward "lib/pseudo_class.scss" as pcs-*;
+@forward "lib/_pseudo_class.scss" as pcs-*;
+@forward "vars/_transition.scss" as trans-*;
+@forward "lib/layout" as lay-*;
+@forward "lib/shadow";
+@forward "lib/utils";
+

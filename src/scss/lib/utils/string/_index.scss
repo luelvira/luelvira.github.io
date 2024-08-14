@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/// Repeat a string a number of times and return the result separated by a delimiter
+/// @param {String} $str - The string to repeat
+/// @param {Number} $times - The number of times to repeat the string
+/// @param {String} $delimiter - The delimiter to separate the repeated strings (default: " ")
+/// @return {String} - The repeated string
+@function repeat($str, $times, $delimiter: " ") {
+    $result: "";
+    @for $i from 1 through $times {
+        @if $result != "" {
+            $result: $result + $delimiter + $str;
+        } @else {
+            $result: $str;
+        }
+    }
+    @return $result;
+}

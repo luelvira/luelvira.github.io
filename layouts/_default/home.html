@@ -1,37 +1,61 @@
-{{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
-<!DOCTYPE html>
-<html lang="en">
-  {{ partial "head.html" . }}
-<body class="body">
+{{ define "main" }}
+  <header class="header">
+    {{ $data := .Site.Data.content }}
+    {{ $profile := resources.Get $data.BasicInfo.Photo }}
+    <img class="header_profile"
+         src="{{ if $profile}}{{$profile.RelPermalink}}{{end }}"
+         alt="profile image">
+    <div class="header_name">
+      {{ $data.BasicInfo.FirstName }} {{ $data.BasicInfo.LastName }}
+      <div class="header_tagline">
+        {{ $data.BasicInfo.Tagline }}
+      </div>
+    </div>
 
-  {{ partial "header.html" $data }}
+    <div class="contact">
+      <ul class="basic_contact">
+      {{ range $data.Contact }}
+        <li class="basic_contact_element">
+          <span>
+            {{ if and (.Type) ( eq .Type "svg") }}
+              {{ .Icon | safeHTML }}
+            {{ else if and (.Type) (eq .Type "link") }}
+              <img src="{{.Icon}}"/>
+            {{ end }}
+          </span>
 
-<main class="wrap">
-{{ $sections := split .Content "<h2" }}
+          <span> {{ .Info }}</span>
+        </li>
+      {{ end }}
+      </ul>
+      
+    </div>
+  </header>
 
-{{ range $index, $p := $sections }}
-    {{ $pp := trim $p " \n" }}
-    {{ if (eq $index 0) }}
-    <section class="summary">
-        {{ printf "%s\n" $pp | safeHTML }}
-    </section>
-    {{ end }}
-    {{ if and (ne $pp "") (gt $index 0) }}
-    <section class="content">
+  <main class="wrap home">
+    {{ $sections := split .Content "<h2" }}
 
-        {{ $articles := split $pp "<h3" }}
-        {{ range $j, $a := $articles }}
-          {{ $aa := trim $a " \n" }}
-          {{ if and (ne $aa "") (gt $j 0) }}
-            {{ printf "<h3 %s" $aa | safeHTML }}
+    {{ range $index, $p := $sections }}
+      {{ $pp := trim $p " \n" }}
+      {{ if (eq $index 0) }}
+        <section class="summary">
+          {{ printf "%s\n" $pp | safeHTML }}
+        </section>
+      {{ end }}
+      {{ if and (ne $pp "") (gt $index 0) }}
+        <section class="content">
+
+          {{ $articles := split $pp "<h3" }}
+          {{ range $j, $a := $articles }}
+            {{ $aa := trim $a " \n" }}
+            {{ if and (ne $aa "") (gt $j 0) }}
+              {{ printf "<h3 %s" $aa | safeHTML }}
+            {{ end }}
+
           {{ end }}
+        </section>
+      {{ end }}
+    {{end}}
 
-        {{ end }}
-    </section>
-    {{ end }}
-{{end}}
-
-</main>
-
-</body>
-</html>
+  </main>
+{{ end }}

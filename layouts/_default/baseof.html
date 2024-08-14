@@ -1,0 +1,12 @@
+{{ $data := or (index .Site.Data .Site.Language.Lang).content .Site.Data.content }}
+<!DOCTYPE html>
+<html lang="{{ $data.Language }}">
+  {{ partial "head.html" . }}
+<body class="body">
+  {{ partial "nav.html" . }}
+
+  {{ partial "header.html" $data }}
+
+{{- block "main" . }}{{- end }}
+</body>
+</html>

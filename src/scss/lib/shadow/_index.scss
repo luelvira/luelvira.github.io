@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@use "sass:math";
+
+@function box-shadow($color, $levels: 3) {
+    $shadow: "";
+    @for $i from 1 through $levels {
+        @if $shadow != "" {
+            $shadow: $shadow  ", ";
+        } 
+        $shadow: $shadow 0px * $i 2px * $i 3px * $i #{rgba($color, math.div(0.125,$i))};
+    }
+    @return #{$shadow};
+}
+
+
+@function box-hard-shadow($color, $levels: 3) {
+	$shadow: "";
+    	@for $i from 1 through $levels {
+       		@if $shadow != "" {
+            		$shadow: $shadow  ", ";
+		}
+		$shadow: $shadow 0px $i * 1px $i*3px -1px #{rgba($color, math.div(0.5,$i))}
+	}
+	@return $shadow;
+}

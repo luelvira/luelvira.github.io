@@ -1,14 +1,5 @@
 @use "sass:math";
-@function fib($n) {
-    @if $n == 0 {
-        @return 1;
-    } @else if $n == 1 {
-        @return 1;
-    }
-    @else {
-        @return fib($n - 1) + fib($n - 2);
-    }
-}
+@use "values" as vals;
    
 $screens: (
     'sm': 640px,
@@ -63,7 +54,7 @@ $height: (
       #{$property}: #{map-get($height, $key)};
     }
     @else {
-      #{$property}: fib($key) * 1rem;
+      #{$property}: $key * vals.$base;
     }
 }
 

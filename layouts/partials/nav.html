@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <a href="{{ .Site.Home.Permalink }}" class="logo">
+    <i class="fa fa-home"></i>
+  </a>
+  <div class="menu">
+    <span></span>
+    <span></span>
+    <span></span>
+    
+  </div>
+
+  <ul class="navigation">
+  {{ range .Site.Menus.main }}
+    <li class="navigation-item">
+      <a class="navigation-link {{ .Params.class }}" href="{{ .URL }}">
+        {{ .Name }}
+      </a>
+      
+      
+
+    </li>
+  {{ end }}
+</ul>
+</nav>

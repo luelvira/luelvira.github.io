@@ -1,54 +1,10 @@
 @use "sass:math";
-%flex {
-    display: flex;
+
+%square {
+    aspect-ratio: 1 / 1;
+
 }
-@mixin flex($dir: 'col') {
-    display: flex;
-    @if $dir == 'col' {
-        flex-direction: column;
-    } @else {
-        flex-direction: row;
-    }
-}
-
-@mixin flex-row {@include flex('row');}
-@mixin flex-col {@include flex('col');}
-
-@mixin aspect-square {
-    aspect-ratio: 1/1;
-}
-
-$flex_modifies: (
-    "flex": ("start", "end"),
-    "align": ("normal", "center", "stretch"),
-    "space": ("between", "around", "evenly"),
-    "wrap": ("nowrap", "wrap", "wrap-reverse")
-);
-
-@each $key, $mods in $flex_modifies {
-    @each $val in $mods {
-        @if $key == "align" {
-            .flex__#{$val} {
-                display: flex;
-                justify-conent: #{$val};
-            }
-        } @else if $key == "wrap" {
-            .flex-#{$val} {
-                flex-wrap: #{$val};
-                display: flex;
-            }
-        }
-        @else {
-            .flex__#{$val} {
-                justify-content: #{$key}-#{$val};
-                display: flex;
-            }
-        }
-    }
-}
-
-
-@mixin fillCircle($color: var(--main-color)) {
+@mixin fillCircle($color) {
     %after {
         position: relative;
         &:after {
@@ -63,7 +19,7 @@ $flex_modifies: (
         }
     }
     %span {
-        background-color: $color;
+        background-color: $color;        
     }
     @for $i from 1 through 10 {
         $val: $i * 0.5;
@@ -81,15 +37,4 @@ $flex_modifies: (
             }
         }
     }
-}
-
-@function box-shadow($color, $levels: 3) {
-    $shadow: "";
-    @for $i from 1 through $levels {
-        @if $shadow != "" {
-            $shadow: $shadow  ", ";
-        } 
-        $shadow: $shadow 0px * $i 2px * $i 3px * $i #{rgba($color, math.div(0.125,$i))};
-    }
-    @return #{$shadow};
 }

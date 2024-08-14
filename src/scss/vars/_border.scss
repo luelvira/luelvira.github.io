@@ -1,3 +1,4 @@
+@use "values" as val;
 $border_radius: (
     none: 0px,
     sm: 0.125rem,
@@ -10,14 +11,18 @@ $border_radius: (
     full: 100%
 );
 
-
 @mixin __rounded($key) {
-    @if map-has-key($border_radius, $key) {
         border-radius: #{map-get($border_radius, $key)};
-    }
 }
 
 @mixin rounded-full {
     @include __rounded(full);
 }
 
+@mixin rounded($val) {
+    @if map-has-key($border_radius, $val) {
+        @include __rounded($val);
+    } @else {
+        border-radius: $val * val.$base;
+    }
+}

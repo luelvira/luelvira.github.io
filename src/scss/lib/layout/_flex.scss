@@ -1,0 +1,68 @@
+@charset "UTF-8";
+@use "sass:math";
+$flex_modifies: (
+    "flex": ("start", "end"),
+    "default": ("normal", "center", "stretch"),
+    "space": ("between", "around", "evenly"),
+    "wrap": ("nowrap", "wrap", "wrap-reverse")
+);
+
+
+
+@mixin flex($dir: 'col', $grow: null, $flex-position: null) {
+    display: flex;
+    @if $dir == 'col' {
+        flex-direction: column;
+    } @else {
+        flex-direction: row;
+    }    
+    @if $flex-position {
+        $flex_positions: ("justify": justify-content,
+                          "align": "align-items",
+                          "wrap": wrap);
+        @each $key, $val in $flex-position {
+            #{map-get($flex_positions, $key)}: $val;
+        }
+    }
+    @if $grow {
+        @each $sel, $val in $grow {
+            #{selector-nest($sel, "&")} {
+                flex-grow: $val;
+            }
+        }
+    }
+}
+
+@mixin justify($val) {
+    justify-content: $val;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex_bem {
+    @each $key, $mods in $flex_modifies {
+        @each $val in $mods {
+            @if $key == "default" {
+                .flex__#{$val} {
+                    display: flex;
+                    justify-content: #{$val};
+                }
+            } @else if $key == "wrap" {
+                .flex-#{$val} {
+                    flex-wrap: #{$val};
+                    display: flex;
+                }
+            }
+            @else {
+                .flex__#{$val} {
+                    justify-content: #{$key}-#{$val};
+                    display: flex;
+                }
+            }
+        }
+    }
+}

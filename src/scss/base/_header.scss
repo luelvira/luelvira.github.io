@@ -1,0 +1,65 @@
+.header {
+    @include lib.lay-flex(col);
+    @include lib.m-(4, 't');
+    @include lib.p-(6, 'lr');
+    &_profile {
+        @include lib.rounded-full;
+        @extend %square;
+        @include lib.max-w-(24);
+        @include lib.max-h-(24);
+        margin: auto;
+    }
+    &_name {
+        @include lib.font-size(10, 1);
+        @include lib.font-slab(900);
+        color: lib.color(main);
+    }
+    &_tagline {
+        @include lib.font-size(3);
+        color: lib.color(secondary);
+    }
+}
+
+.header {
+    @include lib.md-lg {
+        @include lib.lay-flex(row);
+        gap: 2rem;
+        &_profile {
+            margin: inherit;
+        }
+        &_name {
+            @include lib.lay-flex(col);
+            justify-content: center;
+        }
+    }
+    @include lib.lg {
+        padding: 0;
+        grid-area: header;
+        @include lib.lay-subgrid(col);
+        @include lib.lay-grid($rows: 2);
+        &_name {
+            @include lib.lay-grid-col(2, 8);            
+        }
+
+        .contact {
+            @include lib.lay-grid-row(2, 2);
+            @include lib.lay-grid-col(1, 9);
+            .basic_contact {
+                @include lib.lay-flex(row, null, ("justify": space-between));
+                @include lib.gap(2);
+                &_element {
+                    @include lib.lay-flex(row, (span: 1));
+                    @include lib.gap(2);
+                    span:first-child {
+                        max-width: 25px;
+                        max-height: 25px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.contact {
+    @include lib.m-(4, 't');
+}

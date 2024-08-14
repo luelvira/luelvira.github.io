@@ -1,0 +1,62 @@
+$bg: $box_shadow_color;
+@import "./_hamburger";
+
+.navbar {
+    position: relative;
+    @include lib.m-(2, 't');
+    @include lib.m-(3, 'lr');
+    @include shadow(2);
+    @include lib.lay-flex(row, (".logo": 1), (align:center));
+    @include menu-content(".open", ".navigation");
+    @include lib.lg {
+        @include lib.lay-subgrid(col);
+        grid-area: nav;
+      }
+
+    .logo {
+        i {
+          @include lib.font-size(10);
+          color: lib.color(main);
+        }
+    }
+
+    .menu {        
+        @include shadow(2);
+        @include lib.w-(8);
+        @include lib.h-(8);
+        @include menu-buttom(8, lib.color("background", '900', false), ".navbar", ".open");
+        @include lib.lg {
+            display: none;
+        }
+    }
+    .navigation {
+        @include lib.lay-flex(col, null, (justify: flex-end, align: center));
+        @include lib.pos-absolute($right: 0, $top: #{lib.get-size(10)});
+        @include lib.md {
+            @include lib.lay-flex(row);
+        }
+        @include lib.lg {
+            @include lib.lay-grid-col($start: 2, $end: -1);
+            visibility: visible;
+            max-height: revert;
+            overflow: revert;
+            position: initial;
+        }
+        
+        &-item {
+            list-style: none;
+            @include lib.w-(full);
+            @include lib.m-(0.5);            
+            @include card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
+            @include lib.p-d-(2, 3);
+            @include lib.trans-transition(
+                $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
+                $duration: 0.125s,
+                $event: hover
+            );
+            @include lib.lg {
+                width: auto;
+            }
+        } 
+    }
+}

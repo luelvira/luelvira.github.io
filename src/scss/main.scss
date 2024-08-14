@@ -1,44 +1,48 @@
-/*
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-*/
+@charset "UTF-8";
 
 @use "_variables" as lib;
-@import "_base";
-@import "_utilities";
-@import "components/_header";
+@import "base/_base";
+@import "./utilities";
 
-:root {
-    --main-color: #{map-get(lib.$primary, '800')};
-    --secondary-color:#{map-get(lib.$secondary, '800')};
-    --background: #{map-get(lib.$background, '50')};
-    --aux-color: #e7d192;
-    --gray-color: #{map-get(lib.$background, '500')};
-    --light-gray: #{map-get(lib.$background, '300')};
-    /*
-    @media (prefers-color-scheme: dark) {
-        --background: #{map-get(lib.$background, '950')};
-    }
-    */
-}
+$box_shadow_color: lib.color("background", '500');
+$background: lib.color("background", '50');
+$background_val: lib.color("background", '50', false);
+@include lib.generate_colors;
+@include lib.generate_colors((
+    main: (primary, 800),
+    secondary: (secondary, 800),
+    "background": ("background", 50),
+    aux: #e7d192,
+    "gray": ("background", 500),
+    light-gray: ("background", 300),
+    dark-gray: ("background", 700)
+));
+
+
+@include lib.lay-flex_bem;
+
+@import "components/_cards";
+@import "components/_tags";
+@import "base/_header";
+@import "components/_nav";
+
+
 
 .body {
-    background-color: var(--background);
-    @include flex-col;
+    background-color: lib.color("background");
+    @include lib.lay-flex(col);
     @include lib.w-('full');
-    @include lib.min-h-('screen');
-    //@include lib.m-(2, 'lr');
+    // @include lib.min-h-('screen');
     @include lib.lg {
         @include lib.max-w-('lg');
-        margin: auto;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: auto auto;
-        grid-template-areas: "header header header header header header header header"
-                             "body body body body body body body body";
-        gap: 1rem;
+        @include lib.m-(auto);
+        @include lib.p-(0);        
+        @include lib.lay-grid($rows: 3, $eqcols: 8);
+        grid-template-areas: lib.str-repeat("nav", 8)
+                             lib.str-repeat("header", 8)
+                             lib.str-repeat("body", 8);
+                             
+        @include lib.gap(4)
     }
     @include lib.xxl {
         @include lib.max-w-('xl');
@@ -46,49 +50,48 @@
 }
 
 .wrap {
-    @include lib.p-(1, 't');
-    .summary {
-      @include lib.p-(2, 'lr');
-      @include lib.lg {
-        @include lib.p-(3, 'lr');
-      }
-      p {
-          @include lib.m-(1, 'b');
-          @include lib.font-size('lg');
-          text-align: justify;
-          text-wrap: balance;
-      }
-      
-    }
-    .content {
-        @include lib.p-(1, 'lr');
-        @import "components/_home";
-        p {
-            @include lib.m-(1, 'tb');
-        }
-    }
+    @include lib.m-(6, 't');
+    @import "base/home";    
     @include lib.lg {
         grid-area: body;
         padding: 0;
     }
-
     @include lib.xxl {
       display: grid;
-      grid-template-areas: "summary summary summary summary summary summary summary summary"
-                           "experience experience experience experience education education education education";
-      grid-template-columns: subgrid;
-      .summary {
-          grid-area: summary;
-      }
-      .content {
-          &:nth-of-type(2) {
-              grid-area: experience;
+      &.home {
+          grid-template-areas: lib.str-repeat("summary", 8)
+                                             '#{lib.str-repeat("experience", 4)} #{lib.str-repeat("education", 4)}';
+          grid-template-columns: subgrid;
+          .summary {
+              grid-area: summary;
           }
-          grid-area: education;
+          .content {
+              grid-area: education;
+              &:nth-of-type(2) {
+                  grid-area: experience;
+              }
+          }
       }
     }
-}
-
-
-@include lib.sm {
+    &.projects {
+        @include card;
+        strong {
+            color: lib.color(primary, 500);
+        }
+        .budgets>ul {
+            @include lib.m-(8, 'tb');
+            @include lib.lay-flex(row);
+            @include lib.gap(2);
+            li {
+                list-style: none;
+            }
+        }
+        a {
+            color: lib.color(secondary);
+            font-weight: bold;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

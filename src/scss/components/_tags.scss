@@ -1,0 +1,36 @@
+@use "sass:list";
+@use "sass:map";
+@use "../variables" as lib;
+/// tag sizes available
+$tag-sizes: (
+    sm,
+    base,
+    lg,
+    xl
+);
+
+/// @mixin tag
+/// @param {string} $size - The size of the tag. The options are 'sm', 'base', 'lg', 'xl'
+/// @param {color} $color - The color of the tag.
+/// @param {boolean} $rounded - The border radius of the tag.
+@mixin tag($size, $color, $rounded) {
+    @if list.index($tag-sizes, $size) {
+        @include lib.font-size($size);
+    } @else {
+        @error "Invalid size: #{$size}. Please use one of the following: #{$tag-sizes}.";
+    }
+    @if type-of($value: $color) != color {
+        @error "Invalid color: #{$color}. Please use a valid color.";
+    }
+    @if type-of($value: $rounded) != bool {
+        @error "Invalid rounded value: #{$rounded}. Please use a boolean value.";
+    }
+    @if $rounded {
+        @include card($color: $color, $rounded: 2.5);
+    } @else {
+        @include card($color: $color, $rounded: 0);
+    }
+    @include shadow(2);
+    @include lib.p-d-(2, 3);
+    font-weight: bold;
+}

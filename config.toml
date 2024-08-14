@@ -1,5 +1,22 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Lucas Elvira-Martin CV'
 [markup.goldmark.renderer]
 unsafe = true
+
+[menus]
+    [[menus.main]]
+        name    = 'Home'
+        pageRef = '/'
+        url = '/'
+        weight  = 10
+    [[menus.main]]
+        name    = 'Projects'
+        pageRef = '/projects'
+        url = '/projects'
+        weight  = 20
+    [[menus.main]]
+        name    = 'Blog'
+        pageRef = '/blogs'
+        url = '/blogs'
+        weight  = 30

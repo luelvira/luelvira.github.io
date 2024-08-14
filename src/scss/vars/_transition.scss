@@ -1,0 +1,14 @@
+@mixin transition($pairs, $duration: 0.125s, $event) {
+    transition-property: #{map-keys($pairs)};
+    transition-duration: $duration;
+    transition-timing-function: ease-in-out;
+
+    @if $event {
+        &:#{$event} {
+            @each $key, $val in $pairs {
+                #{$key}: $val;
+            }
+        }
+    }
+
+}
