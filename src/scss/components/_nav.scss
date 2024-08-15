@@ -8,6 +8,17 @@ $bg: $box_shadow_color;
     @include shadow(2);
     @include lib.lay-flex(row, (".logo": 1), (align:center));
     @include menu-content(".open", ".navigation");
+    @include lib.max-lg {
+        .navigation {
+            @include card(
+                $color: lib.color("background", '100', false),
+                $rounded: 'xl',
+                $shadow_intensity: 10);
+        }
+        &:not(.open) .navigation{
+            @include lib.p-(0);
+        }
+    }
     @include lib.lg {
         @include lib.lay-subgrid(col);
         grid-area: nav;
@@ -31,13 +42,11 @@ $bg: $box_shadow_color;
     }
     .navigation {
         @include lib.lay-flex(col, null, (justify: flex-end, align: center));
-        @include lib.pos-absolute($right: 0, $top: #{lib.get-size(10)});
-        @include lib.md {
-            @include lib.lay-flex(row);
-        }
+        @include lib.pos-absolute($right: 0, $top: #{lib.get-size(14)});
+        @include lib.w-(full);
         @include lib.lg {
             @include lib.lay-grid-col($start: 2, $end: -1);
-            visibility: visible;
+            @include lib.lay-flex(row);
             max-height: revert;
             overflow: revert;
             position: initial;
@@ -45,7 +54,8 @@ $bg: $box_shadow_color;
         
         &-item {
             list-style: none;
-            @include lib.w-(full);
+            text-align: center;
+            @include lib.w-('2/10');
             @include lib.m-(0.5);            
             @include card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
             @include lib.p-d-(2, 3);

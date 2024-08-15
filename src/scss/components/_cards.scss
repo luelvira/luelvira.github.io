@@ -1,9 +1,11 @@
 @mixin card($color: null, $rounded: false, $shadow_intensity: 5) {
+    /*card*/
     overflow: hidden;
     @if $rounded {
         @include lib.rounded($rounded);
     }
     @include shadow($shadow_intensity);
+
     @if $color {
         border-color: lighten($color, 50%);
         background-color: #{$color};

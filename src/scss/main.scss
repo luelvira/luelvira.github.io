@@ -26,8 +26,6 @@ $background_val: lib.color("background", '50', false);
 @import "base/_header";
 @import "components/_nav";
 
-
-
 .body {
     background-color: lib.color("background");
     @include lib.lay-flex(col);

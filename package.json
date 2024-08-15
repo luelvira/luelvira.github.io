@@ -8,7 +8,9 @@
     "tailwind": "npx tailwindcss -i ./src/css/main.css -o ./assets/css/main.css --watch",
     "dev-hugo": "hugo server --gc",
     "dev-tailwind": "npx postcss src/scss/main.scss -o assets/css/main.css --watch",
-    "dev-sass": "sass src/scss/main.scss ./assets/css/main.css --watch"
+    "dev-sass": "sass src/scss/main.scss ./assets/css/main.css --watch",
+    "build-sass": "sass src/scss/main.scss ./assets/css/main.css"
+
   },
   "keywords": [],
   "author": "",

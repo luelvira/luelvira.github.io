@@ -1,5 +1,5 @@
 .header {
-    @include lib.lay-flex(col);
+    @include lib.lay-flex(col, null, ("wrap": wrap));
     @include lib.m-(4, 't');
     @include lib.p-(6, 'lr');
     &_profile {
@@ -17,6 +17,27 @@
     &_tagline {
         @include lib.font-size(3);
         color: lib.color(secondary);
+    }
+    .contact {
+        width: 100%;
+        .basic_contact {
+            @include lib.lay-flex(row, null, ("justify": space-evenly));
+            @include lib.gap(2);
+            &_element {
+                list-style: none;
+                a {
+                    @include lib.lay-flex(row, (span: 1));
+                    @include lib.gap(2);
+                    span:first-child {
+                        @include lib.w-(8);
+                        @include lib.lay-flex(row, null, ("justify": center, "align": center));
+                    }
+                    span:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -38,25 +59,25 @@
         @include lib.lay-subgrid(col);
         @include lib.lay-grid($rows: 2);
         &_name {
-            @include lib.lay-grid-col(2, 8);            
-        }
+    @include lib.lay-grid-col(2, 8);            
+}
 
-        .contact {
-            @include lib.lay-grid-row(2, 2);
-            @include lib.lay-grid-col(1, 9);
-            .basic_contact {
-                @include lib.lay-flex(row, null, ("justify": space-between));
-                @include lib.gap(2);
-                &_element {
-                    @include lib.lay-flex(row, (span: 1));
-                    @include lib.gap(2);
-                    span:first-child {
-                        max-width: 25px;
-                        max-height: 25px;
-                    }
+.contact {
+    @include lib.lay-grid-row(2, 2);
+    @include lib.lay-grid-col(1, 9);
+    .basic_contact {
+        &_element a {
+            span {
+                &:first-child {
+                    @include lib.w-(4);
+                }
+                &:last-child {
+                    display: inline-block;
                 }
             }
         }
+    }
+}
     }
 }
 

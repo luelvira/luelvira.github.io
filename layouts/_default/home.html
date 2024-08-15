@@ -16,6 +16,7 @@
       <ul class="basic_contact">
       {{ range $data.Contact }}
         <li class="basic_contact_element">
+          <a href="{{ .Link }}{{ .Info }}" target="_blank">
           <span>
             {{ if and (.Type) ( eq .Type "svg") }}
               {{ .Icon | safeHTML }}
@@ -25,6 +26,7 @@
           </span>
 
           <span> {{ .Info }}</span>
+          </a>
         </li>
       {{ end }}
       </ul>

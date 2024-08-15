@@ -9,14 +9,22 @@ unsafe = true
         name    = 'Home'
         pageRef = '/'
         url = '/'
-        weight  = 10
+        weight  = 1
     [[menus.main]]
         name    = 'Projects'
         pageRef = '/projects'
         url = '/projects'
-        weight  = 20
+        weight  = 4
     [[menus.main]]
         name    = 'Blog'
         pageRef = '/blogs'
         url = '/blogs'
-        weight  = 30
+        weight  = 5
+    [[menus.main]]
+        name    = 'Experience'
+        url     = '/#experience'
+        weight  = 2
+    [[menus.main]]
+        name    = 'Education'
+        url     = '/#education'
+        weight  = 3

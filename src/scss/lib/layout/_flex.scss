@@ -19,7 +19,7 @@ $flex_modifies: (
     @if $flex-position {
         $flex_positions: ("justify": justify-content,
                           "align": "align-items",
-                          "wrap": wrap);
+                          "wrap": flex-wrap);
         @each $key, $val in $flex-position {
             #{map-get($flex_positions, $key)}: $val;
         }

@@ -69,18 +69,32 @@ $height: (
 
 
 @mixin breakpoint($min, $max: null) {
-    @if not $max {
+    @if $min and not $max {
         @if map-has-key($screens, $min) {
             @media (min-width: #{map-get($screens, $min)}) {
                 @content;
             }
+        } @else {
+            @error "min key: #{$min} is not valid screen size";
         }
-    } @else {
+    } @else if not $min and $max {
+        @if map-has-key($screens, $max) {
+            @media (max-width: #{map-get($screens, $max)}) {
+                @content;
+            }
+        } @else {
+            @error "max key: #{$max} is not valid screen size";
+        }
+    }
+    @else {
         @if map-has-key($screens, $min) and map-has-key($screens, $max) {
             @media (min-width: #{map-get($screens, $min)}) and (max-width: #{map-get($screens, $max)}) {
                 @content;
             }
+        } @else {
+            @error "Min key #{$min} or max key: #{$max} are not valid screen size";
         }
+
     }
 }
 
@@ -94,3 +108,9 @@ $height: (
 @mixin md-lg {@include breakpoint(md, lg) {@content;}}
 @mixin lg-xl {@include breakpoint(lg, xl) {@content;}}
 @mixin xl-xxl {@include breakpoint(xl, 2xl) {@content;}}
+
+@mixin max-sm{@include breakpoint(null, sm){@content;}}
+@mixin max-md{@include breakpoint(null, md){@content;}}
+@mixin max-lg{@include breakpoint(null, lg){@content;}}
+@mixin max-xl{@include breakpoint(null, xl){@content;}}
+@mixin max-xxl{@include breakpoint(null, xxl){@content;}}

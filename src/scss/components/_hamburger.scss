@@ -23,8 +23,6 @@
         
     }
     @at-root {
-    // #{$content_selector}#{$active_selector} span {
-    // &#{$active_selector} span {
       #{selector-append($content_selector, $active_selector)} span {
         &:nth-of-type(1) {transform: rotateZ(45deg);}
         &:nth-of-type(2) {opacity: 0}
@@ -37,8 +35,7 @@
 @mixin menu-content($active_selector:".open", $content_selector: ".menu") {
     $sel: selector-append(&, $active_selector);
     #{$content_selector} {
-        visibility: hidden;
-        @include lib.trans-transition($pairs: (max-height: revert, height: auto), $duration: 0.5s, $event:null);
+        @include lib.trans-transition($pairs: (max-height: revert, height: auto, padding: 0), $duration: 0.5s, $event:null);
         max-height: 0px;
         overflow: hidden;
     }
