@@ -2,10 +2,10 @@
 title = "Projects"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-17T00:00:00+02:00
+type = "projects"
 draft = false
 +++
 
 ## Projects {#projects}
 
-As a developer I really LOVE Open Source Software and I enjoy developing
-side projects as a method to learn new technologies!
+Projects I have been enjoining doing over the years

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.wrap.listpage {
+    &>h2 {
+        color: lib.color(main);
+        @include lib.font-size('2xl');
+    }
+    &>p {
+        @include lib.font-size(lg);
+    }
+}

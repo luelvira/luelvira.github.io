@@ -20,11 +20,14 @@ $background_val: lib.color("background", '50', false);
 
 
 @include lib.lay-flex_bem;
+@include lib.font-gen_font_size;
 
 @import "components/_cards";
 @import "components/_tags";
 @import "base/_header";
 @import "components/_nav";
+@import "base/list";
+@import "base/projects";
 
 .body {
     background-color: lib.color("background");
@@ -72,6 +75,7 @@ $background_val: lib.color("background", '50', false);
       }
     }
     &.projects {
+        /*
         @include card;
         strong {
             color: lib.color(primary, 500);
@@ -91,5 +95,6 @@ $background_val: lib.color("background", '50', false);
                 text-decoration: underline;
             }
         }
+        */
     }
 }

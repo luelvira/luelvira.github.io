@@ -1,0 +1,10 @@
+#+title:     Personal website
+#+author:    Lucas Elvira Martín
+#+email:     lucaselvira96@gmail.com
+#+DATE: 2024-08-17 Sat
+#+Description: This website
+#+HUGO_CUSTOM_FRONT_MATTER: :ProjectLink https://luelvira.github.io/hugo_website/
+#+HUGO_CUSTOM_FRONT_MATTER: :Source https://github.com/luelvira/hugo_website
+#+HUGO_SECTION: projects 
+#+EXPORT_FILE_NAME: hugo_website.md
+#+HUGO_BASE_DIR: ../../

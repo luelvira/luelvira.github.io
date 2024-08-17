@@ -8,10 +8,10 @@
  <link rel="canonical" href="{{ .Permalink }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" href=" {{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" media="screen,print">
-{{ if (gt .Author 0) }}
- {{ range .Author }} 
+ {{ if (gt .Params.Author 0) }}
+ {{ range .Params.Author }}
   <meta name="author" content="{{ . }}">
+ {{ end }}
   {{ end }}
-{{ end }}
 </head>
 

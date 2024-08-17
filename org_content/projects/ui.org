@@ -1,9 +1,15 @@
 #+title:     User Interfaces
 #+author:    Lucas Elvira Martín
 #+email:     lucaselvira96@gmail.com
+#+Date: 2023-09-02
+#+Description: Web page generate for teach web development at University
+#+HUGO_CUSTOM_FRONT_MATTER: :ProjectLink https://luelvira.github.io/interfaces-usuario/
+#+HUGO_CUSTOM_FRONT_MATTER: :Source https://github.com/luelvira/interfaces-usuario
 #+HUGO_SECTION: projects 
 #+EXPORT_FILE_NAME: user_interfaces.md
 #+HUGO_BASE_DIR: ../../
+
+
 
 *  The user interfaces projects
 

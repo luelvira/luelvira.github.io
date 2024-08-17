@@ -1,0 +1,10 @@
+#+title:     Projects
+#+author:    Lucas Elvira Martín
+#+email:     lucaselvira96@gmail.com
+#+DATE: 2024-08-17 Sat
+#+HUGO_BASE_DIR: ../../
+#+HUGO_SECTION: projects
+* Projects
+
+As a developer I really LOVE Open Source Software and I enjoy developing
+side projects as a method to learn new technologies!

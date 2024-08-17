@@ -30,7 +30,7 @@ $STEPS: 0.125;
     }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Satisfy&display=swap');
 $slab: Roboto slab;
 $sans:  "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif, system-ui, sans-serif;
 $serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -38,4 +38,12 @@ $serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 @mixin slab($w: 400) {
     font-family: $slab;
     font-weight: $w;
+}
+
+@mixin gen_font_size {
+    @each $key, $val in $fix-size {
+        .font-#{$key} {
+            @include size($key);
+        }
+    }
 }

@@ -20,7 +20,7 @@ $tag-sizes: (
         @error "Invalid size: #{$size}. Please use one of the following: #{$tag-sizes}.";
     }
     @if type-of($value: $color) != color {
-        @error "Invalid color: #{$color}. Please use a valid color.";
+        @error "Invalid color: #{$color}. Expected color or string, pass #{type-of($value: $color)}";
     }
     @if type-of($value: $rounded) != bool {
         @error "Invalid rounded value: #{$rounded}. Please use a boolean value.";

@@ -1,11 +1,19 @@
 {{- define "main" -}}
 
-  <main class="wrap">
+  <main class="wrap listpage {{ .Page.Type}}">
  {{ .Content }}
 
- {{ range .Data.Pages }}
-  <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+ <div class="{{ .Page.Type}}-list">
+   {{ if eq "projects" .Page.Type }}
+     {{ range .Data.Pages }}
+       {{ partial "_project.html" . }}
+
+   {{ end }}
+
+
+</div>
 {{ end }}
+</div>
 
   </main>
 {{- end -}}

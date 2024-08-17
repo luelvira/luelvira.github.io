@@ -1,7 +1,11 @@
 +++
 title = "User Interfaces"
 author = ["Lucas Elvira Martín"]
+description = "Web page generate for teach web development at University"
+date = 2023-09-02
 draft = false
+ProjectLink = "https://luelvira.github.io/interfaces-usuario/"
+Source = "https://github.com/luelvira/interfaces-usuario"
 +++
 
 ## The user interfaces projects {#the-user-interfaces-projects}

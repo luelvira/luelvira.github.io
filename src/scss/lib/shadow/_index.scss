@@ -1,15 +1,26 @@
 @charset "UTF-8";
 @use "sass:math";
 
-@function box-shadow($color, $levels: 3) {
-    $shadow: "";
+
+@function box-shadow-generator($color, $levels, $mode, $offset-x-inc, $offset-y-inc, $blur, $spread-radius, $div_value) {
+$shadow: "";
     @for $i from 1 through $levels {
         @if $shadow != "" {
             $shadow: $shadow  ", ";
         } 
-        $shadow: $shadow 0px * $i 2px * $i 3px * $i #{rgba($color, math.div(0.125,$i))};
+        $shadow: $shadow $mode
+                         $offset-x-inc * $i
+                         $offset-y-inc * $i
+                         $blur * $i
+                         $spread-radius * $i
+                         #{rgba($color, math.div($div_value,$i))};
     }
     @return #{$shadow};
+}
+
+@function box-shadow($color, $levels: 3, $inner: "") {
+    @return box-shadow-generator($color, $levels, $inner, 0, 2px, 3px, 0px, 0.125)  
+    
 }
 
 
@@ -22,4 +33,8 @@
 		$shadow: $shadow 0px $i * 1px $i*3px -1px #{rgba($color, math.div(0.5,$i))}
 	}
 	@return $shadow;
+}
+
+@function inner-box-shadow($color, $levels: 3) {
+    @return box-shadow($color, $levels, "inset");
 }
