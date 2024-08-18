@@ -1,11 +1,12 @@
-<div class="projects-card sticky">
+<div class="projects-card sticky {{ range .Params.Categories }} {{ lower . }} {{ end }}">
 
+  {{ .Data.Terms }} 
   <div class="sticky-content">
     <div class="sticky-content--wrap">
     <time class="projects-card__timestamp" target="_blank">{{ .Page.Date | time.Format ":date_medium" }}</time>
-    <h4> <a href="{{ .Params.ProjectLink }}" target="_blank" >{{ .Title }}</a></h4>
+    <h4> <a href="{{ .Permalink }}" >{{ .Title }}</a></h4>
     <p class="projects-card__description"> {{ .Page.Description }}</p>
-    <div class="code"><a href="{{ .Params.Source }}" target="_blank">View Code</a></div>
+    <div class="mark"><a href="{{ .Params.Source }}" target="_blank">View Code</a></div>
     </div>
     </div>
 

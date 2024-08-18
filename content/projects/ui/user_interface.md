@@ -1,14 +1,12 @@
 +++
 title = "User Interfaces"
 author = ["Lucas Elvira Martín"]
-description = "Web page generate for teach web development at University"
-date = 2023-09-02
+date = 2024-08-17T00:00:00+02:00
+lastmod = 2024-08-18T20:54:21+02:00
 draft = false
-ProjectLink = "https://luelvira.github.io/interfaces-usuario/"
-Source = "https://github.com/luelvira/interfaces-usuario"
+weight = 1003
+projects = "ui"
 +++
-
-## The user interfaces projects {#the-user-interfaces-projects}
 
 There is a better way to learn how to build a web site, than building one? I
 don't think so! For this reason, I decided to start this project.

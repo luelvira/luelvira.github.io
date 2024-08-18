@@ -1,5 +1,19 @@
 {{ define "main" }}
-<main class="wrap {{ .Type}}">
-{{ .Content }}
+<main class="wrap {{ .Page.Type }}">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <div class="image_gallery">
+    {{ with .Resources.ByType "image" }}
+    {{ range . }}
+    <div class="image_gallery__item">
+      {{ with .Crop (printf "%dx%d webp" .Width .Height) }}
+      <img src="{{ .RelPermalink }}" alt="project image example" >
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
 </main>
+
 {{ end }}

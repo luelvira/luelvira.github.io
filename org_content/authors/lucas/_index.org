@@ -1,0 +1,247 @@
+#+TITLE: Curriculum
+#+AUTHOR: Lucas Elvira Martín
+#+DATE: 2024-05-26
+#+DESCRIPTION: Some description
+#+exclude_tags: noexport noexporthugo
+#+SETUPFILE: ../../../../personal_web/template.org
+#+EXPORT_FILE_NAME: _index.md
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: ./authors/lucas
+
+
+* CV INFO                                               :noexporthugo:ignore:
+
+** Photo and tagline                                                 :ignore:
+#+begin_export latex
+\name{Lucas Elvira-Martín}
+\photoR{2.8cm}{profile-min}
+\tagline{PhD Researcher}
+#+end_export
+
+#+ATTR_HTML: :class header-profile
+#+ATTR_HTML: :alt profile image
+[[./assets/profile.jpg]]
+#+begin_export html
+<div class="header-name">Lucas Elvira-Martín
+  <div class="header-tagline">PhD research Student</div>
+</div>
+#+end_export
+** Personal info                                                     :ignore:
+
+#+begin_export latex
+\personalinfo {%
+\email {luelvira@protonmail.com}
+\phone{+34 630 20 43 48}
+\location{Madrid, Spain}
+\github{luelvira}
+\linkedin{lucas-elvira-martin}
+\orcid{0009-0007-5423-7627}
+}
+\makecvheader
+#+end_export
+
+
+* Header                                                             :ignore:
+
+#+begin_section
+Half engineer, half scientist, the best of both worlds! I have experience in
+software development for companies in sectors such as consulting, human
+resources and telecommunications, as well as in university departments at
+Universidad Carlos III de Madrid for more than 2 years, where I am pursuing
+doing a PhD in Computer science and Technology.
+#+end_section
+** Extended version                                                  :ignore:
+
+#+HTML_ATTR: :class extended
+#+begin_section
+I am always looking to learn something new and face new challenges. This drive
+has led me to earn a degree in Multimedia and Graphic Design from ESNE
+University, a degree in Computer Engineering from Universidad Carlos III de
+Madrid and I to complete a master's degree in Computer Science and Technology at
+the same university. These achievements demonstrate my dedication and ability to
+learn and adapt to new knowledge and technologies.
+
+Throughout my career I have developed a solid foundation in algorithms,
+problem-solving and various programming languages, with a special affinity for
+Node.js and Python.
+#+end_section
+
+* 
+
+** Experience
+*** PhD Student                                                      :ignore:
+#+begin_article
+{{{cvevent(PhD Student, Universidad Carlos III de Madrid,Sept 2023 -- Ongoing, Leganés, Spain)}}}
+
+- Professor in Computer Engineering degree, teaching User Interfaces course with web technologies.
+- Conducting a research in the field of Human-Computer Interaction (HCI), with a focus on Cross Reality.
+
+-----
+#+end_article
+
+*** Master's Scholarship                                             :ignore:
+
+#+begin_article
+{{{cvevent(Master's Scholarship, Universidad Carlos III de Madrid,Sept 2022 -- Spet 23, Leganés\, Spain)}}}
+
+- Professor in Computer Engineering degree, teaching User Interfaces course with web technologies.
+- Develop a tool that facilitates the construction and visualization of
+  knowledge bases through a graphical interface.
+
+{{{cvtag(Natural Language Processing)}}}
+{{{cvtag(Flask)}}}
+{{{cvtag(D3JS)}}}
+
+-------
+#+end_article
+*** Research support technician                                      :ignore:
+
+#+begin_article
+{{{cvevent(Research support technician, Universidad Carlos III de Madrid, March 2022 -- Sept 2022, Leganés \, Spain)}}}
+
+- Develop a tool capable of automating the generation of ontologies through text
+  in different formats within a friendly interface.
+
+{{{cvtag(Python)}}}
+{{{cvtag(TensorFlow)}}}
+{{{cvtag(Gensim)}}}
+
+-------
+#+end_article
+*** Ericsson                                                           :ignore:
+
+#+begin_article
+{{{cvevent(Internship, Ericsson, Oct 2021 -- March 2022, Madrid\, Spain)}}}
+
+- Work on the development of an application to monitor networks with the smartphone.
+
+{{{cvtag(Andrid)}}}
+{{{cvtag(Angular)}}}
+{{{cvtag(Flask)}}}
+
+-------
+#+end_article
+*** Internship in UC3M                                                  :ignore:
+
+#+begin_article
+{{{cvevent(Internship, Universidad Carlos III de Madrid, March 2021 -- Jul 2021, Leganés \, Spain)}}}
+
+- Develop an immersive data analytics visualization.
+
+{{{cvtag(ThreeJS)}}}
+{{{cvtag(Aframe)}}}
+{{{cvtag(Virtual Reality)}}}
+#+end_article
+
+#+begin_export latex
+\newpage
+#+end_export
+*** Internship in UC3M (ARCOS)                                          :ignore:
+
+#+begin_article
+{{{cvevent(Internship, Universidad Carlos III de Madrid, Feb 2020 -- Aug 2020, Leganés \, Spain)}}}
+
+- Collaborate on the extension of an /ARM/ simulator developed with web technologies.
+
+{{{cvtag(Vue)}}}
+{{{cvtag(Boostrap)}}}
+
+-------
+#+end_article
+*** Web Developer in Enredart                                          :ignore:
+
+#+begin_article
+{{{cvevent(Web Developer, Enredart, Feb 2019 -- Nov 2019, Madrid \, Spain)}}}
+
+- Maintain and continuous improve of existing web projects.
+- Develop an Interactive tour for the Alhambra for web and desktop platforms.
+
+{{{cvtag(PHP)}}}
+{{{cvtag(WordPress)}}}
+{{{cvtag(Electron)}}}
+
+-------
+#+end_article
+*** Web developer in The Key Talent                                    :ignore:
+
+#+begin_article
+{{{cvevent(Web Developer, The Key Talent, Jul 2017 -- Jan 2018, Madrid \, Spain)}}}
+
+- Contribute to the develop of a web application designed to showcase various employee selection processes.
+- Create more interactive web applications aimed at experimenting with
+  innovative selection process, adopting a more playful approach such as video
+  game-like experience.
+
+{{{cvtag(Angular)}}}
+{{{cvtag(PHP)}}}
+{{{cvtag(Django)}}}
+
+-------
+#+end_article
+*** Web Developer in  Observatorio Español del diseño                  :ignore:
+
+#+begin_article
+{{{cvevent(Internship, Observatorio Español del diseño, Jan 2017 -- Jun 2017, Madrid \, Spain)}}}
+
+- Design components related to data analysis and visualization, while collecting
+  the data  provided by the Community of Madrid on pollution indexes.
+
+{{{cvtag(Python)}}}
+{{{cvtag(D3JS)}}}
+{{{cvtag(Web Technologies)}}}
+#+end_article
+* 
+# Switch to the right column - will automatically move to the next page.
+#+begin_export latex
+\switchcolumn
+#+end_export
+
+** Education
+
+*** Phd in UC3M                                                      :ignore:
+#+begin_article
+{{{cvevent(PhD in Computer Science and Technology, Universidad Carlos III de Madrid, 2023 -- Ongoing)}}}
+
+-------
+
+#+end_article
+*** Master                                                           :ignore:
+#+begin_article
+{{{cvevent(Master in Computer Science and Technology, Universidad Carlos III de Madrid, 2022 -- 2023)}}}
+
+-------
+#+end_article
+
+*** Computer engineer                                                :ignore:
+#+begin_article
+{{{cvevent(Degree in Computer engineering, Universidad Carlos III de Madrid, 2018 -- 2022)}}}
+
+-------
+#+end_article
+
+*** Graphic design                                                   :ignore:
+#+begin_article
+{{{cvevent(Degree in Graphic Design and visual creation, ESNE, 2014 -- 2018)}}}
+#+end_article
+
+** Skills
+:PROPERTIES:
+:CUSTOM_ID: skills
+:END:
+
+{{{cvtag(Python)}}}
+{{{cvtag(Flask)}}}
+{{{cvtag(git)}}}
+{{{cvtag(Linux)}}}
+{{{cvtag(JavaScript/Node.js)}}}
+{{{cvtag(TypeScript)}}}
+{{{cvtag(Web development)}}}
+{{{cvtag(Virtual Reality)}}}
+{{{cvtag(Natural Language Processing)}}}
+
+** Languages
+{{{cvskill(Spanish,5)}}}
+
+{{{cvskill(English,3.5)}}}
+
+** Publications

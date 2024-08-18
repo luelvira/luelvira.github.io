@@ -9,9 +9,14 @@
     } @else if $eqcols and $cols {
         @error "You can't have both equal columns and fixed columns";
     }
-    @if $rows {
+    @if $rows and not $eqrows {
         grid-template-rows: repeat($rows, auto);
+    } @else if $eqrows and not $rows {
+        grid-template-rows: repeat($eqrows, 1fr);
+    } @else if $eqrows and $rows {
+        @error "You can't have both equal rows and fixed rows";
     }
+
 }
 
 @mixin grid-col($start: null, $end: null, $span: null) {

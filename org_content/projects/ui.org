@@ -9,15 +9,17 @@
 #+EXPORT_FILE_NAME: user_interfaces.md
 #+HUGO_BASE_DIR: ../../
 
-
-
-*  The user interfaces projects
+*  The user interfaces projects                                         :@UI:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_BUNDLE: ui
+:END:
 
 There is a better way to learn how to build a web site, than building one? I
 don't think so! For this reason, I decided to start this project.
 
-As teacher of the subjects *interfaces de usuario* at the university *Universidad
-Carlos III de Madrid*, I encouraged my students to create a real web page where
+As teacher of the subjects /interfaces de usuario/ at the university /Universidad
+Carlos III de Madrid/, I encouraged my students to create a real web page where
 they can find all the resources we were learned each week. The The stack used for
 that was:
 #+ATTR_HTML: :class budgets
@@ -30,3 +32,4 @@ that was:
 
 You can check the result at [[https://luelvira.github.io/interfaces-usuario/][interfaces-usuario]], and
 the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces de usuario]] 
+

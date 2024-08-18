@@ -28,3 +28,9 @@ unsafe = true
         name    = 'Education'
         url     = '/#education'
         weight  = 3
+        
+[taxonomies]
+    category = 'categories'
+    tag = 'tags'
+    author = 'authors'
+    project = 'projects'

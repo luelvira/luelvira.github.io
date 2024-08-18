@@ -3,8 +3,101 @@
 #+email:     lucaselvira96@gmail.com
 #+DATE: 2024-08-17 Sat
 #+HUGO_BASE_DIR: ../../
-#+HUGO_SECTION: projects
+#+HUGO_SECTION: ./projects
+#+hugo_auto_set_lastmod: t
+#+HUGO_WEIGHT: auto
 * Projects
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:END:
 
 As a developer I really LOVE Open Source Software and I enjoy developing
 side projects as a method to learn new technologies!
+
+*  The user interfaces projects                                        :@WEB:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_BUNDLE: ui
+:EXPORT_TITLE: User Interfaces
+:EXPORT_DATE: 2023-09-02
+:EXPORT_Description: Web page generate for teach web development at University
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :ProjectLink https://luelvira.github.io/interfaces-usuario/
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/interfaces-usuario
+:END:
+
+* The user interfaces projects content
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: ui
+:EXPORT_FILE_NAME: user_interface
+:EXPORT_TITLE: User Interfaces
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects ui
+:END:
+
+There is a better way to learn how to build a web site, than building one? I
+don't think so! For this reason, I decided to start this project.
+
+As teacher of the subjects *interfaces de usuario* at the university *Universidad
+Carlos III de Madrid*, I encouraged my students to create a real web page where
+they can find all the resources we were learned each week. The The stack used for
+that was:
+#+ATTR_HTML: :class budgets
+- ![[https://img.shields.io/badge/Emacs-%237F5AB6.svg?&style=for-the-badge&logo=gnu-emacs&logoColor=white][Emacs]]
+- ![[https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white][HTML5]]
+- ![[https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E][javascript]]
+- ![[https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white][CSS3]]
+- ![[https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white][github actios]]
+- ![[https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white][github pages]]
+
+You can check the result at [[https://luelvira.github.io/interfaces-usuario/][interfaces-usuario]], and
+the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces de usuario]] 
+
+* Hugo Web site                                                        :@WEB:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_BUNDLE: personal_web
+:EXPORT_TITLE: Personal website
+:EXPORT_DATE: 2024-08-17
+:EXPORT_DESCRIPTION: This website build with hugo, and scss
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :ProjectLink https://luelvira.github.io/hugo_website/
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/hugo_website
+:END:
+
+* Hugo Web Site content
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: personal_web
+:EXPORT_FILE_NAME: personal_web_page
+:EXPORT_TITLE: Personal page
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects personal_web
+:END:
+
+This web site will act as a personal place to give me to know and help me to
+create a community with people that has affinity with me. The technologies used
+in this project are [[https://gohugo.io/][hugo]], [[https://sass-lang.com/][sass]]. At the same time I am developing this project, i
+am creating a sass library and a hugo template that will be shared soon.
+
+* Tinny calc                                                       :@HASKELL:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_DATE: 2024-08-18
+:EXPORT_TITLE: Tinny calculator
+:EXPORT_HUGO_BUNDLE: tinny_calc
+:EXPORT_DESCRIPTION: Build a tinny programming languages to learn haskell
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
+:END:
+
+* Tinny calc Content
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: tinny_calc
+:EXPORT_FILE_NAME: tinny_calc_page
+:EXPORT_TITLE: Tinny Calc
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects tinny_calc
+:END:
+
+This projects aims to be used as an entry point to learn [[https://www.haskell.org/][haskell]] and how to
+create a dummy programming languages. At this point, the process will be used as
+the first post of the blog.
+
+The main characteristics of this language are:
+- Can use variables
+- It is relative simple to add features and functionalities
+

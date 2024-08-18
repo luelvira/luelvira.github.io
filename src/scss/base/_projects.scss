@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
+
 .projects {
+    @include lib.max-lg {
+        @include lib.p-(4, 'lr');
+    }
     strong {
         color: lib.color(primary, 500);
     }
@@ -21,7 +25,8 @@
     }
 
     &-list {
-        @include lib.lay-flex(row, null, (wrap: wrap));
+        // @include lib.lay-flex(row, (".sticky": 0), (wrap: wrap));
+        @include lib.lay-grid($eqcols: 3);
         @include lib.rounded(sm);
         @include lib.m-(8, 't');
         @include lib.p-(4);
@@ -39,46 +44,86 @@
                                
                          
     }
-    &-card {
-       // @include card($color: $background_val, $rounded: 'none');
-        @include lib.w-('1/3')
+    .image_gallery {
+        @include lib.m-(4, 't');
+        @include lib.lay-flex(row, (".image_gallery__item": 1), ("wrap": wrap));
+        @include lib.gap(2);
+        &__item {
+            @include lib.w-('3/10');
+            overflow-y: auto;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+        }
     }
 }
 
 
 .sticky {
     position: relative;
-    transform: rotate(1deg);
-    @include lib.h-(full);
-    @include lib.pcs-after {
-        z-index: 99;
-        @include lib.pos-absolute($right: 1px, $bottom: 0px);
-        background: rgba(0,0,0,0.2);
-		height:30%;
-		max-height: 30px;
-		max-width: 60px;
-        width:30%;
-        box-shadow: 0 0 7px 1px rgba(0,0,0,0.2);
-        transform: skew(10deg, 12deg) rotate(-1deg) translate3d(0,0,0);
+    flex-grow: 0;
+    background-color: lib.color(background);
+    box-shadow: #{lib.box-shadow(darken(lib.color('background', '900', false), 10%), 2)};
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 125px 10px;
+    // $bg-color: random_pastel();
+    // --bg-color: #{$bg-color};
+    // $bg-lighten: lighten($bg-color, 7%);
+    // --bg-lighten: #{$bg-lighten};
+    $colors: (
+        "haskell": #ff7eb9,
+        "web": #ff65a3,
+        "emacs": #7afcff,
+        "linux":  	#feff9c,
+        "default": #fff740
+    );
+    $bg-color: map-get($colors, default);
+    --bg-color: #{$bg-color};
+    --bg-lighten: #{lighten($bg-color, 7%)};
+    
+    @each $key, $color in $colors {
+        &.#{$key} {
+        $bg-color: $color;
+        --bg-color: #{$bg-color};
+        --bg-lighten: #{lighten($bg-color, 7%)};
+        }
     }
-    @include lib.pcs-before {
-        z-index: 100;
-        @include lib.pos-absolute($left: 1px, $bottom: 1px);
-        background: rgba(0,0,0,0.3);
-		max-height: 60px;
-		max-width: 180px;
-		height:70%;
-		width:90%;
-        box-shadow: 0 0 7px 2px rgba(0,0,0,0.3);
-        transform: skew(-8deg, -2deg) rotate(-1deg) translate3d(0,0,0);
+    
+    @for $i from 1 to 100 {
+        &:nth-child(#{$i}) {
+            $dir: math.random();
+            @if $dir > 0.5 {
+                $dir: 1;
+            } @else {
+                $dir: -1;
+            }
+            transform: rotate(1deg + (math.random()*2) * $dir);
+        }
     }
-
+    
     .sticky-content {
         @include lib.p-(4);
-        background: #fff799;
+        @include lib.min-h-(fit);
+        @include lib.min-w-(fit);
+        
+        background-image: linear-gradient(135deg, var(--bg-color) 85%, var(--bg-lighten) 90%, var(--bg-color));
         z-index: 100;
         position:relative;
         box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+        @include lib.h-(full);
+        overflow: hidden;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 125px 10px;
+        @include lib.pcs-before {
+            z-index: 102;
+            width: 32px;
+            height: 40px;
+            @include lib.pos-absolute($left: -10px, $bottom: -15px);
+            background-color: var(--bg-color);
+            box-shadow:
+                3px -2px 10px rgba(0, 0, 0, 0.3),
+                inset 15px -15px 15px rgba(255, 255, 255, 0.3);
+            transform: skew(-25deg);
+        }
         %full {
             @include lib.w-(full);
         }
@@ -90,32 +135,49 @@
             @include lib.font-size('2xl');
             @extend %full;
             font-family: "Caveat";
+            font-family: "Permanent Marker";
             a {
-                color: lib.color(main);
+                color:black;
             }
         }
         p {
             font-style: italic;
+
         }
-        .code {
-            @include lib.rounded(xl);
+        .mark {
             @include lib.p-d-(1, 4);
             @include lib.lay-flex(col, null, ("justify": center, "align": center));
             // border: 1px solid;
             display: inline-flex;
             position: relative;
-            background-image: linear-gradient(
-                to right,
-                rgba(0, 125, 255, 0.1),
-                rgba(0, 125, 255, 0.7) 4%,
-                rgba(0, 125, 255, 0.3)
-            );
+            @include lib.pcs-before {
+                z-index: 0;
+                @include lib.rounded(xl);
+                transform: skewX(-30deg);
+                background-image: linear-gradient(
+                    104deg,
+                    rgba(0, 225, 155, 0.0) 0.9%,
+                    rgba(0, 225, 155, 1.25) 2.4%,
+                    rgba(0, 225, 155, .5) 5.8%,
+                    rgba(0, 225, 155, 0.1) 85%,
+                    rgba(0, 225, 155, 0.5) 96%,
+                    rgba(0, 225, 155, 0.1) 98%,
+                ), linear-gradient(
+                                      183deg,
+                                      rgba(0, 125, 255, 0) 0%,
+                                      rgba(0, 125, 255, 0.3) 8%,
+                                      rgba(0, 125, 255, 0) 15%);
+                @include lib.w-(full);
+                @include lib.h-(full);
+                @include lib.pos-absolute($left: 0);
+                box-decoration-break: clone;
+            }
             a {
                 color: black;
                 font-family: "Caveat";
                 @include lib.font-size('xl');
+                position:relative;
             }
-            transform: skewX(-10deg);
         }
         &--wrap {
             @include lib.lay-flex(col, null, ("align": center));
@@ -123,3 +185,5 @@
         }
     }
 }
+
+

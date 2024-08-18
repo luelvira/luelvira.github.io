@@ -1,9 +1,9 @@
 @use "sass:math";
 @use "../_variables" as lib;
 @mixin menu-buttom($size, $color, $content_selector, $active_selector:".open") {
+    position: relative;
     @include lib.w-($size);
     @include lib.h-($size);
-    position: relative;
     @include lib.pcs-focus;
     span {
         @include lib.w-('4/5');
@@ -35,7 +35,28 @@
 @mixin menu-content($active_selector:".open", $content_selector: ".menu") {
     $sel: selector-append(&, $active_selector);
     #{$content_selector} {
-        @include lib.trans-transition($pairs: (max-height: revert, height: auto, padding: 0), $duration: 0.5s, $event:null);
+        @include lib.trans-transition(
+            $pairs: (max-height: revert, height: auto, padding: 0),
+            $duration: 0.5s,
+            $event:null);
+        max-height: 0px;
+        overflow: hidden;
+    }
+    @at-root {
+        #{selector-nest($sel, $content_selector)} {
+            visibility: visible;
+            max-height: 500px;
+        }
+    }
+}
+
+@mixin menu-item($active_selector, $content_selector) {
+    $sel: selector-append(&, $active_selector);
+#{$content_selector} {
+        @include lib.trans-transition(
+            $pairs: (max-height: revert, height: auto, padding: 0),
+            $duration: 0.5s,
+            $event:null);
         max-height: 0px;
         overflow: hidden;
     }

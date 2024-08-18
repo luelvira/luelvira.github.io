@@ -9,11 +9,13 @@ $bg: $box_shadow_color;
     @include lib.lay-flex(row, (".logo": 1), (align:center));
     @include menu-content(".open", ".navigation");
     @include lib.max-lg {
+        @include menu-item(".open", ".navigation-item");
         .navigation {
             @include card(
                 $color: lib.color("background", '100', false),
                 $rounded: 'xl',
                 $shadow_intensity: 10);
+            @include lib.p-(0);
         }
         &:not(.open) .navigation{
             @include lib.p-(0);
@@ -55,17 +57,19 @@ $bg: $box_shadow_color;
         &-item {
             list-style: none;
             text-align: center;
-            @include lib.w-('2/10');
+            @include lib.min-w-(fit);
+            @include lib.max-w-(30);
+            @include lib.w-('1/3');
             @include lib.m-(0.5);            
             @include card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
             @include lib.p-d-(2, 3);
+            @include lib.lg {
             @include lib.trans-transition(
                 $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
                 $duration: 0.125s,
                 $event: hover
             );
-            @include lib.lg {
-                width: auto;
+               @include lib.w-(auto);
             }
         } 
     }

@@ -1,0 +1,27 @@
+{{ define "main" }}
+This is the taxonomy template
+  <main class="wrap listpage {{ .Page.Type}}">
+<h1>{{ .Title }}</h1>
+ {{ .Content }}
+
+<div>
+{{ range  .Data.Terms.ByCount }}
+{{ .Page.LinkTitle }} {{ .Count }} <br>
+  <ul>
+    
+      {{ range .WeightedPages }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+  </ul>
+
+{{ end }}
+</div>
+ <div class="{{ .Page.Type}}-list">
+     {{ range .Pages }}
+       {{ partial "_project.html" . }}
+     {{ end }}
+</div>
+  </main>
+
+{{ end }}
+

@@ -4,7 +4,7 @@
     {{ $profile := resources.Get $data.BasicInfo.Photo }}
     <img class="header_profile"
          src="{{ if $profile}}{{$profile.RelPermalink}}{{end }}"
-         alt="profile image">
+         alt="{{ range .Params.Author }}{{.}}{{ end }} picture">
     <div class="header_name">
       {{ $data.BasicInfo.FirstName }} {{ $data.BasicInfo.LastName }}
       <div class="header_tagline">
@@ -16,7 +16,7 @@
       <ul class="basic_contact">
       {{ range $data.Contact }}
         <li class="basic_contact_element">
-          <a href="{{ .Link }}{{ .Info }}" target="_blank">
+          <a href="{{ .Link }}{{ .Info }}" target="_blank" aria-label="Got to {{.Info }}">
           <span>
             {{ if and (.Type) ( eq .Type "svg") }}
               {{ .Icon | safeHTML }}

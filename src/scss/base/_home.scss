@@ -7,7 +7,6 @@
     p {
         @include lib.m-(5, 'b');
         @include lib.font-size('lg');
-        text-align: justify;
         text-wrap: balance;
     }
 
@@ -45,8 +44,9 @@
         }
 
         &-time {
-            color: lib.color("gray");
             @include lib.font-size('sm');
+            color: lib.color("gray");
+            font-weight: bold;
         }
     }
 

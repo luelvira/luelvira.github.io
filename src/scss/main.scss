@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @use "_variables" as lib;
+@use "sass:math";
 @import "base/_base";
 @import "./utilities";
 
@@ -13,7 +14,7 @@ $background_val: lib.color("background", '50', false);
     secondary: (secondary, 800),
     "background": ("background", 50),
     aux: #e7d192,
-    "gray": ("background", 500),
+    "gray": ("background", 600),
     light-gray: ("background", 300),
     dark-gray: ("background", 700)
 ));
@@ -33,7 +34,6 @@ $background_val: lib.color("background", '50', false);
     background-color: lib.color("background");
     @include lib.lay-flex(col);
     @include lib.w-('full');
-    // @include lib.min-h-('screen');
     @include lib.lg {
         @include lib.max-w-('lg');
         @include lib.m-(auto);

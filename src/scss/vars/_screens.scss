@@ -10,14 +10,15 @@ $screens: (
 );
 
 $width: (
-    'full': '100dvw',
+    'full': '100%',
     'screen': '100vw',
     'svw': '100svw',
     'lvw': '100lvw',
     'dvw': '100dvw',
     'min': 'min-content',
     'max': 'max-content',
-    'fit': 'fit-content'
+    'fit': 'fit-content',
+    'auto': 'auto'
 );
 
 $height: (
@@ -47,14 +48,18 @@ $height: (
 }
 
 @mixin __size-($key, $property) {
+    #{$property}: __size-($key, $property);
+}
+
+@function __size-($key, $property) {
     @if map-has-key($screens, $key) {
-     #{$property}: #{map-get($screens, $key)};
-    }
-    @else if map-has-key($height, $key) {
-      #{$property}: #{map-get($height, $key)};
-    }
-    @else {
-      #{$property}: $key * vals.$base;
+        @return #{map-get($screens, $key)};
+    } @else if str-index($property, "height") and map-has-key($height, $key) {
+        @return #{map-get($height, $key)};
+    } @else if str-index($property, "width") and map-has-key($width, $key) {
+        @return #{map-get($width, $key)};
+    } @else {
+        @return $key * vals.$base;
     }
 }
 
@@ -66,6 +71,16 @@ $height: (
 @mixin w-($size) {@include __size-($size, 'width');}
 @mixin min-w-($size) {@include __size-($size, 'min-width');}
 @mixin max-w-($size) {@include __size-($size, 'max-width');}
+
+@function w-($size) {
+    @return __size-($size, "width");
+}
+
+@mixin w-clamp($min, $def, $max) {
+    @include min-w-($min);
+    @include max-w-($max);
+    @include w-($def);
+}
 
 
 @mixin breakpoint($min, $max: null) {
