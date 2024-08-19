@@ -2,7 +2,7 @@
 title = "Tinny Calc"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-17T00:00:00+02:00
-lastmod = 2024-08-18T20:54:21+02:00
+lastmod = 2024-08-19T11:14:06+02:00
 draft = false
 weight = 1007
 projects = "tinny_calc"

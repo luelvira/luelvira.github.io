@@ -1,0 +1,22 @@
+{{ define "main" }}
+<main class="wrap {{ .Page.Type }}">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    <div class="image_gallery">
+        {{ range $key, $tax :=.Site.Taxonomies.projects }}
+        {{ if eq $key $.Params.projects }}
+        {{ with .Page.Resources.ByType "image" }}
+        {{ range . }}
+        <div class="image_gallery__item">
+            {{ with .Crop (printf "%dx%d webp" .Width .Height) }}
+            <img src="{{ .RelPermalink }}" alt="project image example">
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </div>
+</main>
+{{ end }}

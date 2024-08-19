@@ -4,10 +4,9 @@
   <div class="sticky-content">
     <div class="sticky-content--wrap">
     <time class="projects-card__timestamp" target="_blank">{{ .Page.Date | time.Format ":date_medium" }}</time>
-    <h4> <a href="{{ .Permalink }}" >{{ .Title }}</a></h4>
+    <h4> <a href="{{ (index .Pages 0).Permalink }}" >{{ .Title }}</a></h4>
     <p class="projects-card__description"> {{ .Page.Description }}</p>
     <div class="mark"><a href="{{ .Params.Source }}" target="_blank">View Code</a></div>
     </div>
     </div>
-
   </div>

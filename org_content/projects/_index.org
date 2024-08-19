@@ -28,7 +28,7 @@ side projects as a method to learn new technologies!
 * The user interfaces projects content
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: ui
-:EXPORT_FILE_NAME: user_interface
+:EXPORT_FILE_NAME: user_interface_page
 :EXPORT_TITLE: User Interfaces
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects ui
 :END:

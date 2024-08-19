@@ -46,10 +46,17 @@
     }
     .image_gallery {
         @include lib.m-(4, 't');
-        @include lib.lay-flex(row, (".image_gallery__item": 1), ("wrap": wrap));
+        // @include lib.lay-flex(col, (".image_gallery__item": 1), ("wrap": wrap));
+        @include lib.lay-grid($cols: 1);
         @include lib.gap(2);
+        @include lib.md {
+            @include lib.lay-grid($cols: 2);
+        }
+        @include lib.xxl {
+            @include lib.lay-grid($cols: 3);
+        }
         &__item {
-            @include lib.w-('3/10');
+            @include lib.m-(auto);
             overflow-y: auto;
             aspect-ratio: 16/9;
             cursor: pointer;

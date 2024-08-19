@@ -3,6 +3,7 @@ $bg: $box_shadow_color;
 
 .navbar {
     position: relative;
+    z-index: 1;
     @include lib.m-(2, 't');
     @include lib.m-(3, 'lr');
     @include shadow(2);

@@ -1,21 +1,21 @@
 {{ define "main" }}
 
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
-  <main class="wrap {{ .Page.Type }}">
-    {{ .Content }}
+<main class="wrap {{ .Page.Type }}">
+{{ range .Pages }}
+<h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+{{ end }}
+  {{ .Content }}
 
-    {{ with .Page.Resources.ByType "image" }}
-    <div class="image_gallery">
+  {{ with .Page.Resources.ByType "image" }}
+  <div class="image_gallery">
     {{ range . }}
     <div class="image_gallery__item">
-    {{ with .Crop (printf "%dx%d webp" .Width .Height) }}
-    <img src="{{ .RelPermalink }}" alt="project image example" >
-</div>
+      {{ with .Crop (printf "%dx%d webp" .Width .Height) }}
+      <img src="{{ .RelPermalink }}" alt="project image example">
+    </div>
     {{ end }}
     {{ end }}
     {{ end }}
-</div>
-  </main>
+  </div>
+</main>
 {{ end }}
