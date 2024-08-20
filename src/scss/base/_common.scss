@@ -1,0 +1,9 @@
+h1 {
+    color: lib.color(secondary);
+    @include lib.font-size(6);
+}
+
+h2 {
+        color: lib.color(main);
+        @include lib.font-size('2xl');
+}

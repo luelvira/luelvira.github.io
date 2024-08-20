@@ -59,25 +59,25 @@
         @include lib.lay-subgrid(col);
         @include lib.lay-grid($rows: 2);
         &_name {
-    @include lib.lay-grid-col(2, 8);            
-}
+            @include lib.lay-grid-col(2, 8);            
+        }
 
-.contact {
-    @include lib.lay-grid-row(2, 2);
-    @include lib.lay-grid-col(1, 9);
-    .basic_contact {
-        &_element a {
-            span {
-                &:first-child {
-                    @include lib.w-(4);
-                }
-                &:last-child {
-                    display: inline-block;
+        .contact {
+            @include lib.lay-grid-row(2, 2);
+            @include lib.lay-grid-col(1, 9);
+            .basic_contact {
+                &_element a {
+                    span {
+                        &:first-child {
+                            @include lib.w-(4);
+                        }
+                        &:last-child {
+                            display: inline-block;
+                        }
+                    }
                 }
             }
         }
-    }
-}
     }
 }
 

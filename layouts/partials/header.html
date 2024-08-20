@@ -1,1 +1,36 @@
+  <header class="header">
+    {{ $data := .Site.Data.content }}
+    {{ $profile := resources.Get $data.BasicInfo.Photo }}
+    {{ if $profile}}
+    <img class="header_profile"
+         src="{{$profile.RelPermalink}}"
+         alt="{{ range .Params.Author }}{{.}}{{ end }} picture">
+    {{end }}
+    <div class="header_name">
+      {{ $data.BasicInfo.FirstName }} {{ $data.BasicInfo.LastName }}
+      <div class="header_tagline">
+        {{ $data.BasicInfo.Tagline }}
+      </div>
+    </div>
+
+    <div class="contact">
+      <ul class="basic_contact">
+      {{ range $data.Contact }}
+        <li class="basic_contact_element">
+          <a href="{{ .Link }}{{ .Info }}" target="_blank" aria-label="Got to {{.Info }}">
+          <span>
+            {{ if and (.Type) ( eq .Type "svg") }}
+              {{ .Icon | safeHTML }}
+            {{ else if and (.Type) (eq .Type "link") }}
+              <img src="{{.Icon}}"/>
+            {{ end }}
+          </span>
+
+          <span> {{ .Info }}</span>
+          </a>
+        </li>
+      {{ end }}
+      </ul>
+    </div>
+  </header>
 

@@ -1,50 +1,15 @@
 +++
-title = "Curriculum"
+title = "About"
 author = ["Lucas Elvira Martín"]
 description = "Some description"
 date = 2024-05-26
-lastmod = 2024-08-20T12:12:42+02:00
 draft = false
 +++
 
-## Header <span class="tag"><span class="ignore">ignore</span></span> {#header}
-
-<section>
-
-Half engineer, half scientist, the best of both worlds! I have experience in
-software development for companies in sectors such as consulting, human
-resources and telecommunications, as well as in university departments at
-Universidad Carlos III de Madrid for more than 2 years, where I am pursuing
-doing a PhD in Computer science and Technology.
-
-</section>
-
-
-### Extended version {#extended-version}
-
-<section>
-
-I am always looking to learn something new and face new challenges. This drive
-has led me to earn a degree in Multimedia and Graphic Design from ESNE
-University, a degree in Computer Engineering from Universidad Carlos III de
-Madrid and I to complete a master's degree in Computer Science and Technology at
-the same university. These achievements demonstrate my dedication and ability to
-learn and adapt to new knowledge and technologies.
-
-Throughout my career I have developed a solid foundation in algorithms,
-problem-solving and various programming languages, with a special affinity for
-Node.js and Python.
-
-</section>
-
-
-## About {#about}
+##  {#d41d8c}
 
 
 ### Experience {#experience}
-
-
-#### PhD Student <span class="tag"><span class="ignore">ignore</span></span> {#phd-student}
 
 <article>
 
@@ -56,9 +21,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Master's Scholarship <span class="tag"><span class="ignore">ignore</span></span> {#master-s-scholarship}
 
 <article>
 
@@ -76,9 +38,6 @@ Node.js and Python.
 
 </article>
 
-
-#### Research support technician <span class="tag"><span class="ignore">ignore</span></span> {#research-support-technician}
-
 <article>
 
 <div class="cvevent"><h4 class="cvevent-title">Research support technician</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> March 2022 -- Sept 2022</div><div> Leganés , Spain</div></div></div>
@@ -94,9 +53,6 @@ Node.js and Python.
 
 </article>
 
-
-#### Ericsson <span class="tag"><span class="ignore">ignore</span></span> {#ericsson}
-
 <article>
 
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Ericsson</div><div class="cvevent-time flex__between"><div> Oct 2021 -- March 2022</div><div> Madrid, Spain</div></div></div>
@@ -111,9 +67,6 @@ Node.js and Python.
 
 </article>
 
-
-#### Internship in UC3M <span class="tag"><span class="ignore">ignore</span></span> {#internship-in-uc3m}
-
 <article>
 
 <div class="cvevent"><h4 class="cvevent-title">Internship</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> March 2021 -- Jul 2021</div><div> Leganés , Spain</div></div></div>
@@ -125,9 +78,6 @@ Node.js and Python.
 <span class="cvtag">Virtual Reality</span>
 
 </article>
-
-
-#### Internship in UC3M (ARCOS) <span class="tag"><span class="ignore">ignore</span></span> {#internship-in-uc3m--arcos}
 
 <article>
 
@@ -141,9 +91,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Web Developer in Enredart <span class="tag"><span class="ignore">ignore</span></span> {#web-developer-in-enredart}
 
 <article>
 
@@ -159,9 +106,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Web developer in The Key Talent <span class="tag"><span class="ignore">ignore</span></span> {#web-developer-in-the-key-talent}
 
 <article>
 
@@ -179,9 +123,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Web Developer in  Observatorio Español del diseño <span class="tag"><span class="ignore">ignore</span></span> {#web-developer-in-observatorio-español-del-diseño}
 
 <article>
 
@@ -203,9 +144,6 @@ Node.js and Python.
 
 ### Education {#education}
 
-
-#### Phd in UC3M <span class="tag"><span class="ignore">ignore</span></span> {#phd-in-uc3m}
-
 <article>
 
 <div class="cvevent"><h4 class="cvevent-title">PhD in Computer Science and Technology</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> 2023 -- Ongoing</div><div></div></div></div>
@@ -213,9 +151,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Master <span class="tag"><span class="ignore">ignore</span></span> {#master}
 
 <article>
 
@@ -225,9 +160,6 @@ Node.js and Python.
 
 </article>
 
-
-#### Computer engineer <span class="tag"><span class="ignore">ignore</span></span> {#computer-engineer}
-
 <article>
 
 <div class="cvevent"><h4 class="cvevent-title">Degree in Computer engineering</h4><div class="cvevent-place"> Universidad Carlos III de Madrid</div><div class="cvevent-time flex__between"><div> 2018 -- 2022</div><div></div></div></div>
@@ -235,9 +167,6 @@ Node.js and Python.
 ---
 
 </article>
-
-
-#### Graphic design <span class="tag"><span class="ignore">ignore</span></span> {#graphic-design}
 
 <article>
 

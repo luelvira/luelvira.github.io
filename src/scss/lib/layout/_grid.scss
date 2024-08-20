@@ -24,8 +24,10 @@
         grid-column: #{$start} / $end;
     } @else if $start and $span {
         grid-column: $start / span $span;
+    } @else if $span {
+        grid-column: span $span;
     } @else if $start {
-        grid-column: span $start;
+        grid-column-start: $start;
     }
 }
 @mixin grid-row($start: null, $end: null, $span: null) {

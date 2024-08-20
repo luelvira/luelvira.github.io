@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Language }}">
   {{ partial "head.html" . }}
+
+{{/*
+{{ if .Page.IsHome }}
+<style>
+{{ with resources.Get "css/scroll_animation.css" }}
+ {{ .Content | safeCSS }} 
+{{ end }}
+</style>
+{{ end }} 
+*/}}
 <body class="body">
   {{ partial "nav.html" . }}
 

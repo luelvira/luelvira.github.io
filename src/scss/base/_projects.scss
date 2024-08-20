@@ -3,7 +3,16 @@
 
 .projects {
     @include lib.max-lg {
-        @include lib.p-(4, 'lr');
+        @include lib.p-(8, 'lr');
+    }
+    @include lib.font-size('xl');
+    li {
+        list-style: none;
+        @include lib.m-(4, 'l');
+        @include lib.m-(2, 'tb');
+    }
+    &>h1 {
+        @include lib.m-(4, 'b');
     }
     strong {
         color: lib.color(primary, 500);
@@ -26,7 +35,7 @@
 
     &-list {
         // @include lib.lay-flex(row, (".sticky": 0), (wrap: wrap));
-        @include lib.lay-grid($eqcols: 3);
+        @include lib.lay-grid($eqcols: 1);
         @include lib.rounded(sm);
         @include lib.m-(8, 't');
         @include lib.p-(4);
@@ -41,8 +50,9 @@
             $blur: 1px,
             $spread-radius: 2px,
             $div_value: 0.125);
-                               
-                         
+        @include lib.sm {@include lib.lay-grid($eqcols: 2);}
+        @include lib.lg {@include lib.lay-grid($eqcols: 3);}
+        @include lib.xxl {@include lib.lay-grid($eqcols: 4);}
     }
     .image_gallery {
         @include lib.m-(4, 't');

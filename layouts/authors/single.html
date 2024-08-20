@@ -1,16 +1,9 @@
 {{ define "main" }}
 {{ partial "header.html" . }}
-
-  <main class="wrap home">
-    {{ $sections := split .Content "<h2" }}
-
+  <main class="wrap authors">
+{{ $sections := split .Content "<h2" }}
     {{ range $index, $p := $sections }}
       {{ $pp := trim $p " \n" }}
-      {{ if (eq $index 0) }}
-        <section class="summary">
-          {{ printf "%s\n" $pp | safeHTML }}
-        </section>
-      {{ end }}
       {{ if and (ne $pp "") (gt $index 0) }}
         <section class="content">
 
@@ -25,6 +18,7 @@
         </section>
       {{ end }}
     {{end}}
-
   </main>
 {{ end }}
+
+

@@ -25,8 +25,13 @@ $STEPS: 0.125;
       --size: #{list.nth(map-get($fix-size, $size), 1)};
     }
     @else {
-        font-size: calculate($size);
-        line-height: $line;;
+        --size: #{calculate($size)};
+        font-size: var(--size);
+        @if $line {
+            line-height: $line;
+        } @else {
+            line-height: calc(var(--size)*1.5);
+        }
     }
 }
 
