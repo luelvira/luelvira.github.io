@@ -15,9 +15,9 @@
 <body class="body">
   {{ partial "nav.html" . }}
 
-  {{ partial "header.html" $data }}
+ {{/* {{ partial "header.html" $data }} */}}
 
-{{- block "main" . }}{{- end }}
+{{ block "main" . }}{{ end }}
 {{ partial "scripts.html" }}
 </body>
 </html>

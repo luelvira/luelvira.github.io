@@ -2,14 +2,11 @@
 
 
 .projects {
-    @include lib.max-lg {
-        @include lib.p-(8, 'lr');
-    }
+    @include lib.p-(4, 'b');
     @include lib.font-size('xl');
     li {
         list-style: none;
-        @include lib.m-(4, 'l');
-        @include lib.m-(2, 'tb');
+        @include lib.m-d-(2, 4, 2, 0);
     }
     &>h1 {
         @include lib.m-(4, 'b');

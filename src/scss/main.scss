@@ -35,9 +35,9 @@ $background_val: lib.color("background", '50', false);
 .body {
     background-color: lib.color("background");
     @include lib.lay-flex(col);
-    @include lib.w-('full');
     @include lib.lg {
         @include lib.max-w-('lg');
+        @include lib.w-('9/10');
         @include lib.m-(auto);
         @include lib.p-(0);        
         @include lib.lay-grid($rows: 3, $eqcols: 8);
@@ -48,7 +48,7 @@ $background_val: lib.color("background", '50', false);
         @include lib.gap(4)
     }
     @include lib.xxl {
-        @include lib.max-w-('xl');
+        max-width: min(map-get(lib.$screens, 'xl'), map-get(lib.$screens, 'lg'));
     }
 }
 
@@ -56,10 +56,16 @@ $background_val: lib.color("background", '50', false);
     @include lib.m-(6, 't');
     @import "base/home";    
     @import "base/about";    
+
+    @include lib.max-lg {
+        @include lib.w-('4/5');
+        @include lib.m-d-(4, auto);
+    }
     @include lib.lg {
         grid-area: body;
-        padding: 0;
+        @include lib.m-(0, 't');
     }
+
     @include lib.xxl {
       display: grid;
       &.authors {

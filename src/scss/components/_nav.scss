@@ -4,8 +4,8 @@ $bg: $box_shadow_color;
 .navbar {
     position: relative;
     z-index: 1;
-    @include lib.m-(2, 't');
-    @include lib.m-(3, 'lr');
+//    @include lib.m-d-(2, 3, 0);
+    @include lib.p-d-(0, 4);
     @include shadow(2);
     @include lib.lay-flex(row, (".logo": 1), (align:center));
     @include menu-content(".open", ".navigation");
@@ -64,14 +64,14 @@ $bg: $box_shadow_color;
             @include lib.w-('1/3');
             @include lib.m-(0.5);            
             @include card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
-            @include lib.lg {
             @include lib.p-d-(0);
-            @include lib.trans-transition(
-                $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
-                $duration: 0.125s,
-                $event: hover
-            );
-               @include lib.w-(auto);
+            @include lib.lg {
+                @include lib.trans-transition(
+                    $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
+                    $duration: 0.125s,
+                    $event: hover
+                );
+                @include lib.w-(auto);
             }
             a {
                 display: block;

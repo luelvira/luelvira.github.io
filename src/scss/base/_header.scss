@@ -1,7 +1,7 @@
 .header {
     @include lib.lay-flex(col, null, ("wrap": wrap));
     @include lib.m-(4, 't');
-    @include lib.p-(6, 'lr');
+    @include lib.p-d-(0);
     &_profile {
         @include lib.rounded-full;
         @extend %square;

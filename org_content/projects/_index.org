@@ -2,6 +2,7 @@
 #+author:    Lucas Elvira Martín
 #+email:     lucaselvira96@gmail.com
 #+DATE: 2024-08-17 Sat
+#+exclude_tags: noexport noexporthugo
 #+HUGO_BASE_DIR: ../../
 #+HUGO_SECTION: ./projects
 #+hugo_auto_set_lastmod: t
@@ -36,22 +37,37 @@ side projects as a method to learn new technologies!
 There is a better way to learn how to build a web site, than building one? I
 don't think so! For this reason, I decided to start this project.
 
-As teacher of the subjects *interfaces de usuario* at the university *Universidad
-Carlos III de Madrid*, I encouraged my students to create a real web page where
-they can find all the resources we were learned each week. The The stack used for
-that was:
-#+ATTR_HTML: :class budgets
-- ![[https://img.shields.io/badge/Emacs-%237F5AB6.svg?&style=for-the-badge&logo=gnu-emacs&logoColor=white][Emacs]]
-- ![[https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white][HTML5]]
-- ![[https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E][javascript]]
-- ![[https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white][CSS3]]
-- ![[https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white][github actios]]
-- ![[https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white][github pages]]
+This project involved the creation of a blog-style website designed to teach web
+development to university students, specifically those attending Universidad
+Carlos III de Madrid. The primary objective was to provide a hands-on learning
+platform where students could apply the concepts discussed during the course
+directly to a live project, fostering a deeper understanding of the material.
+
+The technology stack utilized for this project was both practical and
+educational, incorporating tools like org-publish for converting Org-mode files
+into HTML, alongside foundational web technologies such as HTML5, JavaScript,
+and CSS3. Additionally, GitHub was used for version control and the
+automatization of the publishing, allowing students to engage with real-world
+development workflows, including collaboration and version management.
+
+One of the significant challenges encountered during this project was the
+learning curve associated with Emacs Lisp, necessary for the conversion of Org
+files into HTML. Mastering this language was crucial for automating the
+publishing process and integrating it seamlessly with the rest of the site.
+Furthermore, the content had to be tailored to a diverse audience, including
+students with no prior experience in web development. This required careful
+consideration of how to present technical information in an accessible and
+engaging way.
+
+Although the primary audience for this project was university students, the
+platform was designed with broader aspirations in mind. The website aims to
+serve as a valuable resource for anyone interested in learning web development,
+regardless of their background.
 
 You can check the result at [[https://luelvira.github.io/interfaces-usuario/][interfaces-usuario]], and
 the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces de usuario]] 
 
-* Hugo Web site                                                        :@WEB:
+* Hugo Web site                                           :noexporthugo:@WEB:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_BUNDLE: personal_web
@@ -62,7 +78,7 @@ the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/hugo_website
 :END:
 
-* Hugo Web Site content
+** Hugo Web Site content
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: personal_web
 :EXPORT_FILE_NAME: personal_web_page
@@ -75,7 +91,7 @@ create a community with people that has affinity with me. The technologies used
 in this project are [[https://gohugo.io/][hugo]], [[https://sass-lang.com/][sass]]. At the same time I am developing this project, i
 am creating a sass library and a hugo template that will be shared soon.
 
-* Tinny calc                                                       :@HASKELL:
+* Tinny calc                                          :noexporthugo:@HASKELL:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_DATE: 2024-08-18
@@ -85,7 +101,7 @@ am creating a sass library and a hugo template that will be shared soon.
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
 :END:
 
-* Tinny calc Content
+** Tinny calc Content
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: tinny_calc
 :EXPORT_FILE_NAME: tinny_calc_page
@@ -101,3 +117,30 @@ The main characteristics of this language are:
 - Can use variables
 - It is relative simple to add features and functionalities
 
+* DataWave                                                        :@NLP:@WEB:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_DATE: 2024-08-18
+:EXPORT_TITLE: DataWave
+:EXPORT_HUGO_BUNDLE: datawave
+:EXPORT_DESCRIPTION: Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results
+:END:
+
+** Content
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: datawave
+:EXPORT_FILE_NAME: datawave_page
+:EXPORT_TITLE: DataWave
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects datawave
+:END:
+DataWave is an advanced tool developed in Python, designed to facilitate the training and customization of Natural Language Processing (NLP) models using unstructured text sources. Leveraging powerful NLP libraries like NLTK and SpaCy, DataWave aims to provide users with an intuitive and effective way to analyze and visualize relationships between terms extracted from diverse text formats. The tool's key feature is its ability to create dynamic graph representations that showcase the interconnections between terms, allowing users to explore and manipulate these relationships through operations such as creating, deleting, renaming terms, and adjusting the weight of connections.
+
+The project had dual objectives: to develop a robust tool for NLP tasks and to create two distinct interfaces for interacting with the software. The first interface is a Command-Line Interface (CLI), offering precise control and the ability to automate workflows, catering to more technically inclined users. The second interface is a web-based platform that communicates with the backend via a Flask API, providing a more user-friendly experience. The web interface also includes interactive visualizations created with D3.js, which allow users to engage directly with the generated graphs and modify them as needed.
+
+The technology stack for DataWave includes a rich array of Python libraries and tools such as Flask for web development, Keras, NLTK, SpaCy, TensorFlow, Gensim, Transformers, and PyTorch for machine learning and NLP tasks. The backend relies on MongoDB for database management, while the front-end was developed using SCSS, TypeScript, JavaScript, and D3.js for dynamic graph visualizations.
+
+This project served as the foundation for both my undergraduate (TFG) and graduate (TFM) theses, with the project being owned by the department where I conducted my research. The department intends to use DataWave for ongoing research and potentially publish further findings. The project culminated in a publication, with the results and methodology documented in an article available under the DOI: [[https://dl.acm.org/doi/10.1145/3656650.3656734][10.1145/3656650.3656734]].
+
+One of the most challenging aspects of the project was ensuring that the NLP models could effectively process and extract meaningful data from a wide range of unstructured text sources, including websites, social media platforms like Twitter, and PDFs. This required overcoming significant obstacles related to the variability of data formats and the lack of standardized patterns in the text.
+
+Overall, DataWave represents a significant contribution to the field of NLP, offering both powerful analytical tools and versatile interfaces to meet the needs of researchers and practitioners alike.

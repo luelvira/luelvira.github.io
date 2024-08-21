@@ -7,3 +7,8 @@ h2 {
         color: lib.color(main);
         @include lib.font-size('2xl');
 }
+
+p {
+    @include lib.m-d-(4, 0);
+    text-wrap: balance;
+}

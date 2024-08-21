@@ -1,5 +1,5 @@
   <header class="header">
-    {{ $data := .Site.Data.content }}
+    {{ $data := site.Data.content }}
     {{ $profile := resources.Get $data.BasicInfo.Photo }}
     {{ if $profile}}
     <img class="header_profile"

@@ -9,7 +9,7 @@ $tag-sizes: (
     xl
 );
 
-/// @mixin tag
+/// tag
 /// @param {string} $size - The size of the tag. The options are 'sm', 'base', 'lg', 'xl'
 /// @param {color} $color - The color of the tag.
 /// @param {boolean} $rounded - The border radius of the tag.

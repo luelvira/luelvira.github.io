@@ -2,7 +2,7 @@
 title = "User Interfaces"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-17T00:00:00+02:00
-lastmod = 2024-08-19T11:14:06+02:00
+lastmod = 2024-08-21T14:44:40+02:00
 draft = false
 weight = 1003
 projects = "ui"
@@ -11,21 +11,32 @@ projects = "ui"
 There is a better way to learn how to build a web site, than building one? I
 don't think so! For this reason, I decided to start this project.
 
-As teacher of the subjects **interfaces de usuario** at the university **Universidad
-Carlos III de Madrid**, I encouraged my students to create a real web page where
-they can find all the resources we were learned each week. The The stack used for
-that was:
+This project involved the creation of a blog-style website designed to teach web
+development to university students, specifically those attending Universidad
+Carlos III de Madrid. The primary objective was to provide a hands-on learning
+platform where students could apply the concepts discussed during the course
+directly to a live project, fostering a deeper understanding of the material.
 
-<div class="budgets">
+The technology stack utilized for this project was both practical and
+educational, incorporating tools like org-publish for converting Org-mode files
+into HTML, alongside foundational web technologies such as HTML5, JavaScript,
+and CSS3. Additionally, GitHub was used for version control and the
+automatization of the publishing, allowing students to engage with real-world
+development workflows, including collaboration and version management.
 
--   ![Emacs](https://img.shields.io/badge/Emacs-%237F5AB6.svg?&style=for-the-badge&logo=gnu-emacs&logoColor=white)
--   ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
--   ![javascript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
--   ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
--   ![github actios](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
--   ![github pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+One of the significant challenges encountered during this project was the
+learning curve associated with Emacs Lisp, necessary for the conversion of Org
+files into HTML. Mastering this language was crucial for automating the
+publishing process and integrating it seamlessly with the rest of the site.
+Furthermore, the content had to be tailored to a diverse audience, including
+students with no prior experience in web development. This required careful
+consideration of how to present technical information in an accessible and
+engaging way.
 
-</div>
+Although the primary audience for this project was university students, the
+platform was designed with broader aspirations in mind. The website aims to
+serve as a valuable resource for anyone interested in learning web development,
+regardless of their background.
 
 You can check the result at [interfaces-usuario](https://luelvira.github.io/interfaces-usuario/), and
 the code at [code of interfaces de usuario](https://github.com/luelvira/interfaces-usuario)
