@@ -1,25 +1,36 @@
-&.home {
-    @include lib.h-(dvh);
-}
-.summary {
-    @include lib.p-(6, 'lr');
-    font-family: lib.$font-sans;
-    font-weight: bolder;
+@use "../variables" as lib;
 
-    @include lib.lg {
-        @include lib.p-(3, 'lr');
-    }
-    p {
-        @include lib.m-(5, 'b');
-        @include lib.font-size('lg');
-        text-wrap: balance;
+@mixin home {
+    /* home ends here */
+    .wrap.home {
+        @include lib.h-(dvh);
     }
 
-    @include lib.xl {
-        p {
-            @include lib.font-size(4);
-            @include lib.m-(10, 'b');
+    .summary {
+        @include lib.p-(6, 'lr');
+
+        font-family: lib.$font-sans;
+        font-weight: bolder;
+
+        @include lib.lg {
+            @include lib.p-(3, 'lr');
         }
+        
+        p {
+            @include lib.m-(5, 'b');
+            @include lib.font-size('lg');
+
+            text-wrap: balance;
+        }
+
+        @include lib.xl {
+            p {
+                @include lib.font-size(4);
+                @include lib.m-(10, 'b');
+            }
+        }
+
     }
 
+    /* home ends here */
 }

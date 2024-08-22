@@ -1,99 +1,156 @@
-.content {
-    @include lib.p-(6, 'lr');
-    @include lib.lg {
-        @include lib.p-(3, 'lr');
-    }
-    p {
-        @include lib.m-(1, 'tb');
-    }
-    article {
-        @include card($rounded: lg);
+@use "sass:math";
+@use "../variables" as lib;
+@use "../components/cards";
+@use "../components/tags";
 
-        &:not(:nth-of-type(1)) {
-            @include lib.m-(3, 't');
+@mixin about {
+    /* about starts here */
+    .content {
+        @include lib.p-(6, 'lr');
+
+        @include lib.lg {
+            @include lib.p-(3, 'lr');
+        }
+
+        p {
+            @include lib.m-(1, 'tb');
+            @extend %flex-wrap;
+
+            gap: 0.5rem;
         }
 
         hr {
-            display: none;
+            border-color: transparent;
+            border-top: 3px dashed var(--light-gray);
+            display: inline-block;
+            width: 100%;
         }
+
+        h3 {
+            @include lib.font-size('2xl');
+            @include lib.m-(6, 'tb');
+
+            position: relative;
+            color: lib.color(secondary);
+
+            @include lib.pcs-after {
+                @include lib.pos-absolute(0, $bottom: calc(-1 / 3 * var(--size)));
+                @include lib.w-('full');
+                @include lib.h-(2);
+
+                background-color: lib.color(aux);
+            }
+
+        }
+
+        ul {
+            @include lib.m-(2, 't');
+
+            margin: revert;
+            padding: revert;
+            list-style: revert;
+
+            li {
+                @include lib.font-size('base');
+            }
+        }
+
+        article {
+            @include cards.card($rounded: lg);
+
+            &:not(:nth-of-type(1)) {
+                @include lib.m-(3, 't');
+            }
+
+            hr {
+                display: none;
+            }
+        }
+
+        
     }
+
     .cvevent {
         h4 {
             @include lib.w-("4/5");
             @include lib.font-size(2);
+
             color: lib.color("gray");
         }
 
         &-place {
             color: lib.color(secondary);
+
             @include lib.font-size('base');
         }
 
         &-time {
             @include lib.font-size('sm');
+
             color: lib.color("gray");
             font-weight: bold;
         }
     }
 
     .cvtag {
-        @include tag(sm, lib.color("background", "50", false), true);
+        @include tags.tag(sm, lib.color("background", "50", false), true);
     }
 
     .cvskill {
         @include lib.w-("4/5");
         @include lib.m-(2, 'b');
         @include lib.lay-flex(row, (".cvskill-name": 3, ".cvskill-values": 1));
+
+        $color: lib.color(main);
+
         &-values {
-            @extend .flex__evenly;
+            @extend %flex__evenly;
+
             span {
                 --size: 25px;
+
                 @include lib.square(var(--size));
                 @include lib.rounded(full);
+
                 display: inline-block;
                 background-color: lib.color(light-gray);
 
             }            
-            @include fillCircle(lib.color(main));
+            %after {
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    background-color:  $color;
+                    height: var(--size);
+                    width: calc(var(--size) / 2);
+                    border-radius: 100px 0 0 100px;
+                }
+            }
+            %span {
+                background-color: $color;        
+            }
+
+            @for $i from 1 through 10 {
+                @for $j from 1 through math.floor($i * 0.5) {
+                    $val: $i * 0.5;
+                    &[data-val="#{$val}"] span:nth-child(#{$j}) {
+                        @extend %span;
+                    }
+
+                    @if $val != math.ceil($val) {
+                        &[data-val="#{$val}"] span:nth-child(#{math.ceil($val)}) {
+                            @extend %after;
+                            
+                        }
+                    }
+                }
+            }
         }
     }
 
-    h3 {
-        @include lib.font-size('2xl');
-        @include lib.m-(6, 'tb');
-        position: relative;
-        color: lib.color(secondary);
-
-        @include lib.pcs-after {
-            @include lib.pos-absolute(0, $bottom: calc(-1/3 * var(--size)));
-            @include lib.w-('full');
-            @include lib.h-(2);
-            background-color: lib.color(aux);
-        }
-
-    }
-
-    ul {
-        @include lib.m-(2, 't');
-        margin: revert;
-        padding: revert;
-        list-style: revert;
-
-        li {
-            @include lib.font-size('base');
-        }
-    }
-
-
-    hr {
-        border-color: transparent;
-        border-top: 3px dashed var(--light-gray);
-        display: inline-block;
-        width: 100%;
-    }
-
-    p {
-        @extend .flex-wrap;
-        gap: 0.5rem;
-    }
+    /* about ends here */
 }

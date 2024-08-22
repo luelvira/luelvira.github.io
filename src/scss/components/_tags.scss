@@ -1,6 +1,9 @@
+@use "sass:meta";
 @use "sass:list";
 @use "sass:map";
+@use "../components/cards";
 @use "../variables" as lib;
+
 /// tag sizes available
 $tag-sizes: (
     sm,
@@ -19,18 +22,23 @@ $tag-sizes: (
     } @else {
         @error "Invalid size: #{$size}. Please use one of the following: #{$tag-sizes}.";
     }
-    @if type-of($value: $color) != color {
+
+    @if meta.type-of($value: $color) != color {
         @error "Invalid color: #{$color}. Expected color or string, pass #{type-of($value: $color)}";
     }
-    @if type-of($value: $rounded) != bool {
+
+    @if meta.type-of($value: $rounded) != bool {
         @error "Invalid rounded value: #{$rounded}. Please use a boolean value.";
     }
+
     @if $rounded {
-        @include card($color: $color, $rounded: 2.5);
+        @include cards.card($color: $color, $rounded: 2.5);
     } @else {
-        @include card($color: $color, $rounded: 0);
+        @include cards.card($color: $color, $rounded: 0);
     }
-    @include shadow(2);
+
+    @include cards.shadow(2);
     @include lib.p-d-(2, 3);
+
     font-weight: bold;
 }

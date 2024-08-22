@@ -1,6 +1,8 @@
 @use "sass:math";
+@use "sass:map";
+@use "sass:string";
 @use "values" as vals;
-   
+
 $screens: (
     'sm': 640px,
     'md': 768px,
@@ -8,7 +10,6 @@ $screens: (
     'xl': 60rem,
     '2xl': 1536px
 );
-
 $width: (
     'full': '100%',
     'screen': '100vw',
@@ -20,7 +21,6 @@ $width: (
     'fit': 'fit-content',
     'auto': 'auto'
 );
-
 $height: (
     'full': '100%',
     'screen': '100vh',
@@ -34,12 +34,10 @@ $height: (
 
 @for $i from 1 to 11 {
     @for $j from $i to 11 {
-        $width: map-merge($width, (#{$i}/#{$j}: math.div($i, $j)*100%));
-        $height: map-merge($height, (#{$i}/#{$j}: math.div($i, $j)*100%));
+        $width: map.merge($width, (#{$i}/#{$j}: math.div($i, $j) * 100%));
+        $height: map.merge($height, (#{$i}/#{$j}: math.div($i, $j) * 100%));
     }
 }
-
-
 
 @each $key, $value in $screens {
     %w-#{$key} {
@@ -47,33 +45,36 @@ $height: (
     }
 }
 
-@mixin __size-($key, $property) {
-    #{$property}: __size-($key, $property);
+@mixin -size($key, $property) {
+    #{$property}: -size($key, $property);
 }
 
-@function __size-($key, $property) {
-    @if map-has-key($screens, $key) {
-        @return #{map-get($screens, $key)};
-    } @else if str-index($property, "height") and map-has-key($height, $key) {
-        @return #{map-get($height, $key)};
-    } @else if str-index($property, "width") and map-has-key($width, $key) {
-        @return #{map-get($width, $key)};
+@function -size($key, $property) {
+    @if map.has-key($screens, $key) {
+        @return #{map.get($screens, $key)};
+    } @else if string.index($property, "height") and map.has-key($height, $key) {
+        @return #{map.get($height, $key)};
+    } @else if string.index($property, "width") and map.has-key($width, $key) {
+        @return #{map.get($width, $key)};
     } @else {
         @return $key * vals.$base;
     }
 }
 
-@mixin h-($size) {@include __size-($size, 'height');}
+@mixin h-($size) {@include -size($size, 'height');}
 
-@mixin min-h-($size) {@include __size-($size, 'min-height');}
-@mixin max-h-($size) {@include __size-($size, 'max-height');}
+@mixin min-h-($size) {@include -size($size, 'min-height');}
 
-@mixin w-($size) {@include __size-($size, 'width');}
-@mixin min-w-($size) {@include __size-($size, 'min-width');}
-@mixin max-w-($size) {@include __size-($size, 'max-width');}
+@mixin max-h-($size) {@include -size($size, 'max-height');}
 
-@function w-($size) {
-    @return __size-($size, "width");
+@mixin w-($size) {@include -size($size, 'width');}
+
+@mixin min-w-($size) {@include -size($size, 'min-width');}
+
+@mixin max-w-($size) {@include -size($size, 'max-width');}
+
+@function -w($size) {
+    @return -size($size, "width");
 }
 
 @mixin w-clamp($min, $def, $max) {
@@ -85,25 +86,24 @@ $height: (
 
 @mixin breakpoint($min, $max: null) {
     @if $min and not $max {
-        @if map-has-key($screens, $min) {
-            @media (min-width: #{map-get($screens, $min)}) {
+        @if map.has-key($screens, $min) {
+            @media (min-width: #{map.get($screens, $min)}) {
                 @content;
             }
         } @else {
             @error "min key: #{$min} is not valid screen size";
         }
     } @else if not $min and $max {
-        @if map-has-key($screens, $max) {
-            @media (max-width: #{map-get($screens, $max)}) {
+        @if map.has-key($screens, $max) {
+            @media (max-width: #{map.get($screens, $max)}) {
                 @content;
             }
         } @else {
             @error "max key: #{$max} is not valid screen size";
         }
-    }
-    @else {
-        @if map-has-key($screens, $min) and map-has-key($screens, $max) {
-            @media (min-width: #{map-get($screens, $min)}) and (max-width: #{map-get($screens, $max)}) {
+    } @else {
+        @if map.has-key($screens, $min) and map.has-key($screens, $max) {
+            @media (min-width: #{map.get($screens, $min)}) and (max-width: #{map.get($screens, $max)}) {
                 @content;
             }
         } @else {
@@ -114,18 +114,31 @@ $height: (
 }
 
 @mixin sm {@include breakpoint(sm){@content;}}
+
 @mixin md {@include breakpoint(md){@content;}}
+
 @mixin lg {@include breakpoint(lg){@content;}}
+
 @mixin xl {@include breakpoint(xl){@content;}}
+
 @mixin xxl {@include breakpoint('2xl'){@content;}}
 
+
 @mixin sm-md {@include breakpoint(sm, md) {@content;}}
+
 @mixin md-lg {@include breakpoint(md, lg) {@content;}}
+
 @mixin lg-xl {@include breakpoint(lg, xl) {@content;}}
+
 @mixin xl-xxl {@include breakpoint(xl, 2xl) {@content;}}
 
+
 @mixin max-sm{@include breakpoint(null, sm){@content;}}
+
 @mixin max-md{@include breakpoint(null, md){@content;}}
+
 @mixin max-lg{@include breakpoint(null, lg){@content;}}
+
 @mixin max-xl{@include breakpoint(null, xl){@content;}}
+
 @mixin max-xxl{@include breakpoint(null, xxl){@content;}}

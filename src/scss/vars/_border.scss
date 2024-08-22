@@ -1,6 +1,8 @@
 @use "values" as val;
-$border_radius: (
-    none: 0px,
+@use "sass:map";
+
+$border-radius-vals: (
+    none: 0,
     sm: 0.125rem,
     default: 0.25rem,
     md: 0.375rem,
@@ -11,17 +13,17 @@ $border_radius: (
     full: 100%
 );
 
-@mixin __rounded($key) {
-        border-radius: #{map-get($border_radius, $key)};
+@mixin -rounded($key) {
+        border-radius: #{map.get($border-radius-vals, $key)};
 }
 
 @mixin rounded-full {
-    @include __rounded(full);
+    @include -rounded(full);
 }
 
 @mixin rounded($val) {
-    @if map-has-key($border_radius, $val) {
-        @include __rounded($val);
+    @if map.has-key($border-radius-vals, $val) {
+        @include -rounded($val);
     } @else {
         border-radius: $val * val.$base;
     }

@@ -1,4 +1,6 @@
 @use "sass:list";
+@use "sass:map";
+
 $fix-size: (
     xs: (0.75rem, 1rem),
     sm: (0.875rem, 1.25rem),
@@ -7,46 +9,52 @@ $fix-size: (
     xl: (1.25rem, 1.75rem),
     '2xl': (2.25rem, 2.5rem)
 );
-
-$INCR: 1.618;
-$STEPS: 0.125;
+$-icnr: 1.618;
+$-steps: 0.125;
 
 @function calculate($size) {
     $base: 1.25rem;
-    @return $base + $size * $STEPS * $INCR;
+
+    @return $base + $size * $-steps * $-icnr;
     
 }
 
 
 @mixin size($size, $line: null) {
-    @if map-has-key($fix-size, $size) {
-      font-size: list.nth(map-get($fix-size, $size), 1);
-      line-height: list.nth(map-get($fix-size, $size), 2);
-      --size: #{list.nth(map-get($fix-size, $size), 1)};
-    }
-    @else {
+    @if map.has-key($fix-size, $size) {
+      --size: #{list.nth(map.get($fix-size, $size), 1)};
+
+      font-size: list.nth(map.get($fix-size, $size), 1);
+      line-height: list.nth(map.get($fix-size, $size), 2);
+    } @else {
         --size: #{calculate($size)};
+
         font-size: var(--size);
+
         @if $line {
             line-height: $line;
         } @else {
-            line-height: calc(var(--size)*1.5);
+            line-height: calc(var(--size) * 1.5);
         }
     }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Satisfy&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
-$slab: Roboto slab;
-$sans:  "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif, system-ui, sans-serif;
-$serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+@mixin load {
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Satisfy&display=swap');
+    @import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+}
+
+$slab: roboto slab;
+$serif: ui-serif, georgia, cambria, "Times New Roman", times, serif;
+$sans: "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", ui-sans-serif, system-ui, sans-serif;
 
 @mixin slab($w: 400) {
     font-family: $slab;
     font-weight: $w;
 }
 
-@mixin gen_font_size {
+@mixin gen-font-size {
     @each $key, $val in $fix-size {
         .font-#{$key} {
             @include size($key);

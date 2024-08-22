@@ -1,13 +1,14 @@
 @charset "UTF-8";
 @use "sass:math";
 
-
 @function box-shadow-generator($color, $levels, $mode, $offset-x-inc, $offset-y-inc, $blur, $spread-radius, $div_value) {
-$shadow: "";
+    $shadow: "";
+
     @for $i from 1 through $levels {
         @if $shadow != "" {
             $shadow: $shadow  ", ";
-        } 
+        }
+
         $shadow: $shadow $mode
                          $offset-x-inc * $i
                          $offset-y-inc * $i
@@ -15,23 +16,26 @@ $shadow: "";
                          $spread-radius * $i
                          #{rgba($color, math.div($div_value,$i))};
     }
+
     @return #{$shadow};
 }
 
 @function box-shadow($color, $levels: 3, $inner: "") {
-    @return box-shadow-generator($color, $levels, $inner, 0, 2px, 3px, 0px, 0.125)  
-    
+    @return box-shadow-generator($color, $levels, $inner, 0, 2px, 3px, 0, 0.125)  
 }
 
 
 @function box-hard-shadow($color, $levels: 3) {
 	$shadow: "";
-    	@for $i from 1 through $levels {
-       		@if $shadow != "" {
-            		$shadow: $shadow  ", ";
+
+    @for $i from 1 through $levels {
+       	@if $shadow != "" {
+            $shadow: $shadow  ", ";
 		}
-		$shadow: $shadow 0px $i * 1px $i*3px -1px #{rgba($color, math.div(0.5,$i))}
+
+		$shadow: $shadow 0 $i * 1px $i * 3px -1px #{rgba($color, math.div(0.5,$i))}
 	}
+
 	@return $shadow;
 }
 

@@ -1,7 +1,9 @@
 @charset "UTF-8";
 @use "sass:math";
+
 @mixin grid($cols:null, $eqcols: null, $rows:null, $eqrows: null) {
     display: grid;
+
     @if $cols and not $eqcols{
         grid-template-columns: repeat($cols, auto);
     } @else if $eqcols and not $cols {
@@ -9,6 +11,7 @@
     } @else if $eqcols and $cols {
         @error "You can't have both equal columns and fixed columns";
     }
+
     @if $rows and not $eqrows {
         grid-template-rows: repeat($rows, auto);
     } @else if $eqrows and not $rows {
@@ -16,7 +19,6 @@
     } @else if $eqrows and $rows {
         @error "You can't have both equal rows and fixed rows";
     }
-
 }
 
 @mixin grid-col($start: null, $end: null, $span: null) {
@@ -30,16 +32,20 @@
         grid-column-start: $start;
     }
 }
+
 @mixin grid-row($start: null, $end: null, $span: null) {
     @if $start and $end {
         grid-row: #{$start} / $end;
-    } @if $start and $span {
+    }
+
+    @if $start and $span {
         grid-row: $start / span $span;
     }
 }
 
 @mixin subgrid($dir) {
     display: grid;
+
     @if $dir == "col" {
         grid-template-columns: subgrid;
     } @else if $dir == "row" {

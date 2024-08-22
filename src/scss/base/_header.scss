@@ -1,86 +1,112 @@
-.header {
-    @include lib.lay-flex(col, null, ("wrap": wrap));
-    @include lib.m-(4, 't');
-    @include lib.p-d-(0);
-    &_profile {
-        @include lib.rounded-full;
-        @extend %square;
-        @include lib.max-w-(24);
-        @include lib.max-h-(24);
-        margin: auto;
+@use "../variables" as lib;
+
+@mixin header {
+    /* header starts here */
+    .header {
+        @include lib.lay-flex(col, null, ("wrap": wrap));
+        @include lib.m-(4, 't');
+        @include lib.p-d-(0);
+
+        &_profile {
+            @include lib.rounded-full;
+            @include lib.max-w-(24);
+            @include lib.max-h-(24);
+
+            aspect-ratio: 1 / 1;
+            margin: auto;
+        }
+
+        &_name {
+            @include lib.font-size(10, 1);
+            @include lib.font-slab(900);
+
+            color: lib.color(main);
+        }
+
+        &_tagline {
+            @include lib.font-size(3);
+
+            color: lib.color(secondary);
+        }
+
+
+        @include lib.max-lg {
+            @include lib.max-w-('4/5');
+            @include lib.m-d-(4, auto);
+        }
+
+        @include lib.md-lg {
+            @include lib.lay-flex(row);
+
+            gap: 2rem;
+
+            &_profile {
+                margin: inherit;
+            }
+
+            &_name {
+                @include lib.lay-flex(col);
+
+                justify-content: center;
+            }
+        }
+
+        @include lib.lg {
+            padding: 0;
+            grid-area: header;
+
+            @include lib.lay-subgrid(col);
+            @include lib.lay-grid($rows: 2);
+
+            &_name {
+                @include lib.lay-grid-col(2, 8);            
+            }
+
+        }
     }
-    &_name {
-        @include lib.font-size(10, 1);
-        @include lib.font-slab(900);
-        color: lib.color(main);
-    }
-    &_tagline {
-        @include lib.font-size(3);
-        color: lib.color(secondary);
-    }
+
+
     .contact {
         width: 100%;
-        .basic_contact {
-            @include lib.lay-flex(row, null, ("justify": space-evenly));
-            @include lib.gap(2);
-            &_element {
-                list-style: none;
-                a {
-                    @include lib.lay-flex(row, (span: 1));
-                    @include lib.gap(2);
-                    span:first-child {
-                        @include lib.w-(8);
-                        @include lib.lay-flex(row, null, ("justify": center, "align": center));
-                    }
-                    span:last-child {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
 
-.header {
-    @include lib.md-lg {
-        @include lib.lay-flex(row);
-        gap: 2rem;
-        &_profile {
-            margin: inherit;
-        }
-        &_name {
-            @include lib.lay-flex(col);
-            justify-content: center;
-        }
-    }
-    @include lib.lg {
-        padding: 0;
-        grid-area: header;
-        @include lib.lay-subgrid(col);
-        @include lib.lay-grid($rows: 2);
-        &_name {
-            @include lib.lay-grid-col(2, 8);            
-        }
+        @include lib.m-(4, 't');
 
-        .contact {
+        @include lib.lg {
             @include lib.lay-grid-row(2, 2);
             @include lib.lay-grid-col(1, 9);
-            .basic_contact {
-                &_element a {
-                    span {
-                        &:first-child {
-                            @include lib.w-(4);
-                        }
-                        &:last-child {
-                            display: inline-block;
-                        }
+        }
+    }
+
+    .basic_contact {
+        @include lib.lay-flex(row, null, ("justify": space-evenly));
+        @include lib.gap(2);
+
+        &_element {
+            list-style: none;
+
+            a {
+                @include lib.lay-flex(row, (span: 1));
+                @include lib.gap(2);
+
+                span:first-child {
+                    @include lib.w-(8);
+                    @include lib.lay-flex(row, null, ("justify": center, "align": center));
+
+                    @include lib.lg {
+                        @include lib.w-(4);
+                    }
+                }
+
+                span:last-child {
+                    display: none;
+
+                    @include lib.lg {
+                        display: inline-block;
                     }
                 }
             }
         }
     }
-}
 
-.contact {
-    @include lib.m-(4, 't');
+    /* header ends here */
 }

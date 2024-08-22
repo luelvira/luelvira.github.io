@@ -1,59 +1,68 @@
 @use "_variables" as lib;
 @use "sass:math";
-//@keyframes fade-in{
-//    0% {opacity: 0;scale:0.5}
-//    25% {opacity: 0.7;scale:1}
-//    75% {opacity: 0.7;scale:1}
-//    100% {opacity: 0.0;scale:0.5}
-//}
-//
-//.header_profile {
-//@include lib.pos-fixed($left: -50%);
-//@include lib.mixin-reset(max-width, max-height, border-radius);
-//opacity: 0;
-//scale: 0.2;
-//animation: fade-in linear forwards;
-//animation-timeline: scroll();
-//animation-range: 0px 200px;
-//}
+
+// @keyframes fade-in{
+//     0% {opacity: 0;scale:0.5}
+//     25% {opacity: 0.7;scale:1}
+//     75% {opacity: 0.7;scale:1}
+//     100% {opacity: 0.0;scale:0.5}
+// }
+ 
+// .header_profile {
+// @include lib.pos-fixed($left: -50%);
+// @include lib.mixin-reset(max-width, max-height, border-radius);
+// opacity: 0;
+// scale: 0.2;
+// animation: fade-in linear forwards;
+// animation-timeline: scroll();
+// animation-range: 0px 200px;
+// }
 
 $radio: 100px;
+
 @mixin rollup {
-    25% {transform: scale(1) translateY($radio/3);}
-    75% {transform: scale(1) translateY($radio/ -3);}
+    25% {transform: scale(1) translateY($radio / 3);}
+    75% {transform: scale(1) translateY($radio / -3);}
     100% {transform: scale(0.75) translateY($radio * -2);}
 }
+
 @keyframes rollup2 {
-    0% {transform: scale(0.5) translateY($radio*2);}
+    0% {transform: scale(0.5) translateY($radio * 2);}
+
     @include rollup;
 }
 
 @keyframes rollup{
     0% {transform: scale(0.5) translateY($radio);}
+
     @include rollup;
 }
 
 
 .wrap.home {
     height: 200dvh;
+
     @include lib.lay-flex(col, null, ("justify": center, "align": center));
     
 .summary {
-
 p {
     @include lib.lay-flex(col, null, ("justify": center, "align": center));
+
         transform-origin: center;
         transform: scale(0.5) translateY($radio);
         animation: rollup linear forwards;
         animation-timeline: scroll(root);
         text-align: center;
+
         &:nth-of-type(1) {
         animation-name: rollup2;
         }
+
     @for $i from 1 through 3 {
         &:nth-of-type(#{$i}) {
             $sep: 25%;
-            animation-range: ($i - 1)*$sep ($i + 0.75) * $sep;
+
+            animation-range: ($i - 1) * $sep ($i + 0.75) * $sep;
       }
     }
 }

@@ -1,5 +1,7 @@
+@use "sass:map";
+
 @mixin transition($pairs, $duration: 0.125s, $event) {
-    transition-property: #{map-keys($pairs)};
+    transition-property: #{map.keys($pairs)};
     transition-duration: $duration;
     transition-timing-function: ease-in-out;
 

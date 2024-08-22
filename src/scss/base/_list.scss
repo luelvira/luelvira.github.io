@@ -1,8 +1,0 @@
-@charset "UTF-8";
-
-.wrap.listpage {
-    &>p {
-        @include lib.font-size(xl);
-        font-weight: 900;
-    }
-}

@@ -1,19 +1,25 @@
 @use "sass:math";
+@use "sass:selector";
 @use "../_variables" as lib;
-@mixin menu-buttom($size, $color, $content_selector, $active_selector:".open") {
+
+@mixin menu-buttom($size, $color, $shadow-color, $content_selector, $active_selector:".open") {
     position: relative;
+
     @include lib.w-($size);
     @include lib.h-($size);
     @include lib.pcs-focus;
+
     span {
         @include lib.w-('4/5');
         @include lib.h-(0.5);
+
         background-color: $color;
         display: block;
         transform-origin: center;
+
         @include lib.pos-absolute($top: 50%, $left: 10%);
         @include lib.trans-transition(
-            $pairs: (transform: scale(0.95), box-shadow: #{box-shadow($bg, 2)}, opacity: 0),
+            $pairs: (transform: scale(0.95), box-shadow: #{box-shadow($shadow-color, 2)}, opacity: 0),
             $duration: 0.25s,
             $event: null
         );
@@ -22,8 +28,9 @@
         &:nth-of-type(3) {transform: translateY(#{lib.get-size(1.5)});}
         
     }
+
     @at-root {
-      #{selector-append($content_selector, $active_selector)} span {
+      #{selector.append($content_selector, $active_selector)} span {
         &:nth-of-type(1) {transform: rotateZ(45deg);}
         &:nth-of-type(2) {opacity: 0}
         &:nth-of-type(3) {transform: rotateZ(-45deg);}
@@ -33,15 +40,17 @@
 
 
 @mixin menu-content($active_selector:".open", $content_selector: ".menu") {
-    $sel: selector-append(&, $active_selector);
+    $sel: selector.append(&, $active_selector);
     #{$content_selector} {
         @include lib.trans-transition(
             $pairs: (max-height: revert, height: auto, padding: 0),
             $duration: 0.5s,
             $event:null);
-        max-height: 0px;
+
+        max-height: 0;
         overflow: hidden;
     }
+
     @at-root {
         #{selector-nest($sel, $content_selector)} {
             visibility: visible;
@@ -51,15 +60,17 @@
 }
 
 @mixin menu-item($active_selector, $content_selector) {
-    $sel: selector-append(&, $active_selector);
+    $sel: selector.append(&, $active_selector);
 #{$content_selector} {
         @include lib.trans-transition(
             $pairs: (max-height: revert, height: auto, padding: 0),
             $duration: 0.5s,
             $event:null);
-        max-height: 0px;
+
+        max-height: 0;
         overflow: hidden;
     }
+
     @at-root {
         #{selector-nest($sel, $content_selector)} {
             visibility: visible;
