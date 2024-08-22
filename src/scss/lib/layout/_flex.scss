@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @use "sass:math";
-$flex_modifies: (
+
+$flex-modifies: (
     "flex": ("start", "end"),
     "default": ("normal", "center", "stretch"),
     "space": ("between", "around", "evenly"),
@@ -11,19 +12,23 @@ $flex_modifies: (
 
 @mixin flex($dir: 'col', $grow: null, $flex-position: null) {
     display: flex;
+
     @if $dir == 'col' {
         flex-direction: column;
     } @else {
         flex-direction: row;
     }    
+
     @if $flex-position {
-        $flex_positions: ("justify": justify-content,
+        $flex-positions: ("justify": justify-content,
                           "align": "align-items",
                           "wrap": flex-wrap);
+
         @each $key, $val in $flex-position {
-            #{map-get($flex_positions, $key)}: $val;
+            #{map-get($flex-positions, $key)}: $val;
         }
     }
+
     @if $grow {
         @each $sel, $val in $grow {
             #{selector-nest($sel, "&")} {
@@ -43,24 +48,27 @@ $flex_modifies: (
     align-items: center;
 }
 
-@mixin flex_bem {
-    @each $key, $mods in $flex_modifies {
+%flex {
+    display: flex;
+}
+
+@mixin flex-bem {
+    @each $key, $mods in $flex-modifies {
         @each $val in $mods {
             @if $key == "default" {
-                .flex__#{$val} {
+                .flex__#{$val}, %flex__#{$val} {
                     display: flex;
                     justify-content: #{$val};
                 }
             } @else if $key == "wrap" {
-                .flex-#{$val} {
+                .flex-#{$val}, %flex-#{$val} {
+                    display: flex;
                     flex-wrap: #{$val};
-                    display: flex;
                 }
-            }
-            @else {
-                .flex__#{$val} {
-                    justify-content: #{$key}-#{$val};
+            } @else {
+                .flex__#{$val}, %flex__#{$val} {
                     display: flex;
+                    justify-content: #{$key}-#{$val};
                 }
             }
         }

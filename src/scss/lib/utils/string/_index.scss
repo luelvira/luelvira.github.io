@@ -7,6 +7,7 @@
 /// @return {String} - The repeated string
 @function repeat($str, $times, $delimiter: " ") {
     $result: "";
+
     @for $i from 1 through $times {
         @if $result != "" {
             $result: $result + $delimiter + $str;
@@ -14,5 +15,6 @@
             $result: $str;
         }
     }
+
     @return $result;
 }

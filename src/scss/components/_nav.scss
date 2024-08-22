@@ -1,83 +1,108 @@
-$bg: $box_shadow_color;
-@import "./_hamburger";
+@use "../variables" as lib;
+@use "../components/cards";
+@import "./hamburger";
 
-.navbar {
-    position: relative;
-    z-index: 1;
-//    @include lib.m-d-(2, 3, 0);
-    @include lib.p-d-(0, 4);
-    @include shadow(2);
-    @include lib.lay-flex(row, (".logo": 1), (align:center));
-    @include menu-content(".open", ".navigation");
-    @include lib.max-lg {
-        @include menu-item(".open", ".navigation-item");
-        .navigation {
-            @include card(
-                $color: lib.color("background", '100', false),
-                $rounded: 'xl',
-                $shadow_intensity: 10);
-            @include lib.p-(0);
-        }
-        &:not(.open) .navigation{
-            @include lib.p-(0);
-        }
-    }
-    @include lib.lg {
-        @include lib.lay-subgrid(col);
-        grid-area: nav;
-      }
+@mixin navbar($bg, $background-val) {
+    .navbar {
+        position: relative;
+        z-index: 1;
 
-    .logo {
-        i {
-          @include lib.font-size(10);
-          color: lib.color(main);
-        }
-    }
+        //    @include lib.m-d-(2, 3, 0);
+        @include lib.p-d-(0, 4);
+        @include cards.shadow(2);
+        @include lib.lay-flex(row, (".logo": 1), (align:center));
+        @include menu-content(".open", ".navigation");
 
-    .menu {        
-        @include shadow(2);
-        @include lib.w-(8);
-        @include lib.h-(8);
-        @include menu-buttom(8, lib.color("background", '900', false), ".navbar", ".open");
+        @include lib.max-lg {
+            @include menu-item(".open", ".navigation-item");
+
+            .navigation {
+                @include cards.card(
+                    $color: lib.color("background", '100', false),
+                    $rounded: 'xl',
+                    $shadow_intensity: 10);
+                @include lib.p-(0);
+            }
+
+            &:not(.open) .navigation{
+                @include lib.p-(0);
+            }
+        }
+
         @include lib.lg {
-            display: none;
+            @include lib.lay-subgrid(col);
+
+            grid-area: nav;
         }
-    }
-    .navigation {
-        @include lib.lay-flex(col, null, (justify: flex-end, align: center));
-        @include lib.pos-absolute($right: 0, $top: #{lib.get-size(14)});
-        @include lib.w-(full);
-        @include lib.lg {
-            @include lib.h-(full);
-            @include lib.lay-grid-col($start: 2, $end: -1);
-            @include lib.lay-flex(row);
-            max-height: revert;
-            overflow: revert;
-            position: initial;
+
+        .logo {
+            i {
+                @include lib.font-size(10);
+
+                color: lib.color(main);
+            }
         }
-        
-        &-item {
-            list-style: none;
-            text-align: center;
-            @include lib.min-w-(fit);
-            @include lib.max-w-(30);
-            @include lib.w-('1/3');
-            @include lib.m-(0.5);            
-            @include card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
-            @include lib.p-d-(0);
+
+        .menu {        
+            @include cards.shadow(2);
+            @include lib.w-(8);
+            @include lib.h-(8);
+            @include menu-buttom(
+                $size: 8,
+                $color: lib.color("background", '900', false),
+                $shadow-color: $bg,
+                $content_selector: ".navbar",
+                $active_selector: ".open"
+            );
+
             @include lib.lg {
-                @include lib.trans-transition(
-                    $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
-                    $duration: 0.125s,
-                    $event: hover
-                );
-                @include lib.w-(auto);
+                display: none;
             }
-            a {
-                display: block;
+        }
+
+        .navigation {
+            @include lib.lay-flex(col, null, (justify: flex-end, align: center));
+            @include lib.pos-absolute($right: 0, $top: #{lib.get-size(14)});
+            @include lib.w-(full);
+
+            @include lib.lg {
                 @include lib.h-(full);
-                @include lib.p-d-(2, 3);
+                @include lib.lay-grid-col($start: 2, $end: -1);
+                @include lib.lay-flex(row);
+
+                max-height: revert;
+                overflow: revert;
+                position: initial;
             }
-        } 
+            
+            &-item {
+                list-style: none;
+                text-align: center;
+
+                @include lib.min-w-(fit);
+                @include lib.max-w-(30);
+                @include lib.w-('1/3');
+                @include lib.m-(0.5);
+                @warn "The value of $background_val is: " + #{$background_val};
+                @include cards.card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
+                @include lib.p-d-(0);
+
+                @include lib.lg {
+                    @include lib.trans-transition(
+                        $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
+                        $duration: 0.125s,
+                        $event: hover
+                    );
+                    @include lib.w-(auto);
+                }
+
+                a {
+                    display: block;
+
+                    @include lib.h-(full);
+                    @include lib.p-d-(2, 3);
+                }
+            } 
+        }
     }
 }

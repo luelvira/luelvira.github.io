@@ -1,12 +1,12 @@
 @mixin after($content: "") {
-    &:after {
+    &::after {
         content: $content;
         @content;
     }
 }
 
 @mixin before($content: "") {
-    &:before {
+    &::before {
         content: $content;
         @content;
     }

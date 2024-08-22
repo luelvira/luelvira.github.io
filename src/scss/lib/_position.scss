@@ -2,27 +2,35 @@
     @if $left {
         left: $left;
     }
+
     @if $top {
         top: $top;
     }
+
     @if $right {
         right: $right;
     }
+
     @if $bottom {
         bottom: $bottom;
     }
 }
+
 @mixin absolute($left:null, $top: null, $right: null, $bottom: null) {
     position: absolute;
+
     @include position($left, $top, $right, $bottom);
 }
 
 @mixin fixed($left:null, $top: null, $right: null, $bottom: null) {
     position: fixed;
+
     @include position($left, $top, $right, $bottom);
 }
+
 @mixin sticky($left:null, $top: null, $right: null, $bottom: null) {
     position: sticky;
+
     @include position($left, $top, $right, $bottom);
 }
 

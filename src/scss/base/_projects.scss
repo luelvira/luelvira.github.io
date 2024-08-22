@@ -1,203 +1,246 @@
 @charset "UTF-8";
+@use "sass:map";
+@use "../variables" as lib;
 
+@mixin project {
+    /* base/projects starts here */
+    .projects {
+        @include lib.p-(4, 'b');
+        @include lib.font-size('xl');
 
-.projects {
-    @include lib.p-(4, 'b');
-    @include lib.font-size('xl');
-    li {
-        list-style: none;
-        @include lib.m-d-(2, 4, 2, 0);
-    }
-    &>h1 {
-        @include lib.m-(4, 'b');
-    }
-    strong {
-        color: lib.color(primary, 500);
-    }
-    .budgets>ul {
-        @include lib.m-(8, 'tb');
-        @include lib.lay-flex(row);
-        @include lib.gap(2);
         li {
+            @include lib.m-d-(2, 4, 2, 0);
+
             list-style: none;
         }
-    }
-    a {
-        color: lib.color(secondary);
-        font-weight: bold;
-        &:hover {
-            text-decoration: underline;
-        }
-    }
 
-    &-list {
-        // @include lib.lay-flex(row, (".sticky": 0), (wrap: wrap));
-        @include lib.lay-grid($eqcols: 1);
-        @include lib.rounded(sm);
-        @include lib.m-(8, 't');
-        @include lib.p-(4);
-        @include lib.w-(full);
-        @include lib.gap(4);
-        box-shadow: lib.box-shadow-generator(
-            $color: lib.color(background, "300", false),
-            $levels: 5,
-            $mode: "inset",
-            $offset-x-inc: 0px,
-            $offset-y-inc: 2px,
-            $blur: 1px,
-            $spread-radius: 2px,
-            $div_value: 0.125);
-        @include lib.sm {@include lib.lay-grid($eqcols: 2);}
-        @include lib.lg {@include lib.lay-grid($eqcols: 3);}
-        @include lib.xxl {@include lib.lay-grid($eqcols: 4);}
-    }
-    .image_gallery {
-        @include lib.m-(4, 't');
-        // @include lib.lay-flex(col, (".image_gallery__item": 1), ("wrap": wrap));
-        @include lib.lay-grid($cols: 1);
-        @include lib.gap(2);
-        @include lib.md {
-            @include lib.lay-grid($cols: 2);
+        &>h1 {
+            @include lib.m-(4, 'b');
         }
-        @include lib.xxl {
-            @include lib.lay-grid($cols: 3);
-        }
-        &__item {
-            @include lib.m-(auto);
-            overflow-y: auto;
-            aspect-ratio: 16/9;
-            cursor: pointer;
-        }
-    }
-}
 
-
-.sticky {
-    position: relative;
-    flex-grow: 0;
-    background-color: lib.color(background);
-    box-shadow: #{lib.box-shadow(darken(lib.color('background', '900', false), 10%), 2)};
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 125px 10px;
-    // $bg-color: random_pastel();
-    // --bg-color: #{$bg-color};
-    // $bg-lighten: lighten($bg-color, 7%);
-    // --bg-lighten: #{$bg-lighten};
-    $colors: (
-        "haskell": #ff7eb9,
-        "web": #ff65a3,
-        "emacs": #7afcff,
-        "linux":  	#feff9c,
-        "default": #fff740
-    );
-    $bg-color: map-get($colors, default);
-    --bg-color: #{$bg-color};
-    --bg-lighten: #{lighten($bg-color, 7%)};
-    
-    @each $key, $color in $colors {
-        &.#{$key} {
-        $bg-color: $color;
-        --bg-color: #{$bg-color};
-        --bg-lighten: #{lighten($bg-color, 7%)};
+        strong {
+            color: lib.color(primary, 500);
         }
-    }
-    
-    @for $i from 1 to 100 {
-        &:nth-child(#{$i}) {
-            $dir: math.random();
-            @if $dir > 0.5 {
-                $dir: 1;
-            } @else {
-                $dir: -1;
+
+        .budgets>ul {
+            @include lib.m-(8, 'tb');
+            @include lib.lay-flex(row);
+            @include lib.gap(2);
+
+            li {
+                list-style: none;
             }
-            transform: rotate(1deg + (math.random()*2) * $dir);
+        }
+
+        a {
+            color: lib.color(secondary);
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &-list {
+            // @include lib.lay-flex(row, (".sticky": 0), (wrap: wrap));
+            @include lib.lay-grid($eqcols: 1);
+            @include lib.rounded(sm);
+            @include lib.m-(8, 't');
+            @include lib.p-(4);
+            @include lib.w-(full);
+            @include lib.gap(4);
+
+            box-shadow: lib.box-shadow-generator(
+                $color: lib.color(background, "300", false),
+                $levels: 5,
+                $mode: "inset",
+                $offset-x-inc: 0,
+                $offset-y-inc: 2px,
+                $blur: 1px,
+                $spread-radius: 2px,
+                $div_value: 0.125);
+
+            @include lib.sm {@include lib.lay-grid($eqcols: 2);}
+
+            @include lib.lg {@include lib.lay-grid($eqcols: 3);}
+            
+        }
+
+        .image_gallery {
+            @include lib.m-(4, 't');
+
+            // @include lib.lay-flex(col, (".image_gallery__item": 1), ("wrap": wrap));
+            @include lib.lay-grid($cols: 1);
+            @include lib.gap(2);
+
+            @include lib.md {
+                @include lib.lay-grid($cols: 2);
+            }
+
+            @include lib.xxl {
+                @include lib.lay-grid($cols: 3);
+            }
+
+            &__item {
+                @include lib.m-(auto);
+
+                overflow-y: auto;
+                aspect-ratio: 16/9;
+                cursor: pointer;
+            }
         }
     }
-    
-    .sticky-content {
-        @include lib.p-(4);
-        @include lib.min-h-(fit);
-        @include lib.min-w-(fit);
-        
-        background-image: linear-gradient(135deg, var(--bg-color) 85%, var(--bg-lighten) 90%, var(--bg-color));
-        z-index: 100;
-        position:relative;
-        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
-        @include lib.h-(full);
-        overflow: hidden;
+
+
+    .sticky {
+        position: relative;
+        background-color: lib.color(background);
+        box-shadow: #{lib.box-shadow(darken(lib.color('background', '900', false), 10%), 2)};
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 125px 10px;
-        @include lib.pcs-before {
-            z-index: 102;
-            width: 32px;
-            height: 40px;
-            @include lib.pos-absolute($left: -10px, $bottom: -15px);
-            background-color: var(--bg-color);
-            box-shadow:
-                3px -2px 10px rgba(0, 0, 0, 0.3),
-                inset 15px -15px 15px rgba(255, 255, 255, 0.3);
-            transform: skew(-25deg);
-        }
-        %full {
-            @include lib.w-(full);
-        }
-        time {
-            @extend %full;
-            font-size: 0.75rem;
-        }
-        h4 {
-            @include lib.font-size('2xl');
-            @extend %full;
-            font-family: "Caveat";
-            font-family: "Permanent Marker";
-            a {
-                color:black;
-            }
-        }
-        p {
-            font-style: italic;
 
+        // $bg-color: random_pastel();
+        // --bg-color: #{$bg-color};
+        // $bg-lighten: lighten($bg-color, 7%);
+        // --bg-lighten: #{$bg-lighten};
+        $colors: (
+            "haskell": #ff7eb9,
+            "web": #ff65a3,
+            "emacs": #7afcff,
+            "linux":  	#feff9c,
+            "default": #fff740
+        );
+        $bg-color: map.get($colors, default);
+
+        --bg-color: #{$bg-color};
+        --bg-lighten: #{lighten($bg-color, 7%)};
+        
+        @each $key, $color in $colors {
+            &.#{$key} {
+                $bg-color: $color;
+
+                --bg-color: #{$bg-color};
+                --bg-lighten: #{lighten($bg-color, 7%)};
+            }
         }
-        .mark {
-            @include lib.p-d-(1, 4);
-            @include lib.lay-flex(col, null, ("justify": center, "align": center));
-            // border: 1px solid;
-            display: inline-flex;
-            position: relative;
+        
+        //    @for $i from 1 to 100 {
+        //        &:nth-child(#{$i}) {
+        //            $dir: math.random();
+        //            @if $dir > 0.5 {
+        //                $dir: 1;
+        //            } @else {
+        //                $dir: -1;
+        //            }
+        //            transform: rotate(1deg + (math.random()*2) * $dir);
+        //        }
+        //    }
+        
+        .sticky-content {
+            @include lib.p-(4);
+            @include lib.min-h-(fit);
+            @include lib.min-w-(fit);
+            
+            background-image: linear-gradient(135deg, var(--bg-color) 85%, var(--bg-lighten) 90%, var(--bg-color));
+            z-index: 100;
+            position:relative;
+            box-shadow: 1px 1px 3px 1px rgb(0 0 0 / 30%);
+
+            @include lib.h-(full);
+
+            overflow: hidden;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 125px 10px;
+
             @include lib.pcs-before {
-                z-index: 0;
-                @include lib.rounded(xl);
-                transform: skewX(-30deg);
-                background-image: linear-gradient(
-                    104deg,
-                    rgba(0, 225, 155, 0.0) 0.9%,
-                    rgba(0, 225, 155, 1.25) 2.4%,
-                    rgba(0, 225, 155, .5) 5.8%,
-                    rgba(0, 225, 155, 0.1) 85%,
-                    rgba(0, 225, 155, 0.5) 96%,
-                    rgba(0, 225, 155, 0.1) 98%,
-                ), linear-gradient(
-                                      183deg,
-                                      rgba(0, 125, 255, 0) 0%,
-                                      rgba(0, 125, 255, 0.3) 8%,
-                                      rgba(0, 125, 255, 0) 15%);
+                z-index: 102;
+                width: 32px;
+                height: 40px;
+
+                @include lib.pos-absolute($left: -10px, $bottom: -15px);
+
+                background-color: var(--bg-color);
+                box-shadow:
+                    3px -2px 10px rgb(0 0 0 / 30%),
+                    inset 15px -15px 15px rgb(255 255 255 / 30%);
+                transform: skew(-25deg);
+            }
+            %full {
                 @include lib.w-(full);
-                @include lib.h-(full);
-                @include lib.pos-absolute($left: 0);
-                box-decoration-break: clone;
             }
-            a {
-                color: black;
-                font-family: "Caveat";
-                @include lib.font-size('xl');
-                position:relative;
+
+            time {
+                @extend %full;
+
+                font-size: 0.75rem;
             }
-        }
-        &--wrap {
-            @include lib.lay-flex(col, null, ("align": center));
-            @include lib.gap(2);
+
+            h4 {
+                @include lib.font-size('2xl');
+                @extend %full;
+
+                font-family: "Permanent Marker", sans-serif;
+
+                a {
+                    color:black;
+                }
+            }
+
+            p {
+                font-style: italic;
+
+            }
+
+            .mark {
+                @include lib.p-d-(1, 4);
+                @include lib.lay-flex(col, null, ("justify": center, "align": center));
+
+                // border: 1px solid;
+                display: inline-flex;
+                position: relative;
+
+                @include lib.pcs-before {
+                    z-index: 0;
+
+                    @include lib.rounded(xl);
+
+                    transform: skewX(-30deg);
+                    background-image: linear-gradient(
+                        104deg,
+                        rgb(0 225 155 / 0%) 0.9%,
+                        rgb(0 225 155 / 125%) 2.4%,
+                        rgb(0 225 155 / 50%) 5.8%,
+                        rgb(0 225 155 / 10%) 85%,
+                        rgb(0 225 155 / 50%) 96%,
+                        rgb(0 225 155 / 10%) 98%,
+                    ), linear-gradient(
+                                          183deg,
+                                          rgb(0 125 255 / 0%) 0%,
+                                          rgb(0 125 255 / 30%) 8%,
+                                          rgb(0 125 255 / 0%) 15%);
+
+                    @include lib.w-(full);
+                    @include lib.h-(full);
+                    @include lib.pos-absolute($left: 0);
+
+                    box-decoration-break: clone;
+                }
+
+                a {
+                    @include lib.font-size('xl');
+
+                    color: black;
+                    font-family: caveat, sans-serif;
+                    position:relative;
+                }
+            }
+
+            &--wrap {
+                @include lib.lay-flex(col, null, ("align": center));
+                @include lib.gap(2);
+            }
         }
     }
+    /* base/projects ends here */
 }
-
 

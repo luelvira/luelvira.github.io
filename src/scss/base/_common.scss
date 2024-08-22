@@ -1,14 +1,36 @@
+@use "../variables" as lib;
+@include lib.font-load;
+
+/* common style and variables declarations */
+@include lib.generate-colors;
+@include lib.generate-colors((
+    main: (primary, 800),
+    secondary: (secondary, 800),
+    "background": ("background", 50),
+    aux: #e7d192,
+    "gray": ("background", 600),
+    light-gray: ("background", 300),
+    dark-gray: ("background", 700)
+));
+@include lib.lay-flex_bem;
+@include lib.font-gen-font-size;
+
 h1 {
     color: lib.color(secondary);
+
     @include lib.font-size(6);
 }
 
 h2 {
-        color: lib.color(main);
-        @include lib.font-size('2xl');
+    color: lib.color(main);
+
+    @include lib.font-size('2xl');
 }
 
 p {
     @include lib.m-d-(4, 0);
+
     text-wrap: balance;
 }
+
+/* common style and variables declarations ends here */

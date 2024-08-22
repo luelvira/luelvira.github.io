@@ -1,3 +1,14 @@
 {
-  "extends": "stylelint-config-standard-scss"
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "scss/at-mixin-pattern": [
+      "^(-?[a-z][a-z0-9]*)(-[a-z0-9]+)*-?$",
+      {
+        "message": "Expected mixin name to be kebab-case"
+      }
+    ],
+    "selector-class-pattern": null,
+    "import-notation": null,
+    "max-nesting-depth": 3
+  }
 }

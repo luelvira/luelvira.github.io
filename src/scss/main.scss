@@ -1,79 +1,83 @@
 @charset "UTF-8";
-
-@use "_variables" as lib;
+@use "variables" as lib;
 @use "sass:math";
-@import "base/_base";
-@import "./utilities";
+@use "sass:map";
+@use "components/nav";
+@use "base/base";
+@use "base/common";
+@use "base/header";
+@use "base/about";
+@use "base/home";
+@use "base/projects";
+@use "components/cards";
+@use "components/tags";
 
-$box_shadow_color: lib.color("background", '500');
+
+$box-shadow-color: lib.color("background", '500');
 $background: lib.color("background", '50');
-$background_val: lib.color("background", '50', false);
-@include lib.generate_colors;
-@include lib.generate_colors((
-    main: (primary, 800),
-    secondary: (secondary, 800),
-    "background": ("background", 50),
-    aux: #e7d192,
-    "gray": ("background", 600),
-    light-gray: ("background", 300),
-    dark-gray: ("background", 700)
-));
-
-
-@include lib.lay-flex_bem;
-@include lib.font-gen_font_size;
-
-@import "components/_cards";
-@import "components/_tags";
-@import "components/_nav";
-
-@import "base/_header";
-@import "base/list";
-@import "base/projects";
-@import "base/common";
+$background-val: lib.color("background", '50', false);
 
 .body {
     background-color: lib.color("background");
+
     @include lib.lay-flex(col);
+
     @include lib.lg {
         @include lib.max-w-('lg');
         @include lib.w-('9/10');
         @include lib.m-(auto);
         @include lib.p-(0);        
         @include lib.lay-grid($rows: 3, $eqcols: 8);
+
         grid-template-areas: lib.str-repeat("nav", 8)
                              lib.str-repeat("header", 8)
                              lib.str-repeat("body", 8);
                              
         @include lib.gap(4)
     }
+
     @include lib.xxl {
-        max-width: min(map-get(lib.$screens, 'xl'), map-get(lib.$screens, 'lg'));
+        max-width: min(map.get(lib.$screens, 'xl'), map.get(lib.$screens, 'lg'));
     }
 }
 
+@include nav.navbar($box-shadow-color, $background-val);
+@include header.header;
+@include home.home;
+@include projects.project;
+@include about.about;
+
 .wrap {
     @include lib.m-(6, 't');
-    @import "base/home";    
-    @import "base/about";    
 
     @include lib.max-lg {
         @include lib.w-('4/5');
         @include lib.m-d-(4, auto);
     }
+
     @include lib.lg {
         grid-area: body;
+
         @include lib.m-(0, 't');
     }
 
     @include lib.xxl {
       display: grid;
+
       &.authors {
           @include lib.lay-subgrid(col);
+
           .content {
-              /* some content */
               @include lib.lay-grid-col($span: 4);
           }
       }
+    }
+
+    &.listpage {
+        &>p {
+            @include lib.font-size(xl);
+            
+            font-weight: 900;
+        }
     }
 }
