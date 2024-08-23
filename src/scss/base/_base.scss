@@ -1,4 +1,6 @@
-/* base style start here */
+@use "../abstracts/functions/colors";
+@use "../abstracts/mixin";
+@use "../abstracts/variables";
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +8,28 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    font-family: variables.$vf-sans;
+}
+
+
+h1 {
+    color: colors.color(secondary);
+
+    @include mixin.font-size(6);
+}
+
+
+h2 {
+    color: colors.color(main);
+
+    @include mixin.font-size('2xl');
+}
+
 img, figure, video, object, svg {
     width: 100%;
     height: auto;
-}
-
-body {
-    font-family: sans-serif;
 }
 
 a {
@@ -20,8 +37,8 @@ a {
     text-decoration: none;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+p {
+    @include mixin.m-d-(4, 0);
 
-/* base style ends here */
+    text-wrap: balance;
+}

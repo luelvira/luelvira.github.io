@@ -11,8 +11,7 @@ $flex-modifies: (
 
 
 @mixin flex($dir: 'col', $grow: null, $flex-position: null) {
-    display: flex;
-
+    display: flex;    
     @if $dir == 'col' {
         flex-direction: column;
     } @else {
@@ -30,6 +29,7 @@ $flex-modifies: (
     }
 
     @if $grow {
+        @debug $grow;
         @each $sel, $val in $grow {
             #{selector-nest($sel, "&")} {
                 flex-grow: $val;

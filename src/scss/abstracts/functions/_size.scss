@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@use "sass:meta";
+@use "../variables/values" as *;
+
+@function get-size($key) {
+    $size: if(meta.type-of($key) != 'number', $key, $key * $base);
+
+    @return $size;
+}

@@ -1,25 +1,28 @@
-@use "../variables" as lib;
+@use "sass:color";
+@use "../abstracts/functions/colors";
+@use "../abstracts/functions/shadow";
+@use "../abstracts/mixin";
 
 @mixin card($color: null, $rounded: false, $shadow_intensity: 5) {
     overflow: hidden;
 
     @if $rounded {
-        @include lib.rounded($rounded);
+        @include mixin.br-rounded($rounded);
     }
 
     @include shadow($shadow_intensity);
 
     @if $color {
-        border-color: lighten($color, 50%);
+        border-color: color.adjust($color, $lightness: 50%);
         background-color: #{$color};
     }
 
-    @include lib.p-(4);
+    @include mixin.p-(4);
 }
 
 @mixin shadow($intensity: 5) {
-        $bg: lib.color("background", '500', false);
+        $bg: colors.color("background", '500', false);
 
-        box-shadow: lib.box-shadow($bg, $intensity),
+        box-shadow: shadow.box-shadow($bg, $intensity),
                     0 -2px 2px rgba($bg, 0.05);
 }

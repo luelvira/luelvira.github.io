@@ -1,33 +1,19 @@
+@charset "UTF-8";
 @use "sass:list";
-@use "sass:meta";
 @use "sass:map";
-
-$base: 0.25rem!default;
-$margins: (
-    'tb': ('top', 'bottom'),
-    'lr': ('left', 'right'),
-    't': ('top'),
-    'b': ('bottom'),
-    'l': ('left'),
-    'r': ('right')
-);
+@use "../variables";
+@use "../functions/size";
 
 @mixin -box-sizing($property, $key, $dir: false) {
-    $size: #{get-size($key)};
+    $size: #{size.get-size($key)};
 
     @if not $dir {
         #{$property}: $size;
-    } @else if map.has-key($margins, $dir) {
-        @each $mar in map.get($margins, $dir) {
+    } @else if map.has-key(variables.$vs-margins, $dir) {
+        @each $mar in map.get(variables.$vs-margins, $dir) {
             #{$property}-#{$mar}: $size;
         }
     }
-}
-
-@function get-size($key) {
-    $size: if(meta.type-of($key) != 'number', $key, $key * $base);
-
-    @return $size;
 }
 
 @mixin m-($key, $dir: false) {
@@ -46,17 +32,17 @@ $margins: (
             @include p-(list.nth($args, 1));
         }
     } @else if list.length($args) == 2 {
-        #{$property}: get-size(list.nth($args, 1)) get-size(list.nth($args, 2));
+        #{$property}: size.get-size(list.nth($args, 1)) size.get-size(list.nth($args, 2));
     } @else if list.length($args) == 3 {
-        #{$property}: get-size(list.nth($args, 1))
-                      get-size(list.nth($args, 2))
-                      get-size(list.nth($args, 3))
-                      get-size(list.nth($args, 2));
+        #{$property}: size.get-size(list.nth($args, 1))
+                      size.get-size(list.nth($args, 2))
+                      size.get-size(list.nth($args, 3))
+                      size.get-size(list.nth($args, 2));
     } @else if list.length($args) == 4 {
-        #{$property}: get-size(list.nth($args, 1))
-                      get-size(list.nth($args, 2))
-                      get-size(list.nth($args, 3))
-                      get-size(list.nth($args, 4));
+        #{$property}: size.get-size(list.nth($args, 1))
+                      size.get-size(list.nth($args, 2))
+                      size.get-size(list.nth($args, 3))
+                      size.get-size(list.nth($args, 4));
     } @else {
         @error "The number of arguments for the mixin `#{if($property == 'margin', 'm-d-', 'p-d-')}` should be between 1 and 4.";
     }
@@ -70,14 +56,6 @@ $margins: (
     @include -directional-('padding', $args...);
 }
 
-
-
 @mixin gap($key) {
-    gap: get-size($key);
-}
-
-@mixin square($size) {
-    aspect-ratio: 1/1;
-    width: $size;
-    height: $size;
+    gap: size.get-size($key);
 }

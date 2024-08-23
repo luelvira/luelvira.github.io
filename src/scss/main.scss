@@ -1,83 +1,26 @@
 @charset "UTF-8";
-@use "variables" as lib;
+
 @use "sass:math";
 @use "sass:map";
-@use "components/nav";
+
+// vendors
+@use "vendors/normalize";
+
+// base imports
+@use "base/helpers";
 @use "base/base";
-@use "base/common";
-@use "base/header";
-@use "base/about";
-@use "base/home";
-@use "base/projects";
-@use "components/cards";
-@use "components/tags";
+@use "base/fonts";
 
+// layout imports
+@use "layouts/body";
+@use "layouts/wrap";
 
-$box-shadow-color: lib.color("background", '500');
-$background: lib.color("background", '50');
-$background-val: lib.color("background", '50', false);
+// components imports
+@use "components/header";
+@use "components/nav";
+@use "components/stickers";
 
-.body {
-    background-color: lib.color("background");
-
-    @include lib.lay-flex(col);
-
-    @include lib.lg {
-        @include lib.max-w-('lg');
-        @include lib.w-('9/10');
-        @include lib.m-(auto);
-        @include lib.p-(0);        
-        @include lib.lay-grid($rows: 3, $eqcols: 8);
-
-        grid-template-areas: lib.str-repeat("nav", 8)
-                             lib.str-repeat("header", 8)
-                             lib.str-repeat("body", 8);
-                             
-        @include lib.gap(4)
-    }
-
-    @include lib.xxl {
-        max-width: min(map.get(lib.$screens, 'xl'), map.get(lib.$screens, 'lg'));
-    }
-}
-
-@include nav.navbar($box-shadow-color, $background-val);
-@include header.header;
-@include home.home;
-@include projects.project;
-@include about.about;
-
-.wrap {
-    @include lib.m-(6, 't');
-
-    @include lib.max-lg {
-        @include lib.w-('4/5');
-        @include lib.m-d-(4, auto);
-    }
-
-    @include lib.lg {
-        grid-area: body;
-
-        @include lib.m-(0, 't');
-    }
-
-    @include lib.xxl {
-      display: grid;
-
-      &.authors {
-          @include lib.lay-subgrid(col);
-
-          .content {
-              @include lib.lay-grid-col($span: 4);
-          }
-      }
-    }
-
-    &.listpage {
-        &>p {
-            @include lib.font-size(xl);
-            
-            font-weight: 900;
-        }
-    }
-}
+// page imports
+@use "pages/about";
+@use "pages/home";
+@use "pages/projects";

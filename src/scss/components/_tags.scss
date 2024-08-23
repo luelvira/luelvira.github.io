@@ -1,11 +1,11 @@
 @use "sass:meta";
 @use "sass:list";
 @use "sass:map";
+@use "../abstracts/mixin";
 @use "../components/cards";
-@use "../variables" as lib;
 
 /// tag sizes available
-$tag-sizes: (
+$-tag-sizes: (
     sm,
     base,
     lg,
@@ -17,10 +17,10 @@ $tag-sizes: (
 /// @param {color} $color - The color of the tag.
 /// @param {boolean} $rounded - The border radius of the tag.
 @mixin tag($size, $color, $rounded) {
-    @if list.index($tag-sizes, $size) {
-        @include lib.font-size($size);
+    @if list.index($-tag-sizes, $size) {
+        @include mixin.font-size($size);
     } @else {
-        @error "Invalid size: #{$size}. Please use one of the following: #{$tag-sizes}.";
+        @error "Invalid size: #{$size}. Please use one of the following: #{$-tag-sizes}.";
     }
 
     @if meta.type-of($value: $color) != color {
@@ -38,7 +38,7 @@ $tag-sizes: (
     }
 
     @include cards.shadow(2);
-    @include lib.p-d-(2, 3);
+    @include mixin.p-d-(2, 3);
 
     font-weight: bold;
 }

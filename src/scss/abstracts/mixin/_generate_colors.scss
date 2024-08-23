@@ -1,0 +1,32 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:meta";
+@use "../variables/colors";
+@use "../functions/colors" as fc;
+
+/// Use the colors map to generate a css style variables
+/// the variables will be generated with the following format:
+/// --color-name-tone: #color
+/// @param {map} $custom_names - A map with custom names for the colors
+@mixin generate-colors($custom_names: null) {
+    @if not $custom_names {
+        @each $color, $tones in colors.$colors {
+            @each $tone, $value in $tones {
+                --color-#{$color}-#{$tone}: #{$value};
+            }
+        }
+    } @else {
+        @each $name, $color in $custom_names {
+            @if meta.type-of($value: $color) == 'list' {
+                --color-#{$name}: #{fc.color($color...)};
+                colors.$user-defined-colors: map.merge(colors.$user-defined-colors, ($name: #{fc.color($color...)}));
+            } @else if meta.type-of($value: $color) == 'color' {
+                --color-#{$name}: #{$color};
+
+                colors.$user-defined-colors: map.merge(colors.$user-defined-colors, ($name: var(--color-#{$name})));
+            } @else {
+                @error "Invalid color type. Expected a list or a color but got #{type-of($color)}";
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:string";
+@use "../variables/media" as *;
+@use "../variables/values" as vals;
+
+@mixin -size($key, $property) {
+    #{$property}: -size($key, $property);
+}
+
+@function -size($key, $property) {
+    @if map.has-key($screens, $key) {
+        @return #{map.get($screens, $key)};
+    } @else if string.index($property, "height") and map.has-key($height, $key) {
+        @return #{map.get($height, $key)};
+    } @else if string.index($property, "width") and map.has-key($width, $key) {
+        @return #{map.get($width, $key)};
+    } @else {
+        @return $key * vals.$base;
+    }
+}
+
+@mixin h-($size) {@include -size($size, 'height');}
+
+@mixin min-h-($size) {@include -size($size, 'min-height');}
+
+@mixin max-h-($size) {@include -size($size, 'max-height');}
+
+@mixin w-($size) {@include -size($size, 'width');}
+
+@mixin min-w-($size) {@include -size($size, 'min-width');}
+
+@mixin max-w-($size) {@include -size($size, 'max-width');}
+
+@function -w($size) {
+    @return -size($size, "width");
+}
+
+@mixin w-clamp($min, $def, $max) {
+    @include min-w-($min);
+    @include max-w-($max);
+    @include w-($def);
+}
+
+@mixin square($size) {
+    aspect-ratio: 1/1;
+    width: $size;
+    height: $size;
+}

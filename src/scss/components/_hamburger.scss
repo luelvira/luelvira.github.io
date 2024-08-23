@@ -1,31 +1,32 @@
 @use "sass:math";
 @use "sass:selector";
-@use "../_variables" as lib;
+@use "../abstracts/mixin";
+@use "../abstracts/functions/size";
 
 @mixin menu-buttom($size, $color, $shadow-color, $content_selector, $active_selector:".open") {
     position: relative;
 
-    @include lib.w-($size);
-    @include lib.h-($size);
-    @include lib.pcs-focus;
+    @include mixin.w-($size);
+    @include mixin.h-($size);
+    @include mixin.pcs-focus;
 
     span {
-        @include lib.w-('4/5');
-        @include lib.h-(0.5);
+        @include mixin.w-('4/5');
+        @include mixin.h-(0.5);
 
         background-color: $color;
         display: block;
         transform-origin: center;
 
-        @include lib.pos-absolute($top: 50%, $left: 10%);
-        @include lib.trans-transition(
+        @include mixin.pos-absolute($top: 50%, $left: 10%);
+        @include mixin.tr-transition(
             $pairs: (transform: scale(0.95), box-shadow: #{box-shadow($shadow-color, 2)}, opacity: 0),
             $duration: 0.25s,
             $event: null
         );
-        &:nth-of-type(1) {transform: translateY(-#{lib.get-size(1.5)});}
+        &:nth-of-type(1) {transform: translateY(-#{size.get-size(1.5)});}
         &:nth-of-type(2) {transform: scaleX(0.8);}
-        &:nth-of-type(3) {transform: translateY(#{lib.get-size(1.5)});}
+        &:nth-of-type(3) {transform: translateY(#{size.get-size(1.5)});}
         
     }
 
@@ -42,7 +43,7 @@
 @mixin menu-content($active_selector:".open", $content_selector: ".menu") {
     $sel: selector.append(&, $active_selector);
     #{$content_selector} {
-        @include lib.trans-transition(
+        @include mixin.tr-transition(
             $pairs: (max-height: revert, height: auto, padding: 0),
             $duration: 0.5s,
             $event:null);
@@ -61,8 +62,8 @@
 
 @mixin menu-item($active_selector, $content_selector) {
     $sel: selector.append(&, $active_selector);
-#{$content_selector} {
-        @include lib.trans-transition(
+    #{$content_selector} {
+        @include mixin.tr-transition(
             $pairs: (max-height: revert, height: auto, padding: 0),
             $duration: 0.5s,
             $event:null);

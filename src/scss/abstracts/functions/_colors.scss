@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "../variables/colors" as vc;
+
+/// Use the colors map to get a color
+/// @param {string} $color - The color name
+/// @param {string} $tone - The color tone
+/// @param {boolean} $asVar - If true, the function will return the color as a css variable. Default is true
+/// @return {string} - The color value
+@function color($color, $tone: null, $asVar: true) {    
+    @if $asVar {        
+        @if not $tone and map.has-key($map: vc.$user-defined-colors, $key: $color) {
+            @debug "Colors: #{$color} $tone: #{$tone} -> #{map.get(vc.$user-defined-colors, $color)}";
+            @return map.get(vc.$user-defined-colors, $color);
+        } @else if map.has-key($map: vc.$colors, $key: $color){            
+            @return var(--color-#{$color}-#{$tone});
+        } @else {            
+            @error "Color #{$color} not found in the colors map";
+        }
+    } @else {
+        @return map.get(map.get(vc.$colors, $color), $tone);
+    }
+}
