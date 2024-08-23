@@ -1,0 +1,111 @@
+@charset "UTF-8";
+@use "../abstracts/mixin";
+@use "../abstracts/functions/colors";
+
+
+/* header starts here */
+.header {
+    @include mixin.flex(col, null, ("wrap": wrap));
+    @include mixin.m-(4, 't');
+    @include mixin.p-d-(0);
+
+    &_profile {
+        @include mixin.br-rounded-full;
+        @include mixin.max-w-(24);
+        @include mixin.max-h-(24);
+
+        aspect-ratio: 1 / 1;
+        margin: auto;
+    }
+
+    &_name {
+        @include mixin.font-size(10, 1);
+        @include mixin.font-slab(900);
+
+        color: colors.color(main);
+    }
+
+    &_tagline {
+        @include mixin.font-size(3);
+
+        color: colors.color(secondary);
+    }
+
+
+    @include mixin.media-max-lg {
+        @include mixin.max-w-('4/5');
+        @include mixin.m-d-(4, auto);
+    }
+
+    @include mixin.media-md-lg {
+        @include mixin.flex(row);
+
+        gap: 2rem;
+
+        &_profile {
+            margin: inherit;
+        }
+
+        &_name {
+            @include mixin.flex(col);
+
+            justify-content: center;
+        }
+    }
+
+    @include mixin.media-lg {
+        padding: 0;
+        grid-area: header;
+
+        @include mixin.subgrid(col);
+        @include mixin.grid($rows: 2);
+
+        &_name {
+            @include mixin.grid-col(2, 8);            
+        }
+
+    }
+}
+
+
+.contact {
+    width: 100%;
+
+    @include mixin.m-(4, 't');
+
+    @include mixin.media-lg {
+        @include mixin.grid-row(2, 2);
+        @include mixin.grid-col(1, 9);
+    }
+}
+
+.basic_contact {
+    @include mixin.flex(row, null, ("justify": space-evenly));
+    @include mixin.gap(2);
+
+    &_element {
+        list-style: none;
+
+        a {
+            @include mixin.flex(row, (span: 1));
+            @include mixin.gap(2);
+
+            span:first-child {
+                @include mixin.w-(8);
+                @include mixin.flex(row, null, ("justify": center, "align": center));
+
+                @include mixin.media-lg {
+                    @include mixin.w-(4);
+                }
+            }
+
+            span:last-child {
+                display: none;
+
+                @include mixin.media-lg {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

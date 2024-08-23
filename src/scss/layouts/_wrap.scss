@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@use "../abstracts/mixin";
+
+.wrap {
+    @include mixin.m-(6, 't');
+
+    @include mixin.media-max-lg {
+        @include mixin.w-('4/5');
+        @include mixin.m-d-(4, auto);
+    }
+
+    @include mixin.media-lg {
+        grid-area: body;
+
+        @include mixin.m-(0, 't');
+    }
+
+    @include mixin.media-xxl {
+      display: grid;
+
+      &.authors {
+          @include mixin.subgrid(col);
+
+          .content {
+              @include mixin.grid-col($span: 4);
+          }
+      }
+    }
+
+    &.listpage {
+        &>p {
+            @include mixin.font-size(xl);
+            
+            font-weight: 900;
+        }
+    }
+}

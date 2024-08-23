@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@use "sass:list";
+@use "sass:map";
+@use "../variables/fonts";
+@use "../functions/fonts_size" as fs;
+
+@mixin size($size, $line: null) {
+    @if map.has-key(fonts.$fix-size, $size) {
+      --size: #{list.nth(map.get(fonts.$fix-size, $size), 1)};
+
+      font-size: list.nth(map.get(fonts.$fix-size, $size), 1);
+      line-height: list.nth(map.get(fonts.$fix-size, $size), 2);
+    } @else {
+        --size: #{fs.calculate($size)};
+
+        font-size: var(--size);
+
+        @if $line {
+            line-height: $line;
+        } @else {
+            line-height: calc(var(--size) * 1.5);
+        }
+    }
+}
+
+@mixin slab($w: 400) {
+    font-family: fonts.$slab;
+    font-weight: $w;
+}
+
+@mixin gen-font-size {
+    @each $key, $val in fonts.$fix-size {
+        .font-#{$key} {
+            @include size($key);
+        }
+    }
+}

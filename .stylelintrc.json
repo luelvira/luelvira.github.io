@@ -8,7 +8,6 @@
       }
     ],
     "selector-class-pattern": null,
-    "import-notation": null,
-    "max-nesting-depth": 3
+    "import-notation": null
   }
 }

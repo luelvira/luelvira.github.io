@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@use "../abstracts/mixin";
+@use "../abstracts/variables";
+
+.wrap.home {
+    @include mixin.h-(dvh);
+}
+
+.summary {
+    @include mixin.p-(6, 'lr');
+
+    font-family: variables.$vf-sans;
+    font-weight: bolder;
+
+    @include mixin.media-lg {
+        @include mixin.p-(3, 'lr');
+    }
+    
+    p {
+        @include mixin.m-(5, 'b');
+        @include mixin.font-size('lg');
+
+        text-wrap: balance;
+    }
+
+    @include mixin.media-xl {
+        p {
+            @include mixin.font-size(4);
+            @include mixin.m-(10, 'b');
+        }
+    }
+
+}
+

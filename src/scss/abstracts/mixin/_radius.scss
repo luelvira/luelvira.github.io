@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "../variables/radius" as *;
+@use "../variables/values" as val;
+
+@mixin -rounded($key) {
+    border-radius: #{map.get($border-radius-vals, $key)};
+}
+
+@mixin rounded-full {
+@include -rounded(full);
+}
+
+@mixin rounded($val) {
+@if map.has-key($border-radius-vals, $val) {
+    @include -rounded($val);
+} @else {
+    border-radius: $val * val.$base;
+}
+}

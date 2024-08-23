@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@use "../variables/values" as *;
+
+@function calculate($size) {
+    $base: 1.25rem;
+
+    @return $base + $size * $font-steps * $font-icnr;
+    
+}

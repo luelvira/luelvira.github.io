@@ -1,0 +1,16 @@
+@use "../abstracts/mixin";
+
+
+:root {
+  @include mixin.generate-colors;
+  @include mixin.generate-colors((main: (primary, 800),
+      secondary: (secondary, 800),
+      "background": ("background", 50),
+      aux: #e7d192,
+      "gray": ("background", 600),
+      light-gray: ("background", 300),
+      dark-gray: ("background", 700)));
+}
+
+@include mixin.flex_bem;
+@include mixin.font-gen-font-size;

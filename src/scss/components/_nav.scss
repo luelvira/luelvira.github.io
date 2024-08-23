@@ -1,108 +1,112 @@
-@use "../variables" as lib;
-@use "../components/cards";
-@import "./hamburger";
+@use "../abstracts/mixin";
+@use "../abstracts/functions/colors";
+@use "../abstracts/functions/size";
+@use "cards";
+@use "hamburger";
 
-@mixin navbar($bg, $background-val) {
-    .navbar {
-        position: relative;
-        z-index: 1;
+$bg: colors.color("background", '500')!default;
+$background-val: colors.color("background", '50', false)!default;
 
-        //    @include lib.m-d-(2, 3, 0);
-        @include lib.p-d-(0, 4);
-        @include cards.shadow(2);
-        @include lib.lay-flex(row, (".logo": 1), (align:center));
-        @include menu-content(".open", ".navigation");
+.navbar {
+    position: relative;
+    z-index: 1;
 
-        @include lib.max-lg {
-            @include menu-item(".open", ".navigation-item");
+    //    @include lib.m-d-(2, 3, 0);
+    @include mixin.p-d-(0, 4);
+    @include cards.shadow(2);
+    @include mixin.flex(row, (".logo": 1), (align:center));
+    @include hamburger.menu-content(".open", ".navigation");
 
-            .navigation {
-                @include cards.card(
-                    $color: lib.color("background", '100', false),
-                    $rounded: 'xl',
-                    $shadow_intensity: 10);
-                @include lib.p-(0);
-            }
-
-            &:not(.open) .navigation{
-                @include lib.p-(0);
-            }
-        }
-
-        @include lib.lg {
-            @include lib.lay-subgrid(col);
-
-            grid-area: nav;
-        }
-
-        .logo {
-            i {
-                @include lib.font-size(10);
-
-                color: lib.color(main);
-            }
-        }
-
-        .menu {        
-            @include cards.shadow(2);
-            @include lib.w-(8);
-            @include lib.h-(8);
-            @include menu-buttom(
-                $size: 8,
-                $color: lib.color("background", '900', false),
-                $shadow-color: $bg,
-                $content_selector: ".navbar",
-                $active_selector: ".open"
-            );
-
-            @include lib.lg {
-                display: none;
-            }
-        }
+    @include mixin.media-max-lg {
+        @include hamburger.menu-item(".open", ".navigation-item");
 
         .navigation {
-            @include lib.lay-flex(col, null, (justify: flex-end, align: center));
-            @include lib.pos-absolute($right: 0, $top: #{lib.get-size(14)});
-            @include lib.w-(full);
+            @include cards.card(
+                $color: colors.color("background", '100', false),
+                $rounded: 'xl',
+                $shadow_intensity: 10);
+            @include mixin.p-(0);
+        }
 
-            @include lib.lg {
-                @include lib.h-(full);
-                @include lib.lay-grid-col($start: 2, $end: -1);
-                @include lib.lay-flex(row);
-
-                max-height: revert;
-                overflow: revert;
-                position: initial;
-            }
-            
-            &-item {
-                list-style: none;
-                text-align: center;
-
-                @include lib.min-w-(fit);
-                @include lib.max-w-(30);
-                @include lib.w-('1/3');
-                @include lib.m-(0.5);
-                @warn "The value of $background_val is: " + #{$background_val};
-                @include cards.card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
-                @include lib.p-d-(0);
-
-                @include lib.lg {
-                    @include lib.trans-transition(
-                        $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
-                        $duration: 0.125s,
-                        $event: hover
-                    );
-                    @include lib.w-(auto);
-                }
-
-                a {
-                    display: block;
-
-                    @include lib.h-(full);
-                    @include lib.p-d-(2, 3);
-                }
-            } 
+        &:not(.open) .navigation{
+            @include mixin.p-(0);
         }
     }
+
+    @include mixin.media-lg {
+        @include mixin.subgrid(col);
+
+        grid-area: nav;
+    }
+
+    .logo {
+        i {
+            @include mixin.font-size(10);
+
+            color: colors.color(main);
+        }
+    }
+
+    .menu {        
+        @include cards.shadow(2);
+        @include mixin.w-(8);
+        @include mixin.h-(8);
+        @include hamburger.menu-buttom(
+            $size: 8,
+            $color: colors.color("background", '900', false),
+            $shadow-color: $bg,
+            $content_selector: ".navbar",
+            $active_selector: ".open"
+        );
+
+        @include mixin.media-lg {
+            display: none;
+        }
+    }
+
+    .navigation {
+        @include mixin.flex(col, null, (justify: flex-end, align: center));
+        @include mixin.pos-absolute($right: 0, $top: #{size.get-size(14)});
+        @include mixin.w-(full);
+
+        @include mixin.media-lg {
+            @include mixin.h-(full);
+            @include mixin.grid-col($start: 2, $end: -1);
+            @include mixin.flex(row);
+
+            max-height: revert;
+            overflow: revert;
+            position: initial;
+        }
+        
+        &-item {
+            list-style: none;
+            text-align: center;
+
+            @include mixin.min-w-(fit);
+            @include mixin.max-w-(30);
+            @include mixin.w-('1/3');
+            @include mixin.m-(0.5);            
+            @include cards.card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
+            @include mixin.p-d-(0);
+
+            @include mixin.media-lg {
+                @include mixin.w-(auto);
+                @include mixin.tr-transition(
+                    $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
+                    $duration: 0.125s,
+                    $event: hover
+                );
+                
+            }
+
+            a {
+                display: block;
+
+                @include mixin.h-(full);
+                @include mixin.p-d-(2, 3);
+            }
+        } 
+    }
 }
+
