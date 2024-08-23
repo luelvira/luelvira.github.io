@@ -2,7 +2,7 @@
 title = "Projects"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-17T00:00:00+02:00
-lastmod = 2024-08-22T10:17:54+02:00
+lastmod = 2024-08-23T20:40:54+02:00
 draft = false
 weight = 1001
 +++

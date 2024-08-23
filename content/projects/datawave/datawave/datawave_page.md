@@ -2,7 +2,7 @@
 title = "DataWave"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-18
-lastmod = 2024-08-22T10:17:54+02:00
+lastmod = 2024-08-23T20:40:54+02:00
 categories = ["NLP", "WEB"]
 draft = false
 weight = 2001

@@ -115,6 +115,7 @@
             @include mixin.square(var(--size));
             @include mixin.br-rounded(full);
 
+            @include mixin.m-(1, 'lr');
             display: inline-block;
             background-color: colors.color(light-gray);
 

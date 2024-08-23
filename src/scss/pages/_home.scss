@@ -7,7 +7,7 @@
 }
 
 .summary {
-    @include mixin.p-(6, 'lr');
+    // @include mixin.p-(6, 'lr');
 
     font-family: variables.$vf-sans;
     font-weight: bolder;
