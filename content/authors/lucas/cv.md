@@ -193,6 +193,3 @@ draft = false
 <div class="cvskill"><div class="cvskill-name">Spanish</div><div class="cvskill-values" data-val="5"><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <div class="cvskill"><div class="cvskill-name">English</div><div class="cvskill-values" data-val="3.5"><span></span><span></span><span></span><span></span><span></span></div></div>
-
-
-### Publications {#publications}

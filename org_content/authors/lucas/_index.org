@@ -253,4 +253,3 @@ Node.js and Python.
 
 {{{cvskill(English,3.5)}}}
 
-*** Publications
