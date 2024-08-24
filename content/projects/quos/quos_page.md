@@ -1,17 +1,15 @@
 +++
 title = "Quos"
 author = ["Lucas Elvira Martín"]
-description = "A chat application for android with aditional functionalities"
 date = 2024-08-23
 lastmod = 2024-08-24T19:09:11+02:00
 tags = ["node"]
 categories = ["WEB"]
 draft = false
-weight = 1006
+weight = 2001
 Source = "https://github.com/luelvira/tinny_calc"
+projects = "Quos"
 +++
-
-## Quos Content {#quos_page}
 
 This project involved the development of a private Android chat application
 built as a Progressive Web App (PWA), designed to serve as a personalized social

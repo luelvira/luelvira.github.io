@@ -3,13 +3,14 @@ title = "DataWave"
 author = ["Lucas Elvira Martín"]
 description = "Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results"
 date = 2024-08-18
-lastmod = 2024-08-23T20:40:54+02:00
+lastmod = 2024-08-24T19:09:11+02:00
+tags = ["python"]
 categories = ["NLP", "WEB"]
 draft = false
-weight = 1006
+weight = 1005
 +++
 
-## Content {#datawave_page}
+## DataWave Content {#datawave_page}
 
 DataWave is an advanced tool developed in Python, designed to facilitate the
 training and customization of Natural Language Processing (NLP) models using

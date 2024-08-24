@@ -2,7 +2,8 @@
 title = "DataWave"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-18
-lastmod = 2024-08-23T20:40:54+02:00
+lastmod = 2024-08-24T19:09:11+02:00
+tags = ["python"]
 categories = ["NLP", "WEB"]
 draft = false
 weight = 2001
