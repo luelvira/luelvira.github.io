@@ -15,7 +15,7 @@
 As a developer I really LOVE Open Source Software and I enjoy developing
 side projects as a method to learn new technologies!
 
-*  The user interfaces projects                                        :@WEB:
+* The user interfaces projects                                         :@WEB:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_BUNDLE: ui
@@ -26,9 +26,8 @@ side projects as a method to learn new technologies!
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/interfaces-usuario
 :END:
 
-* The user interfaces projects content
+** The user interfaces projects content
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: ui
 :EXPORT_FILE_NAME: user_interface_page
 :EXPORT_TITLE: User Interfaces
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects ui
@@ -80,7 +79,6 @@ the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces
 
 ** Hugo Web Site content
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: personal_web
 :EXPORT_FILE_NAME: personal_web_page
 :EXPORT_TITLE: Personal page
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects personal_web
@@ -101,9 +99,8 @@ am creating a sass library and a hugo template that will be shared soon.
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
 :END:
 
-** Tinny calc Content
+** Tinny calc Content                                :@HASKELL:noexporthugo:
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: tinny_calc
 :EXPORT_FILE_NAME: tinny_calc_page
 :EXPORT_TITLE: Tinny Calc
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects tinny_calc
@@ -117,7 +114,7 @@ The main characteristics of this language are:
 - Can use variables
 - It is relative simple to add features and functionalities
 
-* DataWave                                                        :@NLP:@WEB:
+* DataWave                                                 :python:@NLP:@WEB:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_DATE: 2024-08-18
@@ -126,9 +123,8 @@ The main characteristics of this language are:
 :EXPORT_DESCRIPTION: Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results
 :END:
 
-** Content
+** DataWave Content
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: datawave
 :EXPORT_FILE_NAME: datawave_page
 :EXPORT_TITLE: DataWave
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects datawave
@@ -172,7 +168,6 @@ of unstructured text sources, including websites, social media platforms like
 Twitter, and PDFs. This required overcoming significant obstacles related to the
 variability of data formats and the lack of standardized patterns in the text.
 
-
 * Quos                                                            :node:@WEB:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
@@ -183,17 +178,92 @@ variability of data formats and the lack of standardized patterns in the text.
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
 :END:
 
-** Content
+** Quos Content
 :PROPERTIES:
-:EXPORT_HUGO_BUNDLE: quos
 :EXPORT_FILE_NAME: quos_page
 :EXPORT_TITLE: Quos
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects Quos
 :END:
-This project involved the development of a private Android chat application built as a Progressive Web App (PWA), designed to serve as a personalized social network for myself and my partner. The primary purpose of the app was to facilitate private communication between us, manage our shared expenses, and store cherished memories in a secure and accessible way.
+This project involved the development of a private Android chat application
+built as a Progressive Web App (PWA), designed to serve as a personalized social
+network for myself and my partner. The primary purpose of the app was to
+facilitate communication between us, manage our shared expenses, and
+store cherished memories in a secure and accessible way, without depending of
+other thirty parts applications.
 
-The technology stack for this project was centered around web technologies, utilizing JavaScript, SCSS, and Vue.js for the front-end development. The back-end was powered by Node.js with Socket.io, enabling real-time communication features. For data storage, MariaDB was chosen as the database solution, ensuring reliable and efficient management of our messages, expenses, and other shared data.
+The technology stack for this project was centered around web technologies,
+utilizing JavaScript, SCSS, and Vue.js for the front-end development. The
+back-end was powered by Node.js with Socket.io, enabling real-time communication
+features. For data storage, MariaDB was chosen as the database solution,
+ensuring reliable and efficient management of our messages, expenses, and other
+shared data.
 
-As a PWA, the app was designed to offer many of the features typically associated with native applications, such as offline access, push notifications, and a seamless user experience across different devices. One of the significant challenges in this project was achieving a high level of performance and functionality that closely mirrored that of a native app, particularly when dealing with compatibility issues across various devices and operating systems. Additionally, managing server-side services to ensure secure and stable communication was a complex task that required careful consideration.
+As a PWA, the app was designed to offer many of the features typically
+associated with native applications, such as offline access, push notifications,
+and a seamless user experience across different devices, but reducing the cost
+of implementation. One of the significant
+challenges in this project was achieving a high level of performance and
+functionality that closely mirrored that of a native app, particularly when
+dealing with compatibility issues across various devices and operating systems.
+Additionally, managing server-side services to ensure secure and stable
+communication was a complex task that required careful consideration.
 
-The target audience for this project was very specific—just my partner and me. The application was tailored to meet our unique needs, providing us with a private, convenient, and enjoyable way to stay connected, manage our day-to-day finances, and preserve our shared moments. Despite its limited scope, this project was a rewarding challenge that deepened my understanding of both web development and the nuances of creating a user-friendly, feature-rich PWA.
+The target audience for this project was very specific, just my partner and me.
+The application was tailored to meet our unique needs, providing us with a
+private, convenient, and enjoyable way to stay connected, manage our day-to-day
+finances, and preserve our shared moments. Despite its limited scope, this
+project was a rewarding challenge that deepened my understanding of both web
+development and the nuances of creating a user-friendly, feature-rich PWA. At
+the same time, the project allowed us to develop and design an application that
+cover all of our requirements.
+
+* Sudoku resolver                                                    :python:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_DATE: 2024-08-24
+:EXPORT_TITLE: Sudoku Resolver
+:EXPORT_HUGO_BUNDLE: sudoku_resolver
+:EXPORT_DESCRIPTION: A little tool aims to resolve any valid sudoku with backtracking
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source [[https://github.com/luelvira/sudoku_resolver]]
+:END:
+
+** Sudoku resolver Content
+:PROPERTIES:
+:EXPORT_FILE_NAME: sudoku_resolver_page
+:EXPORT_TITLE: Sudoku resolver
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects sudoku_resolver
+:END:
+This project involved the development of a Python program designed to solve
+Sudoku puzzles using optimization techniques. The primary goal was to create an
+algorithm that not only accurately solves Sudoku puzzles but also does so in an
+efficient manner, improving both the quality and speed of the solution. The
+project was driven by a personal interest in enhancing my own method of solving
+Sudokus, with a focus on replicating and optimizing the mental strategies I use
+when playing the game.
+
+ The techniques used to improve the efficiency was: First, find and fill all
+ cells that only has one possibility. Second, sort the white cells with the
+ number of possibles values and resolve in this order. Then repeat the step 1
+ and two until the problem state is stable. Finally, use backtracking to resolve
+ the rest of the cells.
+
+The project required a deep understanding of Sudoku mechanics and the
+development of an algorithm capable of mimicking human problem-solving
+processes, breaking down the puzzle into manageable steps, and applying logical
+deductions systematically.
+
+One of the main challenges of the project was to analyze and translate my
+personal approach to solving Sudokus into a clear, executable algorithm. This
+involved dissecting my mental process during gameplay, identifying patterns and
+strategies I intuitively use, and then coding these steps in a way that a
+machine could replicate. The project also included refining the algorithm to
+improve its efficiency, reducing the time required to solve puzzles, especially
+as they increase in difficulty.
+
+Although the target audience for this project was primarily myself, the work
+provided valuable insights into algorithmic thinking and problem-solving in
+Python. It also offered a unique opportunity to bridge the gap between human
+intuition and machine logic, resulting in a tool that effectively mirrors the
+way I approach and solve Sudoku puzzles.
+
+

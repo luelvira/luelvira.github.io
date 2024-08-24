@@ -2,7 +2,7 @@
 title = "Quos"
 author = ["Lucas Elvira Martín"]
 date = 2024-08-23
-lastmod = 2024-08-23T20:40:55+02:00
+lastmod = 2024-08-24T18:18:01+02:00
 tags = ["node"]
 categories = ["WEB"]
 draft = false

@@ -1,10 +1,13 @@
 +++
 title = "User Interfaces"
 author = ["Lucas Elvira Martín"]
-date = 2024-08-17T00:00:00+02:00
-lastmod = 2024-08-23T20:40:54+02:00
+date = 2023-09-02
+lastmod = 2024-08-24T19:09:11+02:00
+categories = ["WEB"]
 draft = false
-weight = 1003
+weight = 2001
+ProjectLink = "https://luelvira.github.io/interfaces-usuario/"
+Source = "https://github.com/luelvira/interfaces-usuario"
 projects = "ui"
 +++
 
