@@ -3,7 +3,8 @@
 
 :root {
   @include mixin.generate-colors;
-  @include mixin.generate-colors((main: (primary, 800),
+  @include mixin.generate-colors(
+      (primary: (primary, 800),
       secondary: (secondary, 800),
       "background": ("background", 50),
       aux: #e7d192,

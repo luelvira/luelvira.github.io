@@ -12,7 +12,7 @@ $background-val: colors.color("background", '50', false)!default;
     z-index: 1;
 
     //    @include lib.m-d-(2, 3, 0);
-    @include mixin.p-d-(0, 4);
+    @include mixin.p-d-(0, 16);
     @include cards.shadow(2);
     @include mixin.flex(row, (".logo": 1), (align:center));
     @include hamburger.menu-content(".open", ".navigation");
@@ -43,7 +43,7 @@ $background-val: colors.color("background", '50', false)!default;
         i {
             @include mixin.font-size(10);
 
-            color: colors.color(main);
+            color: colors.color(primary, 600);
         }
     }
 
@@ -89,6 +89,9 @@ $background-val: colors.color("background", '50', false)!default;
             @include mixin.m-(0.5);            
             @include cards.card($color: $background_val, $rounded: 'lg', $shadow_intensity: 2);
             @include mixin.p-d-(0);
+            font-weight: bold;
+            background-color: colors.color("primary", 600);
+            color: colors.color(background);
 
             @include mixin.media-lg {
                 @include mixin.w-(auto);
@@ -99,14 +102,13 @@ $background-val: colors.color("background", '50', false)!default;
                 );
                 
             }
-
-            a {
+        }
+        &-link {
                 display: block;
 
                 @include mixin.h-(full);
                 @include mixin.p-d-(2, 3);
             }
-        } 
     }
 }
 

@@ -3,7 +3,6 @@
 @use "../abstracts/variables";
 
 .wrap.home {
-    @include mixin.h-(dvh);
 }
 
 .summary {
@@ -25,7 +24,7 @@
 
     @include mixin.media-xl {
         p {
-            @include mixin.font-size(4);
+            @include mixin.font-size('lg');
             @include mixin.m-(10, 'b');
         }
     }

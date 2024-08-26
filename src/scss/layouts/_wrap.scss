@@ -12,6 +12,8 @@
     @include mixin.media-lg {
         grid-area: body;
 
+        @include mixin.max-w-('lg');
+        @include mixin.m-(auto);
         @include mixin.m-(0, 't');
     }
 

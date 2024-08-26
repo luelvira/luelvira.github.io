@@ -12,8 +12,7 @@ draft = false
 Half engineer, half scientist, the best of both worlds! I have experience in
 software development for companies in sectors such as consulting, human
 resources and telecommunications, as well as in university departments at
-Universidad Carlos III de Madrid for more than 2 years, where I am pursuing
-doing a PhD in Computer science and Technology.
+Universidad Carlos III de Madrid for more than 2 years.
 
 </section>
 

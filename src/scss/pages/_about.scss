@@ -104,7 +104,7 @@
     @include mixin.m-(2, 'b');
     @include mixin.flex(row, (".cvskill-name": 3, ".cvskill-values": 1));
 
-    $color: colors.color(main);
+    $color: colors.color(primary);
 
     &-values {        
         justify-content:  space-evenly;
