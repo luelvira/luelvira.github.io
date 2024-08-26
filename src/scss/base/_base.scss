@@ -22,7 +22,7 @@ h1 {
 
 
 h2 {
-    color: colors.color(main);
+    color: colors.color(primary);
 
     @include mixin.font-size('2xl');
 }

@@ -22,7 +22,7 @@
         @include mixin.font-size(10, 1);
         @include mixin.font-slab(900);
 
-        color: colors.color(main);
+        color: colors.color(primary);
     }
 
     &_tagline {
@@ -57,8 +57,11 @@
         padding: 0;
         grid-area: header;
 
-        @include mixin.subgrid(col);
+        // @include mixin.subgrid(col);
         @include mixin.grid($rows: 2);
+        @include mixin.w-(full);
+        @include mixin.max-w-('lg');
+        @include mixin.m-(auto);
 
         &_name {
             @include mixin.grid-col(2, 8);            
