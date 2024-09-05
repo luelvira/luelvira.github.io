@@ -29,7 +29,6 @@ $flex-modifies: (
     }
 
     @if $grow {
-        @debug $grow;
         @each $sel, $val in $grow {
             #{selector-nest($sel, "&")} {
                 flex-grow: $val;

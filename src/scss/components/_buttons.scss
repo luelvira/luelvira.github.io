@@ -1,0 +1,11 @@
+@charset "UTF-8";
+@use "../abstracts/mixin";
+
+@mixin button {
+    @include mixin.min-w-(fit);
+    @include mixin.max-w-(30);
+    @include mixin.m-(0.5);
+    @include mixin.p-d-(2, 3);
+    @include mixin.br-rounded('lg');
+    text-align: center;
+}

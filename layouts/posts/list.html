@@ -1,0 +1,11 @@
+{{ define "main" }}
+<main class="wrap listpage {{ .Page.Type}}">
+  <h1> {{ .Title }} </h1>
+  {{ .Content }}
+  <div class="cards">
+    {{ range  where .RegularPages "Type" "posts"}}
+      {{ .Render "archive" }}
+    {{ end }}
+  </div>
+</main>
+{{ end }}

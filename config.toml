@@ -1,30 +1,30 @@
-baseURL = 'http://192.168.0.21:8000/'
-languageCode = 'en-us'
-title = 'Lucas Elvira-Martin CV'
+baseURL         = 'http://192.168.0.21:8000/'
+languageCode    = 'en-us'
+title           = 'Lucas Elvira-Martin CV'
 [markup.goldmark.renderer]
-unsafe = true
+unsafe          = true
 
 [menus]
     [[menus.main]]
         name    = 'Home'
         pageRef = '/'
-        url = '/'
+        url     = '/'
         weight  = 1
     [[menus.main]]
         name    = 'Projects'
         pageRef = '/projects'
-        url = '/projects'
+        url     = '/projects'
         weight  = 3
-    [[menus._main]]
+    [[menus.main]]
         name    = 'Blog'
-        pageRef = '/blogs'
-        url = '/blogs'
+        pageRef = '/posts'
+        url     = '/posts'
         weight  = 4
     [[menus.main]]
-        name = 'CV'
+        name    = 'CV'
         pageRef = '/cv'
-        url = '/cv'
-        weight = 2
+        url     = '/cv'
+        weight  = 2
     [[menus.about]]
         name    = 'Experience'
         url     = '/#experience'
@@ -35,7 +35,8 @@ unsafe = true
         weight  = 3
         
 [taxonomies]
-    category = 'categories'
-    tag = 'tags'
-    project = 'projects'
-    author = 'author'
+    category    = 'categories'
+    tag         = 'tags'
+    project     = 'projects'
+    author      = 'author'
+    post        = 'posts'

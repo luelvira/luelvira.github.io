@@ -2,8 +2,6 @@
 <main class="wrap listpage {{ .Page.Type}}">
   <h1>{{ .Title }}</h1>
   {{ .Content }}
-
-
   <div class="{{ .Page.Type}}-list">
     {{ range .Data.Terms.Alphabetical }}
     {{ partial "_project.html" .Page }}

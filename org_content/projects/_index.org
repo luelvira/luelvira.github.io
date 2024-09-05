@@ -89,7 +89,7 @@ create a community with people that has affinity with me. The technologies used
 in this project are [[https://gohugo.io/][hugo]], [[https://sass-lang.com/][sass]]. At the same time I am developing this project, i
 am creating a sass library and a hugo template that will be shared soon.
 
-* Tinny calc                                          :noexporthugo:@HASKELL:
+* Tinny calc                                          :@HASKELL:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_DATE: 2024-08-18
@@ -99,7 +99,7 @@ am creating a sass library and a hugo template that will be shared soon.
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
 :END:
 
-** Tinny calc Content                                :@HASKELL:noexporthugo:
+** Tinny calc Content                                :@HASKELL:
 :PROPERTIES:
 :EXPORT_FILE_NAME: tinny_calc_page
 :EXPORT_TITLE: Tinny Calc

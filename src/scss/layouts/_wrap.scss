@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @use "../abstracts/mixin";
+@use "../abstracts/variables" as *;
 
 .wrap {
     @include mixin.m-(6, 't');
@@ -13,19 +14,22 @@
         grid-area: body;
 
         @include mixin.max-w-('lg');
-        @include mixin.m-(auto);
-        @include mixin.m-(0, 't');
+        @include mixin.m-d-(0, auto);
     }
 
     @include mixin.media-xxl {
       display: grid;
 
       &.authors {
+          @include mixin.reset(max-width);
+          @include mixin.p-d-(0, 32, 6);
           @include mixin.subgrid(col);
 
           .content {
               @include mixin.grid-col($span: 4);
+              @include mixin.reset(padding);
           }
+
       }
     }
 

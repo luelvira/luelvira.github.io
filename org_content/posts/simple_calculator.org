@@ -1,0 +1,14 @@
+#+TITLE: Tutorial Haskell - Build a simple calc
+#+date: <2024-07-11 Thu>
+#+author: Lucas Elvira Martín
+#+email: lucaselvira96@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+cite_export: 
+#+HUGO_BASE_DIR: ../../
+#+hugo_auto_set_lastmod: t
+#+HUGO_WEIGHT: auto
+#+HUGO_BUNDLE: ./haskell
+
+

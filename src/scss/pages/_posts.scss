@@ -1,0 +1,19 @@
+@use "sass:math";
+@use "sass:color";
+
+@use "../components/cards";
+@use "../abstracts/mixin";
+
+.posts {
+    @include mixin.w-(full);
+    &>h1, .cards {
+    }
+    .cards {
+         @include mixin.flex(row);
+         @include mixin.gap(4);
+        .card {
+            @include cards.card($rounded: lg);
+            @include mixin.w-('1/4');
+        }
+    }
+}

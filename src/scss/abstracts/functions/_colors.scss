@@ -9,7 +9,6 @@
 @function color($color, $tone: null, $asVar: true) {    
     @if $asVar {        
         @if not $tone and map.has-key($map: vc.$user-defined-colors, $key: $color) {
-            @debug "Colors: #{$color} $tone: #{$tone} -> #{map.get(vc.$user-defined-colors, $color)}";
             @return map.get(vc.$user-defined-colors, $color);
         } @else if map.has-key($map: vc.$colors, $key: $color){            
             @return var(--color-#{$color}-#{$tone});

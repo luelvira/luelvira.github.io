@@ -1,0 +1,294 @@
+#+TITLE: The Blog
+#+date: <2024-07-11 Thu>
+#+author: Lucas Elvira Martín
+#+email: lucaselvira96@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+cite_export: 
+#+HUGO_BASE_DIR: ../../
+#+hugo_auto_set_lastmod: t
+#+HUGO_WEIGHT: auto
+#+HUGO_BUNDLE: ./
+#+EXPORT_FILE_NAME: _index
+
+* The blog
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:END:
+
+These are some tutorials and descriptions that helps me when I'm learning
+something new, and I hope them could be useful also for you
+
+* Haskell                                                          :noexport:
+:PROPERTIES:
+:EXPORT_FILE_NAME: index
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
+:END:
+
+Haskell is a pure functional programming languages with a wide use in academic
+environment because its simplicity at the time to make prototype and its
+familiarity with a mathematical languages.
+
+With the following post I will want to learn the basic of this languages with
+one of the most common task for this kind of languages, make a /parser/.
+
+* Simple calculator
+:PROPERTIES:
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
+:EXPORT_FILE_NAME: calc_page
+:EXPORT_HUGO_BUNDLE: ./haskell
+:END:
+
+This application is a toy tool to parse a string and operate with it to return
+the result of make the operation. The main porpoise of this exercise is to train
+my knowledge about the languages
+** Start the project
+In this case, I use cabal as project management for haskell, so to start the
+configuration, I ran the command ~cabal init~ and setup the configuration file
+following the instruction from [[https://learn-haskell.blog/][Learn haskell by building a blog generator]]. This
+resource also help me with some process that have in common with my idea of the
+calculator.
+*** cabal file
+The cabal file contains the meta information about the project, so it is
+important to follow some rules like the names should match.
+**** Information about the project
+
+The first part contains the information about the project, with the name,
+description, version, and so on
+
+#+begin_src cabal :range-end -MetaInfo :range-begin MetaInfo
+name: lem-calc
+version: 0.1.0
+synopsis: A small calculator to test haskell
+description: This packages provides a small calculator that read an operation from a file and print the result
+license: BSD-3-Clause
+license-file: LICENSE.txt
+author: Lucas Elvira Martín
+extra-doc-files:
+    README.org
+#+end_src
+
+When we define export targets, they could share some configuration. To make it,
+we can define a ~common~ block that will be named ~common-settings~ with the
+compiler and the flags
+
+#+begin_src cabal :range-end -CommonSettings :range-begin CommonSettings
+common common-settings
+  default-language: Haskell2010
+  ghc-options:
+    -Wall
+#+end_src
+**** The library target
+This is not necessary, but could be a good practice. I want to build a lexer
+parser for a dummy calculator. But also, it could be used in another projects,
+so all the logic will be placed in the ~src~ folder, and will be called from the
+~app~ folder.
+
+In the ~library target~ we define:
+- Exposed modules (Modules that need to be compiled and accessible
+- Where is the content of the code, in this case the src folder
+- The dependencies used by the program
+- Other modules that will be empty at this moment
+
+#+begin_src cabal :range-end -Library :range-begin Library
+library
+  import: common-settings
+  hs-source-dirs: src
+  build-depends:
+      base
+    , directory
+  exposed-modules:
+    Calc
+        Calc.Operations
+            Calc.Operations.Lexical
+        Calc.Equation
+              Calc.Equation.Internal
+         Calc.CustomErrors
+         Calc.Lexer
+              Calc.Lexer.Internal
+         Calc.AST
+              Calc.AST.Data.Expression
+#+end_src
+**** Executable target
+This is the name of the application. In this block, we define the name of the
+executable and the resources it will need. As we did with the ~library target~, we
+configure it to use the common settings and add the our library as a dependency.
+Also, we add a new flag to the compilation process and set the folder with the
+code. In this case the ~app~ folder.
+
+#+begin_src cabal :range-end -Executable :range-begin Executable
+-- Executable
+executable lem-calc-gen
+  import: common-settings
+  hs-source-dirs: app
+  main-is: Main.hs
+  build-depends:
+      base
+    , lem-calc
+#+end_src
+**** Test target
+
+I will try to follow as longer as I can a TDD methodology, so this part I thing
+will be really important, the test block. In this case I use the Spec library
+that allows me define the test parts. One thing that is very important is to add
+all the modules which have the test to the build-depends, otherwise, they
+neither will be compiled or executed.
+
+#+begin_src cabal :range-end -TestBlock :range-begin TestBlock
+-- TestBlock
+test-suite lem-calc-gen-test
+  import: common-settings
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: Spec.hs
+  other-modules:    
+    CalcEquationSpec
+    OperationsSpec
+    CalcSpec
+    CalcLexerInternalSpec
+    CalcASTSpec
+  build-depends:
+      base
+    , hspec
+    , hspec-discover
+    , raw-strings-qq
+    , lem-calc
+  ghc-options:
+#+end_src
+* The lexer
+:PROPERTIES:
+:EXPORT_FILE_NAME: lexer_page
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
+:EXPORT_HUGO_BUNDLE: ./haskell
+:END:
+
+This is the first part of the parser. This module define the tokens and evaluate
+if the string could be represent with a custom grammar.
+
+The tokens are defined as:
+#+begin_src haskell :range-end -DefineTokens :range-begin DefineTokens
+-- | A list with the possible tokens readded from the programm
+data Token
+  = TokLeftParen
+  | TokRightParen
+  | TokEquals
+  | TokDot
+  | TokOperator Eq.Operation
+  | TokNumber Value
+  | TokEof -- End of File
+  | TokEos -- End of Sentence
+  | TokEol -- End Of Line
+  | TokError
+  deriving (Eq)
+#+end_src
+
+Some of these tokens will not be used at the moment, but could be used in future versions.
+
+And the grammar is:
+#+begin_src haskell :range-end -DefineGrammar :range-begin DefineGrammar
+@
+S := Start symbol
+A := add operation
+B := {AT}
+C := {MF}
+F := Factor
+M := mult operation
+N := number
+n := digit
+T := term
+
+S -> TB
+S -> T
+B -> AT
+B -> ATB
+T -> F
+T -> FC
+C -> MF
+C -> MFC
+N -> nN
+N -> n
+A -> + | -
+M -> * | /
+@
+#+end_src
+
+A more clear version of the grammar was done with data type
+
+#+begin_src haskell :range-end -DefineTypes :range-begin DefineTypes
+-- | Addition operations (Sum or difference)
+data Addop = Summ | Diff
+-- | Multiplication operations (multiplication and division)
+data Mulop = Mult | Divi
+-- | Real number
+newtype Value = RealValue Double deriving (Eq)
+
+-- | Tuple with a Term and a list of possibles additional terms concatenate by an Addop
+newtype Expression = Expression (Term, [(Addop, Term)]) deriving (Show)
+-- | Tuple with a Factor and a list of possibles addition factors concatenate by an MulOp
+newtype Term = Term (Factor, [MulOpFact]) deriving (Show, Eq)
+-- | Factor and Value are equivalents
+newtype Factor = Factor Value deriving (Show, Eq)
+-- | Tuple with an Mulop and a Factor
+type MulOpFact = (Mulop, Factor)
+-- | Tuple with an Addop and a Term
+#+end_src
+** Tokens
+
+The most reduce piece of the grammar is the factor, which is only a number. The
+first function will tray to extract the number from the string and returns it
+and the string remainder
+
+#+begin_src haskell :range-end -EvalFactorFunction :range-begin EvalFactorFunction
+let (nextTerm, moreTerm) = case evalTerm rest of
+                              Right right -> right
+                              Left l -> throw l
+    (restAddopTerm, restTerm) = case evalExpression' Nothing moreTerm of
+                                  Right rat -> rat
+#+end_src
+
+Next, a term is composed by a ~Factor~ and a list of ~(MulOp, factor)~. So, I split
+the process in two functions.
+
+The first one will be in charge of iter over the string and returns the full
+list of tuples
+
+#+begin_src haskell :range-end -EvalTermFunction' :range-begin EvalTermFunction'
+cleanString str = [x | x <- str, x /= ' ']
+
+-- Expression
+-- | The first rule should be transform the expression (the initial state) into
+-- a <term> or a (<term>, (<addop> <term>)+)
+expression :: String -> Either EvalError Expression
+expression "" = Left EmptyExpression
+expression xs = case evalTerm xs of
+                  Left l -> Left l
+                  Right (term, addopTerm) -> case evalExpression' Nothing addopTerm of
+                                               Right (list, "") -> Right $ Expression (term, list)
+                                               Right (_, _:_) -> Left InvalidExpression
+                                               Left l -> throw l
+
+-- | Given a list of AddopTerm and a String, read the string while the function returns
+-- a new AddopTerm. Once the function can not continue, returns the list with the rest of the
+#+end_src
+
+With this auxiliary function, I can write the ~evalTerm~
+#+begin_src haskell :range-end -EvalTermFunction :range-begin EvalTermFunction
+-- | For each character, the function will run all the possibles rules defined
+-- | in the grammar building a list of Tokens. The easiest way to do it, is with
+-- | a DFS algorith
+eval :: String -> Expression
+eval str = case expression $ cleanString str of
+             Left l -> throw l
+#+end_src
+
+Following the same approach, I write the last rule ~expression~
+#+begin_src haskell :range-end -EvalTermFunction :range-begin EvalTermFunction
+-- | For each character, the function will run all the possibles rules defined
+-- | in the grammar building a list of Tokens. The easiest way to do it, is with
+-- | a DFS algorith
+eval :: String -> Expression
+eval str = case expression $ cleanString str of
+             Left l -> throw l
+#+end_src
+
