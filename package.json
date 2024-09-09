@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "run-p dev-hugo dev-sass",
-    "dev-hugo": "hugo server --gc",
+    "dev-hugo": "hugo server --gc --disableFastRender",
     "dev-sass": "sass src/scss/main.scss ./assets/css/main.css --watch",
     "build-sass": "sass src/scss/main.scss ./assets/css/main.css",
     "sassdoc": "npx sassdoc src/scss/ --verbose --strict",

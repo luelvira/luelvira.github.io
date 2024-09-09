@@ -2,14 +2,16 @@
 title = "The lexer"
 author = ["Lucas Elvira Martín"]
 date = 2024-07-11T00:00:00+02:00
-lastmod = 2024-09-05T16:49:48+02:00
+lastmod = 2024-09-09T13:25:34+02:00
 draft = false
-weight = 1004
+weight = 1003
 posts = "haskell"
 +++
 
 This is the first part of the parser. This module define the tokens and evaluate
 if the string could be represent with a custom grammar.
+
+<!--more-->
 
 The tokens are defined as:
 

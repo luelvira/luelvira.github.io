@@ -2,7 +2,8 @@
 <main class="wrap listpage {{ .Page.Type}}">
   <h1> {{ .Title }} </h1>
   {{ .Content }}
-  <div class="cards">
+  {{ $items := mod (len (where .RegularPages "Type" "posts")) 4 }}
+  <div class="cards" data-items="{{ $items }}">
     {{ range  where .RegularPages "Type" "posts"}}
       {{ .Render "archive" }}
     {{ end }}

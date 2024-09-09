@@ -72,25 +72,9 @@
             @include mixin.flex(col, $flex-position: (align: center, justify: center));
             @include mixin.p-d-(4, 0);
             button {
-                @include buttons.button;
-                $background-color: colors.color(primary, '600', false);
-                $bg: colors.color("background", '500', false);
-                border-color: color.adjust($background-color, $lightness: 50%);
-                background-color: $background-color;
-                color: colors.color(background);
-                font-weight: 900;
-                &:not([disabled]) {
-                    box-shadow: shadow.box-shadow($bg, 5);
-                  @include mixin.tr-transition(
-                      $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
-                      $duration: 0.125s,
-                      $event: hover
-                  );
-                }
-                &[disabled] {
-                    opacity: 0.8;
-                    cursor: default;
-                }
+                @extend %button;
+                @extend %button--primary;
+                
 
             }
         }

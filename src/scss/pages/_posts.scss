@@ -3,17 +3,50 @@
 
 @use "../components/cards";
 @use "../abstracts/mixin";
+@use "../components/stickers";
+@use "../components/buttons";
 
 .posts {
-    @include mixin.w-(full);
-    &>h1, .cards {
-    }
+    @include mixin.p-(4, 'b');
+    @include mixin.w-('4/5');
     .cards {
-         @include mixin.flex(row);
-         @include mixin.gap(4);
+        // @include stickers.sticky-content($shadow: false); 
+        @include mixin.grid($eqcols: 1);
+        @include mixin.m-(8, 't');
+        @include mixin.p-(4);
+        @include mixin.w-(full);
+        @include mixin.gap(4);
+        @include mixin.media-sm {@include mixin.grid($eqcols: 2);}
+
+        @include mixin.media-lg {
+            @for $i from 0 to 4 {
+                $j: $i;
+                @if $i == 0 {
+                    $j: 4;
+                }
+                &[data-items="#{$i}"] {
+                    @include mixin.grid($eqcols: $j);
+                }
+            }
+        }
         .card {
-            @include cards.card($rounded: lg);
-            @include mixin.w-('1/4');
+            @include stickers.sticky;
+             &-content {
+                 @include mixin.flex(col, $grow: (".description": 1));
+                 @include mixin.h-(full);
+                 .meta {
+                     @include mixin.font-size(xs);
+                 }
+                 .post-title {
+                     @include mixin.font-size('xl');
+                     @include mixin.m-(2, 'tb');
+                 }
+                 .mark {
+                     @include mixin.w-(fit);
+                     align-self: center;
+                 }
+                 
+             }
         }
     }
 }

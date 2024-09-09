@@ -18,3 +18,9 @@
         @content;
     }
 }
+
+@mixin hover {
+    &:hover {
+        @content;
+    }
+}

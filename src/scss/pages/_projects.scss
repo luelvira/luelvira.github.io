@@ -2,8 +2,8 @@
 @use "../abstracts/mixin";
 @use "../abstracts/functions/colors";
 @use "../abstracts/functions/shadow";
+@use "../components/stickers";
 
-/* base/projects starts here */
 .projects {
     @include mixin.p-(4, 'b');
     @include mixin.font-size('xl');
@@ -42,27 +42,10 @@
     }
 
     &-list {
-        @include mixin.grid($eqcols: 1);
-        @include mixin.br-rounded(sm);
-        @include mixin.m-(8, 't');
-        @include mixin.p-(4);
-        @include mixin.w-(full);
-        @include mixin.gap(4);
-
-        box-shadow: shadow.box-shadow-generator(
-            $color: colors.color(background, "300", false),
-            $levels: 5,
-            $mode: "inset",
-            $offset-x-inc: 0,
-            $offset-y-inc: 2px,
-            $blur: 1px,
-            $spread-radius: 2px,
-            $div_value: 0.125);
-
-        @include mixin.media-sm {@include mixin.grid($eqcols: 2);}
-
-        @include mixin.media-lg {@include mixin.grid($eqcols: 3);}
-        
+       @include stickers.sticky-content; 
+       .sticky {
+           @include stickers.sticky;
+       }
     }
 
     .image_gallery {

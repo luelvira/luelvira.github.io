@@ -1,5 +1,8 @@
 @charset "UTF-8";
+@use "sass:color";
 @use "../abstracts/mixin";
+@use "../abstracts/functions/colors";
+@use "../abstracts/functions/shadow";
 
 @mixin button {
     @include mixin.min-w-(fit);
@@ -8,4 +11,40 @@
     @include mixin.p-d-(2, 3);
     @include mixin.br-rounded('lg');
     text-align: center;
+}
+
+%button {
+    @include button;
+    $background-color: colors.color(primary, '500', false);
+    $border-color: color.adjust($background-color, $lightness: 50%);
+    $bg: colors.color("background", '500', false);
+    --background-color: #{$background-color};
+    --border-color: #{$border-color};
+    --foreground-color: $bg;
+    &--primary {
+        $background-color: colors.color(primary, '600', false);
+        $bg: colors.color("background", '500', false);
+        $border-color: color.adjust($background-color, $lightness: 50%);
+        --background-color: #{$background-color};
+        --border-color: #{$border-color};
+        --foreground-color: #{colors.color(background)};
+
+        &:not([disabled]) {
+            box-shadow: shadow.box-shadow($bg, 5);
+            @include mixin.tr-transition(
+                $pairs: (transform: scale(0.95), box-shadow: #{box-hard-shadow($bg, 5)}),
+                $duration: 0.125s,
+                $event: hover
+            );
+        }
+    }
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+    color: var(--foreground-color);
+
+    
+    &[disabled] {
+        opacity: 0.8;
+        cursor: default;
+    }
 }
