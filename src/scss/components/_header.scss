@@ -90,8 +90,8 @@
         list-style: none;
 
         a {
-            @include mixin.flex(row, (span: 1));
             @include mixin.gap(2);
+            @include mixin.flex(row, (span: 1));
 
             span:first-child {
                 @include mixin.w-(8);

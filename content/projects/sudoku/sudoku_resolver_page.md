@@ -1,16 +1,15 @@
 +++
-title = "Sudoku Resolver"
+title = "Sudoku resolver"
 author = ["Lucas Elvira Martín"]
 description = "A little tool aims to resolve any valid sudoku with backtracking"
-date = 2024-08-24
-lastmod = 2024-08-24T19:09:11+02:00
-tags = ["python"]
+date = 2021-08-30
+lastmod = 2024-09-10T19:58:07+02:00
+categories = ["PYTHON"]
 draft = false
-weight = 1007
-Source = [["https://github.com/luelvira/sudoku_resolver"]]
+weight = 1002
+Source = "https://github.com/luelvira/sudoku_resolver"
+projects = "sudoku"
 +++
-
-## Sudoku resolver Content {#sudoku_resolver_page}
 
 This project involved the development of a Python program designed to solve
 Sudoku puzzles using optimization techniques. The primary goal was to create an

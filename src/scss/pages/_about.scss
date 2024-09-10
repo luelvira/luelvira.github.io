@@ -1,13 +1,12 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../abstracts/mixin";
 @use "../abstracts/functions/colors";
 @use "../components/cards";
 @use "../components/tags";
 @use "../components/buttons";
 @use "../abstracts/functions/shadow";
-/* about starts here */
+
 .content {
     @include mixin.p-(6, 'lr');
 
@@ -68,9 +67,11 @@
         hr {
             display: none;
         }
+
         &+div {
             @include mixin.flex(col, $flex-position: (align: center, justify: center));
             @include mixin.p-d-(4, 0);
+
             button {
                 @extend %button;
                 @extend %button--primary;
@@ -120,13 +121,12 @@
         span {
             --size: 25px;
 
-            @include mixin.square(var(--size));
-            @include mixin.br-rounded(full);
-
-            @include mixin.m-(1, 'lr');
             display: inline-block;
             background-color: colors.color(light-gray);
 
+            @include mixin.square(var(--size));
+            @include mixin.br-rounded(full);
+            @include mixin.m-(1, 'lr');
         }            
         %after {
             position: relative;

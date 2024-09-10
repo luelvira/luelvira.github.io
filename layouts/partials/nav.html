@@ -8,16 +8,11 @@
     <span></span>
     
   </div>
-
   <ul class="navigation">
+{{ $currentPage := . }}
   {{ range .Site.Menus.main }}
-    <li class="navigation-item">
-      <a class="navigation-link {{ .Params.class }}" href="{{ .URL }}">
-        {{ .Name }}
-      </a>
-      
-      
-
+    <li class="navigation-item {{if or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)}} is-active{{ end }}">
+      <a class="navigation-link {{ .Params.class }}" href="{{ .URL }}"> {{ .Name }} </a>
     </li>
   {{ end }}
 </ul>

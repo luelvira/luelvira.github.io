@@ -47,11 +47,11 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
         "default": (#fff9b1, #00c87a)
     );
     $bg-color: list.nth(map.get($colors, default), 1);
+    $mark-color1: list.nth(map.get($colors, default), 2); 
+    $mark-color2: color.adjust($bg-color, $lightness: -7%);
 
     --bg-color: #{$bg-color};
     --bg-lighten: #{color.adjust($bg-color, $lightness: 7%)};
-    $mark-color1: list.nth(map.get($colors, default), 2); 
-    $mark-color2: color.adjust($bg-color, $lightness: -7%);
     
     @each $key, $color in $colors {
         &.#{$key} {
@@ -60,6 +60,7 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
 
             --bg-color: #{$bg-color};
             --bg-lighten: #{color.adjust($bg-color, $lightness: 7%)};
+
             .mark::before {
                 background-image: linear-gradient(
                     104deg,
@@ -110,6 +111,7 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
                 inset 15px -15px 15px rgb(255 255 255 / 30%);
             transform: skew(-25deg);
         }
+
         time {
             @include mixin.w-(full);
 
@@ -121,6 +123,7 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
             @include mixin.w-(full);
 
             font-family: "Permanent Marker", sans-serif;
+
             a {
                 color: black;
             }
@@ -158,28 +161,29 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
                                       rgba($mark-color2, 0) 0%,
                                       rgba($mark-color2, 0.3) 8%,
                                       rgba($mark-color2, 0.0) 15%);
-                      
-                    
-
 
                 @include mixin.w-(full);
-                @include mixin.media-lg {
-                    @include mixin.w-(0);
-                    @include mixin.tr-transition((width: 100%), $event: null);
-                }
                 @include mixin.h-(full);
                 @include mixin.pos-absolute($left: 0);
 
                 box-decoration-break: clone;
+
+                @include mixin.media-lg {
+                    @include mixin.w-(0);
+                    @include mixin.tr-transition((width: 100%), $event: null);
+                }
+
             }
+
             @include mixin.pcs-hover {
-                &:before {
+                &::before {
                     width: 100%;
                 }
             }
 
             a {
                 @include mixin.font-size('xl');                    
+
                 color: black;                    
                 position:relative;
             }

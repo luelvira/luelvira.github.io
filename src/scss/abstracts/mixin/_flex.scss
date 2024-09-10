@@ -8,10 +8,9 @@ $flex-modifies: (
     "wrap": ("nowrap", "wrap", "wrap-reverse")
 );
 
-
-
 @mixin flex($dir: 'col', $grow: null, $flex-position: null) {
     display: flex;    
+
     @if $dir == 'col' {
         flex-direction: column;
     } @else {

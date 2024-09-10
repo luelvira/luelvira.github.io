@@ -1,4 +1,4 @@
-#+TITLE: The Blog
+#+TITLE: Blog
 #+date: <2024-07-11 Thu>
 #+author: Lucas Elvira Martín
 #+email: lucaselvira96@gmail.com
@@ -11,8 +11,10 @@
 #+HUGO_WEIGHT: auto
 #+HUGO_BUNDLE: ./
 #+EXPORT_FILE_NAME: _index
+#+HUGO_CUSTOM_FRONT_MATTER: :menu main
 
-* The blog
+
+* The Blog
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :END:

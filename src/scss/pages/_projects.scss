@@ -43,6 +43,7 @@
 
     &-list {
        @include stickers.sticky-content; 
+
        .sticky {
            @include stickers.sticky;
        }
@@ -67,6 +68,13 @@
             overflow-y: auto;
             aspect-ratio: 16/9;
             cursor: pointer;
+        }
+    }
+    .sticky-content--wrap {
+        @include mixin.h-(full);
+        
+        .projects-card__description {
+            flex-grow: 1;
         }
     }
 }

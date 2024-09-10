@@ -1,14 +1,27 @@
-+++
-title = "DataWave"
-author = ["Lucas Elvira Martín"]
-description = "Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results"
-date = 2024-06-03
-lastmod = 2024-09-10T20:05:31+02:00
-draft = false
-weight = 1002
-projects = "datawave"
-+++
+#+TITLE:     DataWave
+#+DATE:      2024-06-03
+#+AUTHOR:   Lucas Elvira Martín
+#+EMAIL:     lucaselvira96@gmail.com
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: ./projects
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_WEIGHT: auto
+#+EXPORT_FILE_NAME: _index
+#+HUGO_BUNDLE: datawave
+#+DESCRIPTION: Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results
 
+
+* DataWave                                                 :python:@NLP:@WEB:
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:END:
+
+* DataWave Content
+:PROPERTIES:
+:EXPORT_FILE_NAME: datawave_page
+:EXPORT_TITLE: DataWave
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects datawave
+:END:
 DataWave is an advanced tool developed in Python, designed to facilitate the
 training and customization of Natural Language Processing (NLP) models using
 unstructured text sources, that aims to provide users with an intuitive and
@@ -40,10 +53,11 @@ graduate (TFM) thesis, with the project being owned by the department where I
 conducted my research. The department intends to use DataWave for ongoing
 research and potentially publish further findings. The project culminated in a
 publication of a poster, with the results and methodology documented available
-under the DOI: [10.1145/3656650.3656734](https://dl.acm.org/doi/10.1145/3656650.3656734).
+under the DOI: [[https://dl.acm.org/doi/10.1145/3656650.3656734][10.1145/3656650.3656734]].
 
 One of the most challenging aspects of the project was ensuring that the NLP
 models could effectively process and extract meaningful data from a wide range
 of unstructured text sources, including websites, social media platforms like
 Twitter, and PDFs. This required overcoming significant obstacles related to the
 variability of data formats and the lack of standardized patterns in the text.
+

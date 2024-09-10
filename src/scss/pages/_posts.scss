@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../components/cards";
 @use "../abstracts/mixin";
 @use "../components/stickers";
@@ -9,6 +8,7 @@
 .posts {
     @include mixin.p-(4, 'b');
     @include mixin.w-('4/5');
+
     .cards {
         // @include stickers.sticky-content($shadow: false); 
         @include mixin.grid($eqcols: 1);
@@ -16,11 +16,15 @@
         @include mixin.p-(4);
         @include mixin.w-(full);
         @include mixin.gap(4);
-        @include mixin.media-sm {@include mixin.grid($eqcols: 2);}
+
+        @include mixin.media-sm {
+            @include mixin.grid($eqcols: 2);
+        }
 
         @include mixin.media-lg {
             @for $i from 0 to 4 {
                 $j: $i;
+
                 @if $i == 0 {
                     $j: 4;
                 }
@@ -29,20 +33,26 @@
                 }
             }
         }
+
         .card {
             @include stickers.sticky;
+
              &-content {
-                 @include mixin.flex(col, $grow: (".description": 1));
                  @include mixin.h-(full);
+                 @include mixin.flex(col, $grow: (".description": 1));
+
                  .meta {
                      @include mixin.font-size(xs);
                  }
+
                  .post-title {
                      @include mixin.font-size('xl');
                      @include mixin.m-(2, 'tb');
                  }
+
                  .mark {
                      @include mixin.w-(fit);
+
                      align-self: center;
                  }
                  

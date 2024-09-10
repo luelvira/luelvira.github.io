@@ -7,7 +7,9 @@
 
  <link rel="canonical" href="{{ .Permalink }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href=" {{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" media="screen,print">
+{{ with resources.Get "css/main.css"  | postCSS }}
+ <link rel="stylesheet" href=" {{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="screen,print">
+{{ end }}
  {{ if (gt .Params.Author 0) }}
  {{ range .Params.Author }}
   <meta name="author" content="{{ . }}">

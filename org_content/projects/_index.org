@@ -7,6 +7,7 @@
 #+HUGO_SECTION: ./projects
 #+hugo_auto_set_lastmod: t
 #+HUGO_WEIGHT: auto
+#+HUGO_CUSTOM_FRONT_MATTER: :menu main
 * Projects
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
@@ -14,57 +15,6 @@
 
 As a developer I really LOVE Open Source Software and I enjoy developing
 side projects as a method to learn new technologies!
-
-* The user interfaces projects                                         :@WEB:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_HUGO_BUNDLE: ui
-:EXPORT_TITLE: User Interfaces
-:EXPORT_DATE: 2023-09-02
-:EXPORT_Description: Web page generate for teach web development at University
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :ProjectLink https://luelvira.github.io/interfaces-usuario/
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/interfaces-usuario
-:END:
-
-** The user interfaces projects content
-:PROPERTIES:
-:EXPORT_FILE_NAME: user_interface_page
-:EXPORT_TITLE: User Interfaces
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects ui
-:END:
-
-There is a better way to learn how to build a web site, than building one? I
-don't think so! For this reason, I decided to start this project.
-
-This project involved the creation of a blog-style website designed to teach web
-development to university students, specifically those attending Universidad
-Carlos III de Madrid. The primary objective was to provide a hands-on learning
-platform where students could apply the concepts discussed during the course
-directly to a live project, fostering a deeper understanding of the material.
-
-The technology stack utilized for this project was both practical and
-educational, incorporating tools like org-publish for converting Org-mode files
-into HTML, alongside foundational web technologies such as HTML5, JavaScript,
-and CSS3. Additionally, GitHub was used for version control and the
-automatization of the publishing, allowing students to engage with real-world
-development workflows, including collaboration and version management.
-
-One of the significant challenges encountered during this project was the
-learning curve associated with Emacs Lisp, necessary for the conversion of Org
-files into HTML. Mastering this language was crucial for automating the
-publishing process and integrating it seamlessly with the rest of the site.
-Furthermore, the content had to be tailored to a diverse audience, including
-students with no prior experience in web development. This required careful
-consideration of how to present technical information in an accessible and
-engaging way.
-
-Although the primary audience for this project was university students, the
-platform was designed with broader aspirations in mind. The website aims to
-serve as a valuable resource for anyone interested in learning web development,
-regardless of their background.
-
-You can check the result at [[https://luelvira.github.io/interfaces-usuario/][interfaces-usuario]], and
-the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces de usuario]] 
 
 * Hugo Web site                                           :noexporthugo:@WEB:
 :PROPERTIES:
@@ -89,86 +39,7 @@ create a community with people that has affinity with me. The technologies used
 in this project are [[https://gohugo.io/][hugo]], [[https://sass-lang.com/][sass]]. At the same time I am developing this project, i
 am creating a sass library and a hugo template that will be shared soon.
 
-* Tinny calc                                          :@HASKELL:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_DATE: 2024-08-18
-:EXPORT_TITLE: Tinny calculator
-:EXPORT_HUGO_BUNDLE: tinny_calc
-:EXPORT_DESCRIPTION: Build a tinny programming languages to learn haskell
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source https://github.com/luelvira/tinny_calc
-:END:
-
-** Tinny calc Content                                :@HASKELL:
-:PROPERTIES:
-:EXPORT_FILE_NAME: tinny_calc_page
-:EXPORT_TITLE: Tinny Calc
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects tinny_calc
-:END:
-
-This projects aims to be used as an entry point to learn [[https://www.haskell.org/][haskell]] and how to
-create a dummy programming languages. At this point, the process will be used as
-the first post of the blog.
-
-The main characteristics of this language are:
-- Can use variables
-- It is relative simple to add features and functionalities
-
-* DataWave                                                 :python:@NLP:@WEB:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_DATE: 2024-08-18
-:EXPORT_TITLE: DataWave
-:EXPORT_HUGO_BUNDLE: datawave
-:EXPORT_DESCRIPTION: Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results
-:END:
-
-** DataWave Content
-:PROPERTIES:
-:EXPORT_FILE_NAME: datawave_page
-:EXPORT_TITLE: DataWave
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects datawave
-:END:
-DataWave is an advanced tool developed in Python, designed to facilitate the
-training and customization of Natural Language Processing (NLP) models using
-unstructured text sources, that aims to provide users with an intuitive and
-effective way to analyze and visualize relationships between terms extracted
-from diverse text formats. The tool's key feature is its ability to create
-dynamic graph force representations that showcase the interconnections between
-terms, allowing users to explore and manipulate these relationships through
-operations such as creating, deleting, renaming terms, and adjusting the weight
-of connections.
-
-The project had two phases: to develop a robust tool for NLP tasks, and to
-create two distinct interfaces for interacting with the software. The first
-interface is a Command-Line Interface (CLI), offering precise control and the
-ability to automate workflows, targeting to more technically inclined users. The
-second interface is a web-based platform that communicates with the backend via
-a Flask API, providing a more user-friendly experience. The web interface also
-includes interactive visualizations created with D3JS, which allow users to
-engage directly with the generated graphs and modify them as needed.
-
-The technology stack for DataWave includes a rich array of Python libraries and
-tools such as Flask for web development, Keras, NLTK, SpaCy, TensorFlow, Gensim,
-Transformers, and PyTorch for machine learning and NLP tasks. In order to store
-and manage the huge data volume, the backend relies on MongoDB for database
-management, while the frontend was developed using SCSS, TypeScript, JavaScript,
-and D3JS for dynamic graph visualizations.
-
-This project started as my undergraduate thesis (TFG) and continue as my
-graduate (TFM) thesis, with the project being owned by the department where I
-conducted my research. The department intends to use DataWave for ongoing
-research and potentially publish further findings. The project culminated in a
-publication of a poster, with the results and methodology documented available
-under the DOI: [[https://dl.acm.org/doi/10.1145/3656650.3656734][10.1145/3656650.3656734]].
-
-One of the most challenging aspects of the project was ensuring that the NLP
-models could effectively process and extract meaningful data from a wide range
-of unstructured text sources, including websites, social media platforms like
-Twitter, and PDFs. This required overcoming significant obstacles related to the
-variability of data formats and the lack of standardized patterns in the text.
-
-* Quos                                                            :node:@WEB:
+* Quos                                               :noexporthugo:node:@WEB:
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_DATE: 2024-08-23
@@ -216,54 +87,4 @@ project was a rewarding challenge that deepened my understanding of both web
 development and the nuances of creating a user-friendly, feature-rich PWA. At
 the same time, the project allowed us to develop and design an application that
 cover all of our requirements.
-
-* Sudoku resolver                                                    :python:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_DATE: 2024-08-24
-:EXPORT_TITLE: Sudoku Resolver
-:EXPORT_HUGO_BUNDLE: sudoku_resolver
-:EXPORT_DESCRIPTION: A little tool aims to resolve any valid sudoku with backtracking
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :Source [[https://github.com/luelvira/sudoku_resolver]]
-:END:
-
-** Sudoku resolver Content
-:PROPERTIES:
-:EXPORT_FILE_NAME: sudoku_resolver_page
-:EXPORT_TITLE: Sudoku resolver
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects sudoku_resolver
-:END:
-This project involved the development of a Python program designed to solve
-Sudoku puzzles using optimization techniques. The primary goal was to create an
-algorithm that not only accurately solves Sudoku puzzles but also does so in an
-efficient manner, improving both the quality and speed of the solution. The
-project was driven by a personal interest in enhancing my own method of solving
-Sudokus, with a focus on replicating and optimizing the mental strategies I use
-when playing the game.
-
- The techniques used to improve the efficiency was: First, find and fill all
- cells that only has one possibility. Second, sort the white cells with the
- number of possibles values and resolve in this order. Then repeat the step 1
- and two until the problem state is stable. Finally, use backtracking to resolve
- the rest of the cells.
-
-The project required a deep understanding of Sudoku mechanics and the
-development of an algorithm capable of mimicking human problem-solving
-processes, breaking down the puzzle into manageable steps, and applying logical
-deductions systematically.
-
-One of the main challenges of the project was to analyze and translate my
-personal approach to solving Sudokus into a clear, executable algorithm. This
-involved dissecting my mental process during gameplay, identifying patterns and
-strategies I intuitively use, and then coding these steps in a way that a
-machine could replicate. The project also included refining the algorithm to
-improve its efficiency, reducing the time required to solve puzzles, especially
-as they increase in difficulty.
-
-Although the target audience for this project was primarily myself, the work
-provided valuable insights into algorithmic thinking and problem-solving in
-Python. It also offered a unique opportunity to bridge the gap between human
-intuition and machine logic, resulting in a tool that effectively mirrors the
-way I approach and solve Sudoku puzzles.
-
 

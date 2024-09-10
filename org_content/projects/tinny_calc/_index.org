@@ -1,0 +1,35 @@
+#+title:     Tinny Calculator
+#+author:    Lucas Elvira Martín
+#+email:     lucaselvira96@gmail.com
+#+DATE: 2024-08-18
+#+HUGO_BASE_DIR: ../../../
+#+HUGO_SECTION: ./projects
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_WEIGHT: auto
+#+DESCRIPTION: Build a tinny programming languages to learn haskell
+#+EXPORT_FILE_NAME: _index
+#+HUGO_BUNDLE: tinny_calc
+#+HUGO_CUSTOM_FRONT_MATTER: :Source https://github.com/luelvira/tinny_calc :projects tinny_calc
+#+FILETAGS: @HASKELL
+
+* Tinny Calc
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:END:
+
+
+* Tinny calc Content                                               :@HASKELL:
+:PROPERTIES:
+:EXPORT_FILE_NAME: tinny_calc_page
+:EXPORT_TITLE: Tinny Calc
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects tinny_calc
+:END:
+
+This projects aims to be used as an entry point to learn [[https://www.haskell.org/][haskell]] and how to
+create a dummy programming languages. At this point, the process will be used as
+the first post of the blog.
+
+The main characteristics of this language are:
+- Can use variables
+- It is relative simple to add features and functionalities
+

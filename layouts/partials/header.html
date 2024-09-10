@@ -19,7 +19,7 @@
       <ul class="basic_contact">
       {{ range $data.Contact }}
         <li class="basic_contact_element">
-          <a href="{{ .Link }}{{ .Info }}" target="_blank" aria-label="Got to {{.Info }}">
+          <a href="{{ .Link }}{{ .Info }}" target="_blank" aria-label="Go to {{.Info }}">
           <span>
             {{ if and (.Type) ( eq .Type "svg") }}
               {{ .Icon | safeHTML }}

@@ -79,11 +79,12 @@ $background-val: colors.color("background", '50', false)!default;
             overflow: revert;
             position: initial;
         }
+
         &-item {
             list-style: none;
+
             @include buttons.button;
             @include mixin.w-('1/3');
-
             @include cards.card(
                 $color: $background_val,
                 $rounded: 'lg',
@@ -103,8 +104,14 @@ $background-val: colors.color("background", '50', false)!default;
                     $duration: 0.125s,
                     $event: hover
                 );
+                &.is-active {
+                      transform: scale(0.95);
+                      box-shadow: #{box-hard-shadow($bg, 5)};
+                      background-color: colors.color("primary", 300);
+                }
             }
         }
+
         &-link {
                 display: block;
 
