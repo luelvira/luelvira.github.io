@@ -32,7 +32,7 @@ one of the most common task for this kind of languages, make a /parser/.
 
 This application is a toy tool to parse a string and operate with it to return
 the result of make the operation. The main porpoise of this exercise is to train
-my knowledge about the languages
+my knowledge about the languages.
 
 #+begin_export html
 <!--more-->

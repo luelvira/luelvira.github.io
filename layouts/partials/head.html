@@ -10,6 +10,9 @@
 {{ with resources.Get "css/main.css"  | postCSS }}
  <link rel="stylesheet" href=" {{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="screen,print">
 {{ end }}
+{{ with resources.Get "css/syntax.css" | postCSS }}
+ <link rel="stylesheet" href="{{.RelPermalink}}" type="text/css" media="screen" />
+{{ end }}
  {{ if (gt .Params.Author 0) }}
  {{ range .Params.Author }}
   <meta name="author" content="{{ . }}">

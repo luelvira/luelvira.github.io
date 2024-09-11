@@ -8,5 +8,4 @@ categories = ["PYTHON"]
 draft = false
 weight = 1001
 Source = "https://github.com/luelvira/sudoku_resolver"
-projects = "sudoku"
 +++

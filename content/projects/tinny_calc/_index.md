@@ -8,5 +8,4 @@ categories = ["HASKELL"]
 draft = false
 weight = 1001
 Source = "https://github.com/luelvira/tinny_calc"
-projects = "tinny_calc"
 +++

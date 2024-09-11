@@ -2,15 +2,17 @@
 title = "Simple calculator"
 author = ["Lucas Elvira Martín"]
 date = 2024-07-11T00:00:00+02:00
-lastmod = 2024-09-10T21:01:26+02:00
+lastmod = 2024-09-11T12:30:56+02:00
 draft = false
-weight = 1003
+weight = 1002
 posts = "haskell"
 +++
 
 This application is a toy tool to parse a string and operate with it to return
 the result of make the operation. The main porpoise of this exercise is to train
-my knowledge about the languages
+my knowledge about the languages.
+
+<!--more-->
 
 
 ## Start the project {#start-the-project}
