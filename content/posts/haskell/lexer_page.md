@@ -2,7 +2,7 @@
 title = "The lexer"
 author = ["Lucas Elvira Martín"]
 date = 2024-07-11T00:00:00+02:00
-lastmod = 2024-09-11T12:30:56+02:00
+lastmod = 2024-09-12T13:41:18+02:00
 draft = false
 weight = 1003
 posts = "haskell"
@@ -112,12 +112,14 @@ cleanString str = [x | x <- str, x /= ' ']
 -- a <term> or a (<term>, (<addop> <term>)+)
 expression :: String -> Either EvalError Expression
 expression "" = Left EmptyExpression
-expression xs = case evalTerm xs of
-    Left l -> Left l
-    Right (term, addopTerm) -> case evalExpression' Nothing addopTerm of
-        Right (list, "") -> Right $ Expression (term, list)
-        Right (_, _:_) -> Left InvalidExpression
-        Left l -> throw l
+expression xs =
+    case evalTerm xs of
+        Left l -> Left l
+        Right (term, addopTerm) ->
+            case evalExpression' Nothing addopTerm of
+                Right (list, "") -> Right $ Expression (term, list)
+                Right (_, _:_) -> Left InvalidExpression
+                Left l -> throw l
 
 -- | Given a list of AddopTerm and a String, read the string while the function returns
 -- a new AddopTerm. Once the function can not continue, returns the list with the rest of the

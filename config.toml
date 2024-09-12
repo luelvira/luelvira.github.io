@@ -45,6 +45,9 @@ title           = 'Lucas Elvira-Martin CV'
         name    = 'Education'
         url     = '/#education'
         weight  = 3
+
+[params]
+    description = 'Discover innovative software development projects, practical tutorials, and insights from a passionate software engineer dedicated to solving real-world challenges.'
         
 [taxonomies]
     category    = 'categories'

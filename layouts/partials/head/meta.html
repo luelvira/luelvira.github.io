@@ -1,0 +1,8 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{ range .Params.Author }}<meta name="author" content="{{ . }}">{{ end }}
+{{- if or .IsHome (not .Params.Description) -}}
+<meta name="description" content="{{ site.Params.Description }}">
+{{- else -}}
+<meta name="description" content="{{ .Params.Description }}">
+{{- end }}

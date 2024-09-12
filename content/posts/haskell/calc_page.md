@@ -1,8 +1,9 @@
 +++
 title = "Simple calculator"
 author = ["Lucas Elvira Martín"]
+description = "Description of the process that helps me to make a small calculator with haskell"
 date = 2024-07-11T00:00:00+02:00
-lastmod = 2024-09-11T12:30:56+02:00
+lastmod = 2024-09-12T13:41:18+02:00
 draft = false
 weight = 1002
 posts = "haskell"

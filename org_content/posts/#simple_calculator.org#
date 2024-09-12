@@ -237,12 +237,13 @@ The most reduce piece of the grammar is the factor, which is only a number. The
 first function will tray to extract the number from the string and returns it
 and the string remainder
 
-#+begin_src haskell :range-end -EvalFactorFunction :range-begin EvalFactorFunction
-let (nextTerm, moreTerm) = case evalTerm rest of
-                              Right right -> right
-                              Left l -> throw l
-    (restAddopTerm, restTerm) = case evalExpression' Nothing moreTerm of
-                                  Right rat -> rat
+#+begin_src haskell
+let (nextTerm, moreTerm) =
+      case evalTerm rest of
+        Right right -> right
+        Left l -> throw l
+      (restAddopTerm, restTerm) = case evalExpression' Nothing moreTerm of
+Right rat -> rat
 #+end_src
 
 Next, a term is composed by a ~Factor~ and a list of ~(MulOp, factor)~. So, I split

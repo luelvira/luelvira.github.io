@@ -1,22 +1,26 @@
-{{ $style := resources.Get "css/main.css" }}
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> {{ .Site.Title }} </title>
+{{ partial "head/meta" . }}
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/schema.html" . }}
+  {{- if .IsHome -}}
+    <title> Home | {{ .Site.Title }}</title>
+  {{- else if .Page.Title -}}
+    <title> {{ .Page.Title }} | {{ .Site.Title }} </title>
+  {{- else -}}
+    <title> {{ .Site.Title }} </title>
+  {{- end -}}
 
- <link rel="canonical" href="{{ .Permalink }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{{ with resources.Get "css/main.css"  | postCSS }}
- <link rel="stylesheet" href=" {{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" media="screen,print">
+    {{ partial "head/style" }}
+<link rel="canonical" href="{{ .Permalink }}" />
+<!-- dependencies -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+{{ $langs := slice "haskell" }}
+{{ range $langs }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/{{.}}.min.js"></script>
 {{ end }}
-{{ with resources.Get "css/syntax.css" | postCSS }}
- <link rel="stylesheet" href="{{.RelPermalink}}" type="text/css" media="screen" />
-{{ end }}
- {{ if (gt .Params.Author 0) }}
- {{ range .Params.Author }}
-  <meta name="author" content="{{ . }}">
- {{ end }}
-  {{ end }}
+<script>
+  hljs.registerAliases("cabal", {languageName: "yaml"})
+  hljs.highlightAll();
+</script>
 </head>
-
