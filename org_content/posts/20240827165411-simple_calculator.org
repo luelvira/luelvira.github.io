@@ -1,54 +1,31 @@
-#+TITLE: Tutorial Haskell - Build a simple calc
+#+hugo_bundle: 
+#+hugo_base_dir: ../../
+#+hugo_auto_set_lastmod: t
+#+EXPORT_FILE_NAME: tutorial_haskell_build_a_simple_calc_simple_calculator
+#+title: Tutorial Haskell - Build a simple calc simple calculator
 #+date: <2024-07-11 Thu>
 #+author: Lucas Elvira Martín
-#+email: lucaselvira96@gmail.com
 #+language: en
 #+select_tags: export
 #+exclude_tags: noexport
 #+cite_export: 
-#+HUGO_BASE_DIR: ../../
-#+hugo_auto_set_lastmod: t
-#+HUGO_WEIGHT: auto
-#+HUGO_BUNDLE: ./haskell
-
-* Haskell                                                          :noexport:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
-:END:
-
-Haskell is a pure functional programming languages with a wide use in academic
-environment because its simplicity at the time to make prototype and its
-familiarity with a mathematical languages.
-
-With the following post I will want to learn the basic of this languages with
-one of the most common task for this kind of languages, make a /parser/.
-
+#+filetags: :PERMANENT:TUTORIAL:PUBLISH:
 * Simple calculator
-:PROPERTIES:
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
-:EXPORT_FILE_NAME: calc_page
-:EXPORT_DESCRIPTION: Description of the process that helps me to make a small calculator with haskell
-:END:
 
 This application is a toy tool to parse a string and operate with it to return
 the result of make the operation. The main porpoise of this exercise is to train
-my knowledge about the languages.
+my knowledge about the languages
+* Start the project
 
-#+begin_export html
-<!--more-->
-#+end_export
-
-** Start the project
 In this case, I use cabal as project management for haskell, so to start the
 configuration, I ran the command ~cabal init~ and setup the configuration file
 following the instruction from [[https://learn-haskell.blog/][Learn haskell by building a blog generator]]. This
 resource also help me with some process that have in common with my idea of the
 calculator.
-*** cabal file
+** cabal file
 The cabal file contains the meta information about the project, so it is
 important to follow some rules like the names should match.
-**** Information about the project
+*** Information about the project
 
 The first part contains the information about the project, with the name,
 description, version, and so on
@@ -75,7 +52,7 @@ common common-settings
   ghc-options:
     -Wall
 #+end_src
-**** The library target
+*** The library target
 This is not necessary, but could be a good practice. I want to build a lexer
 parser for a dummy calculator. But also, it could be used in another projects,
 so all the logic will be placed in the ~src~ folder, and will be called from the
@@ -106,7 +83,7 @@ library
          Calc.AST
               Calc.AST.Data.Expression
 #+end_src
-**** Executable target
+*** Executable target
 This is the name of the application. In this block, we define the name of the
 executable and the resources it will need. As we did with the ~library target~, we
 configure it to use the common settings and add the our library as a dependency.
@@ -123,7 +100,7 @@ executable lem-calc-gen
       base
     , lem-calc
 #+end_src
-**** Test target
+*** Test target
 
 I will try to follow as longer as I can a TDD methodology, so this part I thing
 will be really important, the test block. In this case I use the Spec library
@@ -153,20 +130,11 @@ test-suite lem-calc-gen-test
   ghc-options:
 #+end_src
 * The lexer
-:PROPERTIES:
-:EXPORT_FILE_NAME: lexer_page
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :posts haskell
-:END:
 
 This is the first part of the parser. This module define the tokens and evaluate
 if the string could be represent with a custom grammar.
 
-#+begin_export html
-<!--more-->
-#+end_export
-
 The tokens are defined as:
-
 #+begin_src haskell :range-end -DefineTokens :range-begin DefineTokens
 -- | A list with the possible tokens readded from the programm
 data Token
@@ -187,6 +155,7 @@ Some of these tokens will not be used at the moment, but could be used in future
 
 And the grammar is:
 #+begin_src haskell :range-end -DefineGrammar :range-begin DefineGrammar
+@
 S := Start symbol
 A := add operation
 B := {AT}
@@ -209,6 +178,7 @@ N -> nN
 N -> n
 A -> + | -
 M -> * | /
+@
 #+end_src
 
 A more clear version of the grammar was done with data type
@@ -237,13 +207,12 @@ The most reduce piece of the grammar is the factor, which is only a number. The
 first function will tray to extract the number from the string and returns it
 and the string remainder
 
-#+begin_src haskell
-let (nextTerm, moreTerm) =
-      case evalTerm rest of
-        Right right -> right
-        Left l -> throw l
-      (restAddopTerm, restTerm) = case evalExpression' Nothing moreTerm of
-Right rat -> rat
+#+begin_src haskell :range-end -EvalFactorFunction :range-begin EvalFactorFunction
+let (nextTerm, moreTerm) = case evalTerm rest of
+                              Right right -> right
+                              Left l -> throw l
+    (restAddopTerm, restTerm) = case evalExpression' Nothing moreTerm of
+                                  Right rat -> rat
 #+end_src
 
 Next, a term is composed by a ~Factor~ and a list of ~(MulOp, factor)~. So, I split
@@ -292,3 +261,9 @@ eval str = case expression $ cleanString str of
 #+end_src
 
 
+
+
+:PROPERTIES:
+:ID:       a17fc509-05d8-44e7-9cc2-cc556d0b3878
+:END:
+#+hugo_auto_set_lastmod: t#+hugo_base_dir: ../../#+hugo_bundle: default#+DATE: [2024-08-27 Tue 16:54]
