@@ -1,0 +1,8 @@
+<nav aria-label="Breadcrumbs" role="navigation" id="breadcrumbs" {{if .single }} class="xxl" {{ end}}>
+<ul>
+    {{- range .context.Ancestors.Reverse }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{- end }}
+    <li class="active"><span>{{ .context.Title }}</span></li>
+</ul>
+</nav>

@@ -59,4 +59,4 @@
 
 @mixin max-xl{@include breakpoint(null, xl){@content;}}
 
-@mixin max-xxl{@include breakpoint(null, xxl){@content;}}
+@mixin max-xxl{@include breakpoint(null, '2xl'){@content;}}

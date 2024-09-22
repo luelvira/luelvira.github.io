@@ -4,13 +4,24 @@
 @use "../abstracts/mixin";
 @use "../components/stickers";
 @use "../components/buttons";
+@use "../abstracts/functions/colors";
+@use "../abstracts/functions/shadow";
+@use "../abstracts/functions/strings" as str;
 
 .posts {
     @include mixin.p-(4, 'b');
     @include mixin.w-('4/5');
 
     .cards {
-        // @include stickers.sticky-content($shadow: false); 
+        box-shadow: shadow.box-shadow-generator(
+            $color: colors.color(background, "300", false),
+            $levels: 1,
+            $mode: "",
+            $offset-x-inc: 0,
+            $offset-y-inc: 2px,
+            $blur: 1px,
+            $spread-radius: 3px,
+            $div_value: 0.125);
         @include mixin.grid($eqcols: 1);
         @include mixin.m-(8, 't');
         @include mixin.p-(4);
@@ -27,6 +38,8 @@
 
                 @if $i == 0 {
                     $j: 4;
+                } @else if $i == 1 {
+                    $j: 2;
                 }
                 &[data-items="#{$i}"] {
                     @include mixin.grid($eqcols: $j);
@@ -37,26 +50,95 @@
         .card {
             @include stickers.sticky;
 
-             &-content {
-                 @include mixin.h-(full);
-                 @include mixin.flex(col, $grow: (".description": 1));
+            &-content {
+                @include mixin.h-(full);
+                @include mixin.flex(col, $grow: (".description": 1));
 
-                 .meta {
-                     @include mixin.font-size(xs);
-                 }
+                .meta {
+                    @include mixin.font-size(xs);
+                }
 
-                 .post-title {
-                     @include mixin.font-size('xl');
-                     @include mixin.m-(2, 'tb');
-                 }
+                .post-title {
+                    @include mixin.font-size('xl');
+                    @include mixin.m-(2, 'tb');
+                }
 
-                 .mark {
-                     @include mixin.w-(fit);
+                .mark {
+                    @include mixin.w-(fit);
 
-                     align-self: center;
-                 }
-                 
-             }
+                    align-self: center;
+                }
+                
+            }
+        }
+    }
+
+    &.single {
+        display: block;
+        @include mixin.flex($dir: row, $flex-position: ("wrap": wrap));
+        @include mixin.w-(full);
+        @include mixin.reset(max-width);
+
+        @include mixin.gap(10, 'x');
+        h1 {
+            @include mixin.max-w-('2xl');
+            @include mixin.w-('4/5');
+            @include mixin.m-d-(0, auto);
+        }
+        .content {
+            @include mixin.max-w-('2xl');
+            @include mixin.w-('7/10');
+            @include mixin.p-(0);
+
+            margin-left: 10%;
+            img {
+                @include mixin.w-('1/2');
+                @include mixin.m-d-(0 auto);
+                display: block;
+            }
+        }
+        .toc {
+            @include mixin.media-max-xxl {display: none;}
+            &-wrap {
+              @include cards.shadow(2);
+              @include mixin.p-d-(4);
+              position: sticky;
+              top: 5%;
+              h5 {
+                  position: relative;
+                  @include mixin.p-d-(0);
+                  @include mixin.m-d-(2, auto);
+                  @include mixin.w-(fit);
+                  @include mixin.pcs-after {
+                      @include mixin.pos-absolute($bottom: 0, $left: 10%);
+                      background-color: #7a7a7a;
+                      @include mixin.w-('4/5');
+                      @include mixin.h-(0.5);
+                  }
+              }
+              #TableOfContents {
+                  &>ul {
+                      @include mixin.font-size(sm);
+                      li>ul {
+                      @include mixin.font-size(xs);
+                      }
+                  }
+                  ul {
+                      @include mixin.m-(2, 'l');
+                      @include mixin.m-(2, 'b');
+                      li {
+                          @include mixin.m-(1, 'b');
+                      }
+                  }
+              }
+            }
+            flex-grow: 1;
+            max-width: 20%;
+            nav {
+                li {
+                    list-style: none;
+                }
+            }
         }
     }
 }

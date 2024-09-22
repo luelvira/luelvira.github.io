@@ -11,9 +11,6 @@
     @include mixin.flex(col);
 
     @include mixin.media-lg {
-        // @include mixin.max-w-('lg');
-        // @include mixin.w-('9/10');
-        // @include mixin.m-(auto);
         @include mixin.p-(0);
         @include mixin.grid($rows: 3, $eqcols: 8);
 
@@ -24,9 +21,4 @@
         @include mixin.gap(4)
     }
 
-    @include mixin.media-xxl {
-//        max-width: min(
-//                map.get(media.$screens, 'xl'),
-//                map.get(media.$screens, 'lg'));
-    }
 }

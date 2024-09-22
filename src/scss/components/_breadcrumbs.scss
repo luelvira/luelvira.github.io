@@ -1,0 +1,79 @@
+@charset "UTF-8";
+@use "../abstracts/mixin";
+@use "../abstracts/functions/colors";
+@use "../abstracts/functions/shadow";
+@use "cards";
+@use "sass:map";
+
+#breadcrumbs {
+    @include mixin.media-max-lg {
+        @include mixin.w-('4/5');
+        @include mixin.m-d-(4, auto);
+    }
+
+    @include mixin.media-lg {
+        grid-area: header;
+
+        &:not(.xxl) {
+            @include mixin.max-w-('lg');
+        }
+        &.xxl {
+            @include mixin.max-w-('2xl');
+            @include mixin.w-('4/5');
+        }
+        @include mixin.m-d-(0, auto);
+        @include mixin.w-(full);
+    }
+    %meta {
+        @include mixin.pos-absolute($left: 0);
+        background-color: colors.color(primary, 600);
+        @include mixin.w-(full);
+        @include mixin.h-('1/2');
+        z-index: -1;
+        @include mixin.tr-transition(
+                    $pairs: (background-color: colors.color(primary, 500)),
+                    $duration: 0.125s,
+                    $event: hover
+                );
+    }
+
+    ul {
+        @include mixin.br-rounded(2);
+        li {
+            list-style: none;
+            display: inline-block;
+            position: relative;
+            color: colors.color("background", 50);
+            font-weight: 900;
+            &:not(.active) {
+                @include mixin.tr-transition(
+                    $pairs: (transform: scale(0.95)),
+                    $duration: 0.125s,
+                    $event: hover
+                );
+               
+            }
+            &.active {
+                &:after, &:before {
+                    background-color: colors.color(primary, 500);
+                }
+            }
+            
+            a, span {
+              @include mixin.p-(2);
+              display: block;
+            }
+            @include mixin.pcs-before {
+                @extend %meta;
+                top: 0;
+                transform: skew(20deg);
+            }
+            @include mixin.pcs-after {
+                @extend %meta;
+                transform: skew(-20deg);
+                bottom: 0;
+            }
+            
+        }
+    }
+}

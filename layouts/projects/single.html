@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ partial "breadcrumbs.html" (dict "single" false "context" .)}}
 <main class="wrap {{ .Page.Type }}">
     <h1>{{ .Title }}</h1>
     {{ .Content }}

@@ -1,6 +1,16 @@
 {{ define "main" }}
-<main class="wrap {{ .Page.Type }}">
+{{ partial "breadcrumbs.html" (dict "single" true "context" .) }}
+<main class="wrap {{ .Page.Type }} single">
     <h1>{{ .Title }}</h1>
+    <section class="content">
     {{ .Content }}
+    </section>
+
+   <section class="toc"> 
+     <div class="toc-wrap">
+     <h5>{{ i18n "toc_heading" }}</h5>
+     {{ .TableOfContents }}
+     </div>
+   </section> 
 </main>
 {{ end }}

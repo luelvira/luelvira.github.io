@@ -4,8 +4,16 @@ title           = 'Lucas Elvira-Martin CV'
 
 
 [markup]
-    [markup.goldmark.renderer]
-        unsafe = true
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+        [markup.goldmark.extensions]
+            [markup.goldmark.extensions.passthrough]
+                enable = true
+                [markup.goldmark.extensions.passthrough.delimiters]
+                    block = [['\[', '\]'], ['$$', '$$']]
+                    inline = [['\(', '\)']]
+
     [markup.highlight]
         codeFences = false
         lineNos = true
@@ -13,30 +21,18 @@ title           = 'Lucas Elvira-Martin CV'
         tabWidth = 2
         noClasses = false
         style = 'dracula'
+    [markup.tableOfContents]
+        ordered = false
+        startLevel = 2
+        endLevel = 3
+
 
 [menus]
-#    [[menus.main]]
-#        name    = 'Home'
-#        pageRef = '/'
-#        url     = '/'
-#        weight  = 1
     [[menus.main]]
         name    = 'CV'
         pageRef = '/cv'
         url     = '/cv'
         weight  = 2
-#    [[menus.main]]
-#        name    = 'Projects'
-#        pageRef = '/projects'
-#        url = '/projects'
-#        identifier = 'projects'
-#        weight  = 3
-#    [[menus.main]]
-#        name    = 'Blog'
-#        identifier = 'The Blog'
-#        pageRef = '/posts'
-#        url     = '/posts'
-#        weight  = 4
     [[menus.about]]
         name    = 'Experience'
         url     = '/#experience'
@@ -47,6 +43,7 @@ title           = 'Lucas Elvira-Martin CV'
         weight  = 3
 
 [params]
+    math = true
     description = 'Discover innovative software development projects, practical tutorials, and insights from a passionate software engineer dedicated to solving real-world challenges.'
         
 [taxonomies]

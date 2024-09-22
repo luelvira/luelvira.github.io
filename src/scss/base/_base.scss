@@ -15,24 +15,38 @@ html {
     font-family: variables.$vf-sans;
 }
 
+%title {
+    @include mixin.m-d-(4, 0);
+}
+
 
 h1 {
+    @extend %title;
     color: colors.color(secondary);
 
     @include mixin.font-size(6);
 }
 
-
 h2 {
     color: colors.color(primary);
 
     @include mixin.font-size('2xl');
+    @extend %title;
 }
 
 h3, h4 {
     @include mixin.font-size(1.1);
-    @include mixin.m-d-(4, 0);
+    @extend %title;
 }
+h5, h6 {
+
+    @include mixin.font-size(0);
+    @include mixin.p-(4, 'l');
+    @extend %title;
+    color: #5a5a5a;
+    font-weight: 300;
+}
+
 img, figure, video, object, svg {
     width: 100%;
     height: auto;
@@ -64,4 +78,12 @@ button {
     -moz-osx-font-smoothing: inherit;
     appearance: none;
     cursor: pointer;
+}
+
+table, tr, td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    &:is(td) {
+        @include mixin.p-d-(1);
+    }
 }

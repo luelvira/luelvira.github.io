@@ -12,7 +12,6 @@ $background-val: colors.color("background", '50', false)!default;
     position: relative;
     z-index: 1;
 
-    //    @include lib.m-d-(2, 3, 0);
     @include mixin.p-d-(0, 16);
     @include cards.shadow(2);
     @include mixin.flex(row, (".logo": 1), (align:center));

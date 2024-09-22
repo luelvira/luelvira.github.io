@@ -8,7 +8,7 @@
 
 $-box-shadow-color: color.adjust(colors.color('background', '900', false), $lightness: -10%);
 
-@mixin sticky-content {
+@mixin sticky-content($shadow: "inset") {
     @include mixin.grid($eqcols: 1);
     @include mixin.br-rounded(sm);
     @include mixin.m-(8, 't');

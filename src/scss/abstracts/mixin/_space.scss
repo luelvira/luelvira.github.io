@@ -56,6 +56,12 @@
     @include -directional-('padding', $args...);
 }
 
-@mixin gap($key) {
-    gap: size.get-size($key);
+@mixin gap($key, $dir: false) {
+    @if $dir == 'x' {
+        column-gap: size.get-size($key);
+    } @else if $dir == 'y' {
+        row-gap: size.get-size($key);
+    } @else if not $dir {
+        gap: size.get-size($key);
+    }
 }

@@ -2,8 +2,6 @@
 title = "Building a parser"
 author = ["Lucas Elvira Martín"]
 date = 2024-07-11T17:07:00+02:00
-lastmod = 2024-09-18T13:39:58+02:00
-tags = ["EXPORT", "PERMANENT", "TUTORIAL"]
 draft = false
 +++
 
@@ -57,7 +55,7 @@ grammar representation, but I will focus on the [EBNF](https://en.wikipedia.org/
 For example, a grammar that represents unsigned hexadecimal numbers can be
 described as:
 
-```nil
+```bnf
 G = (V, T, S, P)
 V = { <hexdigit>, <hexnumber>, <digit>, <alpha> }
 T = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' }
@@ -75,11 +73,12 @@ the terminal symbol on the right and transform the left symbol. This is a
 special case of context-free grammar called left-linear. A grammar could be
 either left-linear or right-linear, but not both.
 
-Following the EBNF notation, the rule:
+Following the EBNF notation, the following rules are equivalent:
 
-\\( <hexnumber> ::= <hexnumber> <hexdigit> | <hexdigit> \\) is equivalent to
-
-\\(<hexnumber> ::= \\{<hexnumber>\\} <hexdigit>\\)
+```bnf
+<hexnumber> ::= <hexnumber> <hexdigit> | <hexdigit>
+<hexnumber> ::= {<hexnumber>} <hexdigit>
+```
 
 <!--list-separator-->
 
@@ -97,7 +96,7 @@ is a tree representation of a sentence where each node can only be evaluated
 after its children have been evaluated. This means that the tree is read bottom
 up.
 
-{{< figure src="AST-Example-2024-07-18-1709.png" >}}
+{{< figure src="AST-Example-2024-07-18-1709.png" alt="Example of AST with a simple mathematical operation" >}}
 
 
 ## Let's practice! {#let-s-practice}
@@ -109,8 +108,7 @@ I use [cabal](https://www.haskell.org/cabal/) to manage the project, but [stack]
 the project, execute
 
 ```shell
-mkdir dummy-calc
-cabal init --interactive
+$ mkdir dummy-calc && cd $_ cabal init --interactive
 ```
 
 The command will prompt you for some questions and create the folder structure
@@ -118,6 +116,7 @@ with a result similar to the following one. I changed the name of the test main
 file from `Main.hs` to `Spec.hs` because I want to use _Spec_ test suit library.
 
 ```text
+tree .
 .
 ├── app
 │   └── Main.hs
@@ -133,7 +132,8 @@ file from `Main.hs` to `Spec.hs` because I want to use _Spec_ test suit library.
 ```
 
 In the file `dummy-calc.cabal` At the test-suit, on the test-suit, we should
-append
+append. This configuration allows us to compile and run with multiples threads
+the tests and use the `hspec-discover` option to automatize the process.
 
 ```cabal
 ghc-options:
@@ -148,18 +148,20 @@ build-tool-depends:
 As mentioned before, grammars are defined by an alphabet and a set of production rules.
 For the alphabet, I use a set of _TOKENS_. A token is the smallest unit of
 information in the language that we are designing. At this point, our dummy calc
-only recognizes the simplest math expression \\(+, -, \*, /\\) and parenthesis to
+only recognizes the simplest math expression (+, -, \*, /) and parenthesis to
 determine the priority of the operations. But, at some point, I want to allow
 other operations such as assigning a value to a variable.
 
-We will create a file, named `Tokens.hs` in the folder `src/DummyCalc/Lexer/` and
+We will create a file, named `Tokens.hs` in the folder `src/DummyCalc/Calc/Lexer/` and
 use a `Data` constructor to define them.
 
 The `Data` keyword allows for defining new data structures. We are wrapping a set of
 _newtype_ into a new `Data` type. So, when a function signature specifies the Data
 type created, it could be any of the new types that are defined within it. You
-can think of them as a combination of both, structs and enums. The `data`
-declaration looks like:
+can think of them as a combination of both, structs and enums. In `haskell` this
+declaration is known as algebraic data types.
+
+The `data` declaration looks like:
 
 ```haskell
 data <Type-Name> <type-args>
@@ -194,11 +196,12 @@ data Token
 
 In Haskell, we can extend a `custom type` with the properties of other classes.
 For example, in the example above, We are extending, or deriving the class `Eq`
-which offers the method `(==) a a`. This method returns `True` if both parameters
+which offers the method `(==)`. This method returns `True` if both parameters
 are equal. This means that our `Tokens` can be compared between them. If we need
 more control over the method that the class provides, we can define an instance
 of a type class manually.
 
+<a id="code-snippet--ex:instanceShow"></a>
 ```haskell
 instance Show Token where
   show TokLeftParen  = "'('"
@@ -212,8 +215,10 @@ instance Show Token where
   show (TokError char) = "Unrecogniced token at " <> char
 ```
 
-In this case, we are overwriting the `show` function. Now, when the program tries to
-print any of the tokens, will evaluate our custom function.
+In this case, we are applying something similar to the polymorphism in `POO`. Now,
+when we call the function `show` with and argument of type `Token`, the function
+that will be called will be one of the defined above, depending on the element
+that have to be _showed_.
 
 
 ### Lexical Analysis {#lexical-analysis}
@@ -224,7 +229,7 @@ can be defined as the process of reading a text and assembling it into a sequenc
 of _lexemes_ or _tokens_.
 
 We can make a function that reads the string and returns a list of Token. This
-function is written in the file `src/DummyCalc/Lexer.hs`
+function is written in the file `src/DummyCalc/Calc/Lexer.hs`
 
 <a id="code-snippet--ex:lexer"></a>
 ```haskell
@@ -255,14 +260,18 @@ This is a recursive function that reads character by character the input, and ha
 4.  Evaluate if the character is a digit, an operation, or an error, then prepend the corresponding Token to the result of the next execution.
 
 This is a good example of how the language works. The lexer function is
-implemented following _pattern match_ on the argument, the `as (@)` operator which
-allows us to assign a name to a pattern for its use on the right-hand, and
-`guards` that acts like `if elif else` in other languages. When we are defining a function
-with `guards`, we do not use the equal sign after the definition, instead, we use
-it after each condition.
+implemented following:
 
-So with `xs@(x:xs')`, we are define `xs` as the whole input, `x` as the first
-character (the head) and `xs'` as the rest of the input (the tail).
+-   _pattern match_ on the argument. It means, decide which operation execute based
+    on some specifications of the argument. In this case, we are checking if the
+    string is empty with the `lexer "" = []` rule, or if it has almost one element
+    `lexer (x:xs)`
+-   The `as (@)` operator which allows us to assign a name to a pattern for its use
+    on the right-hand. So with `xs@(x:xs')`, we are define `xs` as the whole input, `x`
+    as the first character (the head) and `xs'` as the rest of the input (the tail).
+-   `Guards` that acts like `if elif else` in other languages. **Note that** when we are
+    defining a function with `guards`, we do not use the equal sign after the
+    definition, instead, we use the equal sign after each condition.
 
 The function defined in the listing [1](#code-snippet--ex:lexer), use some helpers function.
 `isSpace` and `isDigit` are defined in `Data.Char`. In case, the character at this
@@ -331,7 +340,7 @@ readOperator xs = case stringToOperator op of
 ### Test Suit {#test-suit}
 
 Now we have a function that read a String as input and returns a list of
-/Token/s, but we need to test it. To write the test suit, I use the [hspec](https://hspec.github.io/) library.
+_Tokens_, but we need to test it. To write the test suit, I use the [hspec](https://hspec.github.io/) library.
 This library or framework, allows automatic test discover. This library, get a
 list of modules that contain tests and execute them, following the TDD
 principle. This practice help us to be sure our code works fine.
@@ -368,7 +377,8 @@ With all of them, we add the following instruction to invoke the `hspec-discover
 #### Test the lexer function {#test-the-lexer-function}
 
 Once we set up the test suit, we can write our first tests in the file
-`test/LexerSpec.hs`. Remember that all the modules have to end with "Spec" to be discovered.
+`test/LexerSpec.hs`. Remember that all the modules have to end with "Spec" to be
+discovered.
 
 ```haskell
 module LexerSpec where
@@ -509,8 +519,14 @@ instance Eq Operation where
 data Variable
 ```
 
-As you can see, the Value only has one constructor, so we can use `newtype`
+As you can see, our `Value` only has one constructor, so we can use `newtype`
 instead of `data`, But the process is the same.
+
+At the code-block above, we can see two ways of extends a class, the first one
+is using the `case of` operator, which works like a `switch`. When the `op` matches
+with one of the options, the function returns the right part of the evaluation.
+The part that are after the arrow. On the other hand, the second extensions
+works in the same way we see above in
 
 
 ### Write the parser {#write-the-parser}
@@ -527,9 +543,73 @@ working down the levels. By contrast, a _bottom-up parser_, first recognizes the
 low-level syntactic units and build the parser from these towards the root.
 
 For our _dummy calc_ we can represent the syntax trees using algebraic data types.
-Using the implementation in [42 Abstract Syntax Tree](https://john.cs.olemiss.edu/~hcc/csci450/ELIFP/Ch42/42_Abstract_Syntax.html)
+
+Using the implementation in [42 Abstract Syntax Tree](https://john.cs.olemiss.edu/~hcc/csci450/ELIFP/Ch42/42_Abstract_Syntax.html), with a few modifications
+
+<a id="code-snippet--ex:defineExpression"></a>
+```haskell
+type StatementList = [Statement]
+
+data Program = Program StatementList deriving (Show, Eq)
+data Statement
+  = Statement Expr
+  | Ass La.Variable Expr
+  deriving (Show, Eq)
+
+data EOF = EOF deriving (Show, Eq)
+data EOS = EOS deriving (Show, Eq)
+
+data Expr
+  = Add Expr Expr
+  | Sub Expr Expr
+  | Mul Expr Expr
+  | Div Expr Expr
+  | Var La.Variable
+  | Val La.Value
+  deriving (Eq)
+```
+
+In the block , we are defining a basic set of rules, for
+example, that a program is a  `Statement` list. A `Statement` is either an Statement
+followed by an Expression, or an assignation. `EOF` and `EOS` correspond with End of
+File and End of Sentence respectively and different types of Expressions.
+
+At the same time, we could need some way to display or represent as String this
+kind of structures, so we can extend the `Show` class with our custom data types.
+
+<a id="code-snippet--displayExpr"></a>
+```haskell
+instance Show Expr where
+  show (Val v) = show v
+  show (Var n) = show n
+  show (Add l r) = showPar "+" l r
+  show (Sub l r) = showPar "-" l r
+  show (Mul l r) = showPar "*" l r
+  show (Div l r) = showPar "/" l r
+
+showPar :: String -> Expr -> Expr -> String
+-- showPar o e1 e2 = "(" <> show e1 <> " " <> o <> " " <> show e2 <> ")"
+showPar o e1 e2 = "(" <> o <> " " <> show e1 <> " " <> show e2 <> " )"
+```
+
+Finally, we need to handle the possible errors from the input our language is reading.
 
 ```haskell
+data ParErr
+  = MissingAddOp [Token]
+  | MissingMulOp [Token]
+  | MissingValue [Token]
+  | MissingLeftParen [Token]
+  | MissingRightParen [Token]
+  | MissingEndOfFile [Token]
+  | InvalidAssignExpression [Token]
+  | MissingSemiColon     Statement [Token]
+  | MissingFactor        ParErr [Token] Int
+  | MissingStatementList ParErr [Token] Int
+  | InvalidProgram       ParErr [Token] Int
+  | NotImplemented String
+  deriving (Eq)
+
 instance Show ParErr where
   show (MissingAddOp xs) =
     "MissingAddOp: Missing add-like operator at \"" <> show (takeTokens xs) <> "\""
@@ -542,19 +622,36 @@ instance Show ParErr where
   show (MissingValue xs) =
     "MissingValue: Missing value at \"" <> show (takeTokens xs) <> "\""
   show (MissingLeftParen xs) =
+    "MissingLeftParen: Missing '(' at \"" <> show (takeTokens xs) <> "\""
+  show (MissingRightParen xs) =
+    "MissingRightParen: Missing ')' at \"" <> show (takeTokens xs) <> "\""
+  show (MissingEndOfFile xs) =
+    "MissingEndOfFile: Missing EOF character at \"" <> show (takeTokens xs) <> "\""
+  show (MissingStatementList e xs l) =
+    "MissingStatementList: Missing statement list at \"" <> show (takeTokens xs) <>
+    "\" with nested error \n" <> (replicate l '\t') <> show e
+  show (InvalidProgram err xs l) =
+    "InvalidProgram: Invalid program expression at \"" <> show (takeTokens xs) <>
+    "\" with nested error \n" <> (replicate l '\t') <> show err <> "]"
+  show (MissingSemiColon e xs) =
+    "MissingSemiColon: Missing semicolon in Statement" <> show e <>
+    " at \"" <> show (takeTokens xs) <> "\""
+  show (InvalidAssignExpression xs) =
+    "InvalidAssignExpression: Invalid assign expression at \"" <> show (takeTokens xs) <> "\""
+  show (NotImplemented f) = "Function: " <> f <> " is not implemented"
 ```
 
 Each node has an operator and two sides, that are other Expression. With this
 representation, we can build any operation and keep the priorities.
 
-For example, in the AST image, we have the operation \\(-x + 2 \* y^3 \\). We
+For example, in the AST image, we have the operation \\(-x + 2 \* y^3\\). We
 did not implemented the pow operator or the use of variables, so we will replace
 the \\(x = 5\\) and the \\(y = 9\\). Also, the _pow_ operation, will be replaced by
-\\( y\*y\*y) \\). Now, we have the expression \\(-5 + 2 \* 9 \* 9 \* 9\\). This
-expression is equivalent to (+ (-5) (\* (\* (\* 2 9) 9) 9)). As a AST, it is
+\\(y\*y\*y)\\). Now, we have the expression \\(-5 + 2 \* 9 \* 9 \* 9\\). This
+expression is equivalent to \\((+ (-5) (\* (\* (\* 2~9) 9) 9))\\). As a AST, it is
 represent as:
 
-{{< figure src="branch_system_dark.png" >}}
+{{< figure src="ASE-Example-2024-09-20.excalidraw.png" alt="represent the AST for the operation -5 + 2 * 9 * 9 * 9" >}}
 
 
 #### Rules {#rules}
@@ -562,9 +659,9 @@ represent as:
 When we describe the grammars, we define 3 types of production rules, sequence,
 repetition and optional. So, with this in mind, we need to design the formal
 grammar used to parse the input and transform it into an AST. It is important to
-remember that we need to keep the order of the priorities, the associative and
-distribute properties. It is not the same \\( 5 -3 +2 \neq 5 - (3 + 2) \\) or
-\\( 5 - 3 \* 2 \neq (5 - 3)\*2 \\). To ensure this, we will move down the multiplication
+remember that we need to keep the order of the priorities, and the associative and
+distribute properties. It is not the same \\(5 -3 +2 \neq 5 - (3 + 2)\\) or
+\\(5 - 3 \* 2 \neq (5 - 3)\*2\\). To ensure this, we will move down the multiplication
 and division operation, and keep up the sum and difference.
 
 **Note** For portability, I will use uppercase for non-terminal symbols, and
@@ -593,7 +690,7 @@ returns a tuple with an Expression and the rest of tokens. The functions can be
 categorize based on the type of rule they are represented.
 
 <a id="code-snippet--eq:rules"></a>
-```haskell
+```bnf
 S  ::= E
 E  ::= T  U' -- Sequence
 U' ::= { U } -- zero or more ocurrence
@@ -610,14 +707,53 @@ G  &::= ('*' | '/') F
 The rule 1 in table [1](#table--tb:rules), can be refactor into the equation
 . Now we have tree rules, all of them match only one of the rules
 pattern described previously. The implementation, is in the file
-`src/DummyCalc/Parser.hs`.
+`src/DummyCalc/Parser.hs` and can be show in listing [4](#code-snippet--ex:parseExpressionDef).
+The same can be apply with the terms as show the equation and in
+the listing [5](#code-snippet--ex:parseTermsDef)
 
 <a id="code-snippet--eq:rule1"></a>
-```haskell
+```bnf
 expression ::=  term moreTerms
 moreTerms  ::=  { addterm }
 addterm    ::= addop term
 ```
+
+<a id="code-snippet--ex:parseExpressionDef"></a>
+```haskell
+parseExpression :: [Token] -> (Either ParErr Expr, [Token])
+parseExpression xs =
+  case parseTerm xs of
+    (Right t1, ys) ->
+      let (terms, zs) = parseMoreTerms ys
+      in  (Right (makeBinOpSeq t1 terms), zs)
+    (err@(Left _), _) -> (err, xs)
+
+-- Repetition: <moreterms> ::= { <addterm> }
+parseMoreTerms :: [Token] -> ([AddTerm], [Token])
+parseMoreTerms xs =
+  case parseAddTerm xs of
+    (Right (op,ex), ys) ->
+      let (terms, zs) = parseMoreTerms ys
+      in ((op,ex):terms,zs)
+    (Left _, _) -> ([], xs)
+
+-- Sequence <addterm> ::= <addop> <term>
+parseAddTerm :: [Token] -> (Either ParErr AddTerm, [Token])
+parseAddTerm xs'@((TokOperator op):xs)
+  | isAddOp op = case parseTerm xs of
+                   (Right ex, zs) -> (Right (op,ex), zs)
+                   (Left err, _) -> (Left err, xs')
+parseAddTerm xs' = (Left $ MissingAddOp xs', xs')
+
+isAddOp :: La.Operation -> Bool
+isAddOp La.Summatory = True
+isAddOp La.Difference = True
+isAddOp _ = False
+```
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--ex:parseExpressionDef">Code Snippet 4</a>:</span>
+  parse expression
+</div>
 
 <a id="code-snippet--eq:rule2"></a>
 ```haskell
@@ -626,15 +762,93 @@ moreFactors ::= { mulFactor }
 mulFactor   ::= mulOp factor
 ```
 
+<a id="code-snippet--ex:parseTermsDef"></a>
+```haskell
+parseTerm :: [Token] -> (Either ParErr Expr, [Token])
+parseTerm xs =
+  case parseFactor xs of
+    (Right f1, ys) ->
+     let (factors, zs) = parseMoreFactors ys
+     in  (Right (makeBinOpSeq f1 factors), zs)
+    (err@(Left _), _) -> (err, xs)
+
+
+parseMoreFactors :: [Token] -> ([MulFactor], [Token])
+parseMoreFactors xs =
+  case parseMulFactor xs of
+    (Right (op,ex), ys) ->
+      let (factors, zs) = parseMoreFactors ys
+      in  ((op,ex):factors, zs)
+    (Left _, _) -> ([], xs)
+
+parseMulFactor :: [Token] -> (Either ParErr MulFactor, [Token])
+parseMulFactor ((TokOperator op):xs)
+  | isMulOp op = case parseFactor xs of
+                   (Right ex, zs) -> (Right (op, ex), zs)
+                   (Left err, _)  -> (Left err, xs)
+parseMulFactor xs = (Left $ MissingMulOp xs, xs)
+
+isMulOp :: La.Operation -> Bool
+isMulOp La.Multiplication = True
+isMulOp La.Division = True
+isMulOp _ = False
+```
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--ex:parseTermsDef">Code Snippet 5</a>:</span>
+  parse terms
+</div>
+
 The rule 3, that apply to a factor, has 2 options. Convert the factor into a
 value, or into a nest expression. This case can be represented a `try/catch` where
 first try to convert into a value, if the program fails, then try to convert
-into a nest expression.
+into a nest expression. The implementation is something similar to listing
+[6](#code-snippet--ex:parseFactorDef), where each option has its own function.
+
+<a id="code-snippet--ex:parseFactorDef"></a>
+```haskell
+parseFactor :: [Token] -> (Either ParErr Expr, [Token])
+parseFactor xs =
+  case parseVar xs of
+    r@(Right _, _) -> r
+    _ ->
+      case parseVal xs of
+        r@(Right _, _) -> r
+        _ ->
+          case parseNestExpr xs of
+            r@(Right _, _) -> r
+            (Left m, ts) -> (Left $ MissingFactor m ts 0, ts)
+
+
+parseVal :: [Token] -> (Either ParErr Expr, [Token])
+parseVal ((TokNumber n):xs) = (Right (Val n), xs)
+parseVal ((TokOperator La.Difference):(TokNumber (La.NumValue n)):xs) =
+  (Right $ Val $ La.NumValue (-n), xs)
+parseVal xs = (Left $ MissingValue xs, xs)
+
+parseVar :: [Token] -> (Either ParErr Expr, [Token])
+parseVar ((TokVar x):xs) = (Right (Var x), xs)
+parseVar xs = (Left $ NotImplemented "parseVar", xs)
+
+-- | <nestexpr> ::= ( <expr> )
+parseNestExpr :: [Token] -> (Either ParErr Expr, [Token])
+parseNestExpr xs@(TokLeftParen:ys) =
+  case parseExpression ys of
+    (ex@(Right _), zs) ->
+      case zs of
+        (TokRightParen:as) -> (ex,as)
+        _                  -> (Left $ MissingRightParen zs, xs)
+    (err@(Left _), _) -> (err, xs)
+parseNestExpr xs = (Left $ MissingLeftParen xs, xs)
+```
+<div class="src-block-caption">
+  <span class="src-block-number"><a href="#code-snippet--ex:parseFactorDef">Code Snippet 6</a>:</span>
+  parse factors
+</div>
 
 The final grammar looks like:
 
 <a id="code-snippet--eq:rules"></a>
-```haskell
+```bnf
 S  &::= E
 E  &::= T  U' -- Sequence
 U' &::= { U } -- zero or more ocurrence
@@ -651,11 +865,12 @@ G  &::= ('*' | '/') F
 
 #### Combining the expression {#combining-the-expression}
 
-The last part consists on combining the expression into operations. At this
-point, we only have binary operations, so we need to combine 2 expression within
-a operator just defined. Also, we need to combine them left to right. So, we
-need to read a initial expression, and a list of `(operation,  expression)` and
-return a new expression, as we can see in `src/DummyCalc/Parser/AST.hs`.
+The final step is to combine expressions into operations. Since we are only
+working with binary operations, we need to combine two expressions at a time
+using the previously defined operator. The expressions must be combined from
+left  to right. Therefore we begin with an initial expression and a list of
+pairs, each containing an operator and an expression. The result is a new
+expression, as shown in `src/DummyCalc/Parser/AST.hs`.
 
 ```haskell
 -- | Shortcut for the header 2 expressions as parameters and returns a new one.

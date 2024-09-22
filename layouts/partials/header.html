@@ -3,7 +3,7 @@
     {{ $profile := resources.Get $data.BasicInfo.Photo }}
     {{ if $profile}}
     <img class="header_profile"
-    {{ with $profile.Fit (printf "%dx%d webp" 500 $profile.Height) }}
+    {{ with $profile.Fit (printf "%dx%d webp" 200 $profile.Height) }}
          src="{{.RelPermalink}}"
     {{end }}
          alt="{{ range .Params.Author }}{{.}}{{ end }} picture">

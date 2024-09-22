@@ -6,161 +6,161 @@
 @use "../components/tags";
 @use "../components/buttons";
 @use "../abstracts/functions/shadow";
+.author {
+    .content {
+        @include mixin.p-(6, 'lr');
 
-.content {
-    @include mixin.p-(6, 'lr');
-
-    @include mixin.media-lg {
-        @include mixin.p-(3, 'lr');
-    }
-
-    p {
-        @include mixin.m-(1, 'tb');
-        @include mixin.flex(row, null, ("wrap": wrap));
-
-        gap: 0.5rem;
-    }
-
-    hr {
-        border-color: transparent;
-        border-top: 3px dashed var(--light-gray);
-        display: inline-block;
-        width: 100%;
-    }
-
-    h3 {
-        @include mixin.font-size('2xl');
-        @include mixin.m-(6, 'tb');
-
-        position: relative;
-        color: colors.color(secondary);
-
-        @include mixin.pcs-after {
-            @include mixin.pos-absolute(0, $bottom: calc(-1 / 3 * var(--size)));
-            @include mixin.w-('full');
-            @include mixin.h-(2);
-
-            background-color: colors.color(aux);
+        @include mixin.media-lg {
+            @include mixin.p-(3, 'lr');
         }
 
-    }
+        p {
+            @include mixin.m-(1, 'tb');
+            @include mixin.flex(row, null, ("wrap": wrap));
 
-    ul {
-        @include mixin.m-(2, 't');
-
-        margin: revert;
-        padding: revert;
-        list-style: revert;
-
-        li {
-            @include mixin.font-size('base');
-        }
-    }
-
-    article {
-        @include cards.card($rounded: lg);
-
-        &:not(:nth-of-type(1)) {
-            @include mixin.m-(3, 't');
+            gap: 0.5rem;
         }
 
         hr {
-            display: none;
-        }
-
-        &+div {
-            @include mixin.flex(col, $flex-position: (align: center, justify: center));
-            @include mixin.p-d-(4, 0);
-
-            button {
-                @extend %button;
-                @extend %button--primary;
-                
-
-            }
-        }
-    }
-}
-
-.cvevent {
-    h4 {
-        @include mixin.w-("4/5");
-        @include mixin.font-size(2);
-
-        color: colors.color("gray");
-    }
-
-    &-place {
-        color: colors.color(secondary);
-
-        @include mixin.font-size('base');
-    }
-
-    &-time {
-        @include mixin.font-size('sm');
-
-        color: colors.color("gray");
-        font-weight: bold;
-    }
-}
-
-.cvtag {
-    @include tags.tag(sm, colors.color("background", "50", false), true);
-}
-
-.cvskill {
-    @include mixin.w-("4/5");
-    @include mixin.m-(2, 'b');
-    @include mixin.flex(row, (".cvskill-name": 3, ".cvskill-values": 1));
-
-    $color: colors.color(primary);
-
-    &-values {        
-        justify-content:  space-evenly;
-
-        span {
-            --size: 25px;
-
+            border-color: transparent;
+            border-top: 3px dashed var(--light-gray);
             display: inline-block;
-            background-color: colors.color(light-gray);
+            width: 100%;
+        }
 
-            @include mixin.square(var(--size));
-            @include mixin.br-rounded(full);
-            @include mixin.m-(1, 'lr');
-        }            
-        %after {
+        h3 {
+            @include mixin.font-size('2xl');
+            @include mixin.m-(6, 'tb');
+
             position: relative;
+            color: colors.color(secondary);
 
-            &::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                right: 0;
-                background-color:  $color;
-                height: var(--size);
-                width: calc(var(--size) / 2);
-                border-radius: 100px 0 0 100px;
+            @include mixin.pcs-after {
+                @include mixin.pos-absolute(0, $bottom: calc(-1 / 3 * var(--size)));
+                @include mixin.w-('full');
+                @include mixin.h-(2);
+
+                background-color: colors.color(aux);
+            }
+
+        }
+
+        ul {
+            @include mixin.m-(2, 't');
+
+            margin: revert;
+            padding: revert;
+            list-style: revert;
+
+            li {
+                @include mixin.font-size('base');
             }
         }
-        %span {
-            background-color: $color;        
+
+        article {
+            @include cards.card($rounded: lg);
+
+            &:not(:nth-of-type(1)) {
+                @include mixin.m-(3, 't');
+            }
+
+            hr {
+                display: none;
+            }
+
+            &+div {
+                @include mixin.flex(col, $flex-position: (align: center, justify: center));
+                @include mixin.p-d-(4, 0);
+
+                button {
+                    @extend %button;
+                    @extend %button--primary;
+                    
+
+                }
+            }
+        }
+    }
+
+    .cvevent {
+        h4 {
+            @include mixin.w-("4/5");
+            @include mixin.font-size(2);
+
+            color: colors.color("gray");
         }
 
-        @for $i from 1 through 10 {
-            @for $j from 1 through math.floor($i * 0.5) {
-                $val: $i * 0.5;
-                &[data-val="#{$val}"] span:nth-child(#{$j}) {
-                    @extend %span;
-                }
+        &-place {
+            color: colors.color(secondary);
 
-                @if $val != math.ceil($val) {
-                    &[data-val="#{$val}"] span:nth-child(#{math.ceil($val)}) {
-                        @extend %after;
-                        
+            @include mixin.font-size('base');
+        }
+
+        &-time {
+            @include mixin.font-size('sm');
+
+            color: colors.color("gray");
+            font-weight: bold;
+        }
+    }
+
+    .cvtag {
+        @include tags.tag(sm, colors.color("background", "50", false), true);
+    }
+
+    .cvskill {
+        @include mixin.w-("4/5");
+        @include mixin.m-(2, 'b');
+        @include mixin.flex(row, (".cvskill-name": 3, ".cvskill-values": 1));
+
+        $color: colors.color(primary);
+
+        &-values {        
+            justify-content:  space-evenly;
+
+            span {
+                --size: 25px;
+
+                display: inline-block;
+                background-color: colors.color(light-gray);
+
+                @include mixin.square(var(--size));
+                @include mixin.br-rounded(full);
+                @include mixin.m-(1, 'lr');
+            }            
+            %after {
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    background-color:  $color;
+                    height: var(--size);
+                    width: calc(var(--size) / 2);
+                    border-radius: 100px 0 0 100px;
+                }
+            }
+            %span {
+                background-color: $color;        
+            }
+
+            @for $i from 1 through 10 {
+                @for $j from 1 through math.floor($i * 0.5) {
+                    $val: $i * 0.5;
+                    &[data-val="#{$val}"] span:nth-child(#{$j}) {
+                        @extend %span;
+                    }
+
+                    @if $val != math.ceil($val) {
+                        &[data-val="#{$val}"] span:nth-child(#{math.ceil($val)}) {
+                            @extend %after;
+                            
+                        }
                     }
                 }
             }
         }
     }
 }
-
