@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@use "sass:string";
 
 /// Repeat a string a number of times and return the result separated by a delimiter
 /// @param {String} $str - The string to repeat
@@ -17,4 +18,14 @@
     }
 
     @return $result;
+}
+
+
+@function replace($search, $replace, $string) {
+    $index: string.index($string, $search);
+    @if $index {
+        @return string.slice($string, 1, $index - 1) + $replace + replace($search, $replace, string.slice($string, $index + string.length($search)));
+    }
+    
+    @return $string;
 }

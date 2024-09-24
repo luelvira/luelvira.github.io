@@ -11,6 +11,7 @@
 #+HUGO_BUNDLE: tinny_calc
 #+HUGO_CUSTOM_FRONT_MATTER: :Source https://github.com/luelvira/tinny_calc :projects tinny_calc
 #+FILETAGS: @HASKELL
+#+HUGO_DRAFT: true
 
 * Tinny Calc
 :PROPERTIES:
@@ -23,6 +24,7 @@
 :EXPORT_FILE_NAME: tinny_calc_page
 :EXPORT_TITLE: Tinny Calc
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects tinny_calc
+:export_hugo_draft: true
 :END:
 
 This projects aims to be used as an entry point to learn [[https://www.haskell.org/][haskell]] and how to

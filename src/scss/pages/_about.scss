@@ -6,7 +6,7 @@
 @use "../components/tags";
 @use "../components/buttons";
 @use "../abstracts/functions/shadow";
-.author {
+.authors {
     .content {
         @include mixin.p-(6, 'lr');
 

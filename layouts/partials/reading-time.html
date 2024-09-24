@@ -1,0 +1,5 @@
+<span class="publication-date">
+{{ .Date | time.Format  ":date_medium"}}
+</span> | <span class="readtime">
+{{ i18n "readtime" }}: {{ .ReadingTime }} minute{{ if (ne .ReadingTime 1) }}s{{ end }}
+</span>

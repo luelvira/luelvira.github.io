@@ -3,7 +3,7 @@ title = "DataWave"
 author = ["Lucas Elvira Martín"]
 description = "Master's thesis that aims to build a generic NLP model generator with the posibility to edit and analyze the results"
 date = 2024-06-03
-lastmod = 2024-09-10T20:05:31+02:00
+lastmod = 2024-09-23T13:36:03+02:00
 draft = false
 weight = 1002
 projects = "datawave"
@@ -18,6 +18,22 @@ dynamic graph force representations that showcase the interconnections between
 terms, allowing users to explore and manipulate these relationships through
 operations such as creating, deleting, renaming terms, and adjusting the weight
 of connections.
+
+<div class="gap-7 cols-8">
+
+<div class="flex-align__center col-1-4">
+
+{{< figure src="results_graph_crop.png" alt="Use case: Viewing the result of the process" >}}
+
+</div>
+
+<div class="flex-align__center col-4-auto">
+
+{{< figure src="results_graph_edit-edited.png" alt="Use case: Editing the results provided by the model" >}}
+
+</div>
+
+</div>
 
 The project had two phases: to develop a robust tool for NLP tasks, and to
 create two distinct interfaces for interacting with the software. The first
@@ -34,6 +50,8 @@ Transformers, and PyTorch for machine learning and NLP tasks. In order to store
 and manage the huge data volume, the backend relies on MongoDB for database
 management, while the frontend was developed using SCSS, TypeScript, JavaScript,
 and D3JS for dynamic graph visualizations.
+
+{{< figure src="process_1.png" alt="Use case: Use the web interface" class="w-1/2 m-auto" >}}
 
 This project started as my undergraduate thesis (TFG) and continue as my
 graduate (TFM) thesis, with the project being owned by the department where I

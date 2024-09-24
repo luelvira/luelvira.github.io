@@ -1,8 +1,10 @@
 @charset "UTF-8";
 @use "sass:map";
 @use "sass:string";
+@use "sass:selector";
 @use "../variables/media" as *;
 @use "../variables/values" as vals;
+@use "../functions/strings" as str;
 
 @mixin -size($key, $property) {
     #{$property}: -size($key, $property);
@@ -47,3 +49,18 @@
     width: $size;
     height: $size;
 }
+
+@mixin width-bem {
+    @each $key, $val in $screens {
+        .w-#{$key} {
+            @include w-($key);
+        }
+    }
+
+    @each $key, $val in $width {
+        #{str.replace("/", "\\/", ".w-#{$key}")} {
+            @include w-($key);
+        }
+    }
+}
+

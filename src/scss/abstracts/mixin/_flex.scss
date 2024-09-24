@@ -2,10 +2,11 @@
 @use "sass:math";
 
 $flex-modifies: (
-    "flex": ("start", "end"),
     "default": ("normal", "center", "stretch"),
+    "wrap": ("nowrap", "wrap", "wrap-reverse"),
+    "flex": ("start", "end"),
     "space": ("between", "around", "evenly"),
-    "wrap": ("nowrap", "wrap", "wrap-reverse")
+    "align": ("start", "end", "center", "baseline", "stretch")
 );
 
 @mixin flex($dir: 'col', $grow: null, $flex-position: null) {
@@ -63,10 +64,15 @@ $flex-modifies: (
                     display: flex;
                     flex-wrap: #{$val};
                 }
-            } @else {
+            } @else if $key == "flex" or $key == "space" {
                 .flex__#{$val}, %flex__#{$val} {
                     display: flex;
                     justify-content: #{$key}-#{$val};
+                }
+            } @else if $key == "align" {
+                .flex-#{$key}__#{$val} {
+                    display: flex;
+                    align-items: #{$val};
                 }
             }
         }

@@ -1,7 +1,11 @@
 {{ define "main" }}
 {{ partial "breadcrumbs.html" (dict "single" true "context" .) }}
+
 <main class="wrap {{ .Page.Type }} single">
     <h1>{{ .Title }}</h1>
+    <section class="meta">
+      {{ partial "reading-time" . }}
+    </section>
     <section class="content">
     {{ .Content }}
     </section>

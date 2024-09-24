@@ -3,9 +3,9 @@ title = "Tinny Calc"
 author = ["Lucas Elvira Martín"]
 description = "Build a tinny programming languages to learn haskell"
 date = 2024-08-18
-lastmod = 2024-09-10T19:14:00+02:00
+lastmod = 2024-09-23T11:48:37+02:00
 categories = ["HASKELL"]
-draft = false
+draft = true
 weight = 1002
 projects = "tinny_calc"
 +++

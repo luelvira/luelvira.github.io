@@ -1,2 +1,2 @@
-{{ $main := resources.Get "js/main.js" | js.Build "main.js" | fingerprint }}
+{{ $main := resources.Get "src/js/main.js" | js.Build "js/main.js" }}
 <script src="{{ $main.RelPermalink }}" async type="module"> </script> 

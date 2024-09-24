@@ -80,10 +80,14 @@
         @include mixin.reset(max-width);
 
         @include mixin.gap(10, 'x');
-        h1 {
+        h1, .meta {
             @include mixin.max-w-('2xl');
             @include mixin.w-('4/5');
             @include mixin.m-d-(0, auto);
+        }
+        .meta {
+            color: colors.color(background, 800);
+            @include mixin.font-size('sm');
         }
         .content {
             @include mixin.max-w-('2xl');
@@ -99,6 +103,8 @@
         }
         .toc {
             @include mixin.media-max-xxl {display: none;}
+            flex-grow: 1;
+            max-width: 20%;
             &-wrap {
               @include cards.shadow(2);
               @include mixin.p-d-(4);
@@ -120,7 +126,7 @@
                   &>ul {
                       @include mixin.font-size(sm);
                       li>ul {
-                      @include mixin.font-size(xs);
+                          @include mixin.font-size(xs);
                       }
                   }
                   ul {
@@ -128,12 +134,38 @@
                       @include mixin.m-(2, 'b');
                       li {
                           @include mixin.m-(1, 'b');
+                          &.active {
+                              &>a{
+                                  color: colors.color(background, 50);
+                                  &::after {
+                                      transform: scaleY(1);
+                                  }
+                              }
+
+                          }
+                          a {
+                              display: block;
+                              position: relative;
+                              @include mixin.p-(2, 'l');
+                              @include mixin.pcs-after {
+                                  @include mixin.pos-absolute($left: 0, $top: 0);
+                                  @include mixin.w-(full);
+                                  @include mixin.h-(full);
+                                  transform: scaleY(0);
+                                  transform-origin: 0 0;
+                                  background-color: colors.color(primary, 500);
+                                  transition-property: transform;
+                                  transition-duration: .25s;
+                                  transition-timing-function: ease-in-out;
+                                  z-index: -1;
+                              }
+                          }
+                          &.bottom>a::after{transform-origin: 0 100%;}
+                          &.up>a::after {transform-origin: 0 0;}
                       }
                   }
               }
             }
-            flex-grow: 1;
-            max-width: 20%;
             nav {
                 li {
                     list-style: none;

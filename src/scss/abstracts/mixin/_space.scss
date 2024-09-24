@@ -65,3 +65,33 @@
         gap: size.get-size($key);
     }
 }
+
+@mixin gap-bem {
+    @for $i from 1 to 13 {
+        @each $val in ('x', 'y', false) {
+            $class: if($val, '-#{$val}', '');
+            .gap#{$class}-#{$i} {
+                @include gap($key: $i, $dir: $val);
+            }
+        }
+    }
+}
+
+@mixin margin-bem {
+    $dirs: ('x': 'lr', 'y': 'tb');
+    @for $i from 1 to 13 {
+        @each $key, $val in $dirs {
+            .m-#{$key}-#{$i} {
+                @include m-($i, $val);
+            }
+        }
+        @each $key in ('l', 'r', 't', 'b') {
+            .m-#{$key}-#{$i} {
+                @include m-($i, $key);
+            }
+        }
+        .m-auto {
+            margin: auto;
+        }
+    }
+}

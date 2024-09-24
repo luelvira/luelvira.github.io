@@ -33,13 +33,16 @@ title           = 'Lucas Elvira-Martin CV'
         pageRef = '/cv'
         url     = '/cv'
         weight  = 2
-    [[menus.about]]
+        identifier = 'CV'
+    [[menus.main]]
         name    = 'Experience'
-        url     = '/#experience'
+        url     = '#experience'
         weight  = 2
-    [[menus.about]]
+        parent = 'CV'
+    [[menus.main]]
         name    = 'Education'
-        url     = '/#education'
+        url     = '/cv/#education'
+        parent = 'CV'
         weight  = 3
 
 [params]

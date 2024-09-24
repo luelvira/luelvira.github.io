@@ -1,29 +1,14 @@
-#+TITLE: User Interfaces
-#+DATE: 2023-09-02
-#+EMAIL: lucaselvira96@gmail.com
-#+AUTHOR:    Lucas Elvira Martín
-#+HUGO_BASE_DIR: ../../../
-#+HUGO_SECTION: ./projects
-#+HUGO_AUTO_SET_LASTMOD: t
-#+HUGO_WEIGHT: auto
-#+EXPORT_FILE_NAME: _index
-#+HUGO_BUNDLE: ui
-#+DESCRIPTION: Web page generate for teach web development at University
-#+HUGO_CUSTOM_FRONT_MATTER: :ProjectLink https://luelvira.github.io/interfaces-usuario/
-#+HUGO_CUSTOM_FRONT_MATTER: :Source https://github.com/luelvira/interfaces-usuario
-#+FILETAGS: @WEB
-* User interfaces                                                      :@WEB:
-:PROPERTIES:
-:EXPORT_FILE_NAME: _index
-:END:
-
-* The user interfaces projects content
-:PROPERTIES:
-:EXPORT_HUGO_BUNDLE: ui/user_interface_page
-:EXPORT_FILE_NAME: index
-:EXPORT_TITLE: User Interfaces
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects ui
-:END:
++++
+title = "User Interfaces"
+author = ["Lucas Elvira Martín"]
+description = "Web page generate for teach web development at University"
+date = 2023-09-02
+lastmod = 2024-09-23T13:56:27+02:00
+categories = ["WEB"]
+draft = false
+weight = 1002
+projects = "ui"
++++
 
 There is a better way to learn how to build a web site, than building one? I
 don't think so! For this reason, I decided to start this project.
@@ -34,8 +19,7 @@ Carlos III de Madrid. The primary objective was to provide a hands-on learning
 platform where students could apply the concepts discussed during the course
 directly to a live project, fostering a deeper understanding of the material.
 
-#+ATTR_HTML: :alt Home page of the project :class w-1/2 m-auto
-[[file:home.png]]
+{{< figure src="home.png" alt="Home page of the project" class="w-1/2 m-auto" >}}
 
 The technology stack utilized for this project was both practical and
 educational, incorporating tools like org-publish for converting Org-mode files
@@ -58,6 +42,5 @@ platform was designed with broader aspirations in mind. The website aims to
 serve as a valuable resource for anyone interested in learning web development,
 regardless of their background.
 
-You can check the result at [[https://luelvira.github.io/interfaces-usuario/][interfaces-usuario]], and
-the code at [[https://github.com/luelvira/interfaces-usuario][code of interfaces de usuario]] 
-
+You can check the result at [interfaces-usuario](https://luelvira.github.io/interfaces-usuario/), and
+the code at [code of interfaces de usuario](https://github.com/luelvira/interfaces-usuario)

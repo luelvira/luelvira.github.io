@@ -49,27 +49,27 @@
        }
     }
 
-    .image_gallery {
-        @include mixin.m-(4, 't');
-        @include mixin.grid($cols: 1);
-        @include mixin.gap(2);
-
-        @include mixin.media-md {
-            @include mixin.grid($cols: 2);
-        }
-
-        @include mixin.media-xxl {
-            @include mixin.grid($cols: 3);
-        }
-
-        &__item {
-            @include mixin.m-(auto);
-
-            overflow-y: auto;
-            aspect-ratio: 16/9;
-            cursor: pointer;
-        }
-    }
+//    .image_gallery {
+//        @include mixin.m-(4, 't');
+//        @include mixin.grid($cols: 1);
+//        @include mixin.gap(2);
+//
+//        @include mixin.media-md {
+//            @include mixin.grid($cols: 2);
+//        }
+//
+//        @include mixin.media-xxl {
+//            @include mixin.grid($cols: 3);
+//        }
+//
+//        &__item {
+//            @include mixin.m-(auto);
+//
+//            overflow-y: auto;
+//            aspect-ratio: 16/9;
+//            cursor: pointer;
+//        }
+//    }
     .sticky-content--wrap {
         @include mixin.h-(full);
         

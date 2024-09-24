@@ -18,9 +18,10 @@
 
 * DataWave Content
 :PROPERTIES:
-:EXPORT_FILE_NAME: datawave_page
+:EXPORT_FILE_NAME: index
 :EXPORT_TITLE: DataWave
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :projects datawave
+:EXPORT_HUGO_BUNDLE: datawave/datawave_page
 :END:
 DataWave is an advanced tool developed in Python, designed to facilitate the
 training and customization of Natural Language Processing (NLP) models using
@@ -31,6 +32,21 @@ dynamic graph force representations that showcase the interconnections between
 terms, allowing users to explore and manipulate these relationships through
 operations such as creating, deleting, renaming terms, and adjusting the weight
 of connections.
+
+#+ATTR_HTML: :class gap-7
+#+begin_cols-8
+#+ATTR_HTML: :class flex-align__center
+#+begin_col-1-4
+#+ATTR_HTML: :alt Use case: Viewing the result of the process
+[[file:results_graph_crop.png]]
+#+end_col-1-4
+#+ATTR_HTML: :class flex-align__center
+#+begin_col-4-auto
+#+ATTR_HTML: :alt Use case: Editing the results provided by the model
+[[file:results_graph_edit-edited.png]]
+#+end_col-4-auto
+#+end_cols-8
+
 
 The project had two phases: to develop a robust tool for NLP tasks, and to
 create two distinct interfaces for interacting with the software. The first
@@ -47,6 +63,9 @@ Transformers, and PyTorch for machine learning and NLP tasks. In order to store
 and manage the huge data volume, the backend relies on MongoDB for database
 management, while the frontend was developed using SCSS, TypeScript, JavaScript,
 and D3JS for dynamic graph visualizations.
+
+#+ATTR_HTML: :alt Use case: Use the web interface :class w-1/2 m-auto
+[[file:process_1.png]]
 
 This project started as my undergraduate thesis (TFG) and continue as my
 graduate (TFM) thesis, with the project being owned by the department where I
