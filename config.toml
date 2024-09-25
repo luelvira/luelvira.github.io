@@ -1,6 +1,8 @@
 baseURL         = 'http://192.168.0.21:8000/'
 languageCode    = 'en-us'
 title           = 'Lucas Elvira-Martin CV'
+enableGitInfo   = true
+enableRobotsTXT = true
 
 
 [markup]
@@ -48,10 +50,16 @@ title           = 'Lucas Elvira-Martin CV'
 [params]
     math = true
     description = 'Discover innovative software development projects, practical tutorials, and insights from a passionate software engineer dedicated to solving real-world challenges.'
-        
+    [params.features]
+        [params.features.analytics]
+            enable = true
+
+[services]
+    [services.googleAnalytics]
+        ID = 'G-WPWSHPQKS1'
+
 [taxonomies]
     category    = 'categories'
     tag         = 'tags'
     project     = 'projects'
     author      = 'author'
-    post        = 'posts'

@@ -252,3 +252,8 @@ Node.js and Python.
 
 {{{cvskill(English,3.5)}}}
 
+
+*** Publications
+1. [[https://doi.org/10.1145/3656650.3656734][DataWave - An interactive
+  and visual tool for creating and exploring large knowledge bases]], Jun, 2024
+2. [[https://www.semanticscholar.org/paper/In-Unity%2C-There-Is-Strength%3A-On-Weighted-Voting-for-Cruz-Elvira/25836733520d910a2c197be30abded03b3c86eef?utm_source=direct_link][In Unity, There Is Strength: On Weighted Voting Ensembles for Hurtful Humour Detection]]

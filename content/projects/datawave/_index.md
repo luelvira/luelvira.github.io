@@ -5,7 +5,7 @@ description = "Master's thesis that aims to build a generic NLP model generator 
 date = 2024-06-03
 lastmod = 2024-09-23T13:36:03+02:00
 tags = ["python"]
-categories = ["NLP", "WEB"]
+categories = ["NLP", "WEB", "PYTHON"]
 draft = false
 weight = 1001
 +++

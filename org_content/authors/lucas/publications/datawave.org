@@ -1,0 +1,8 @@
+#+TITLE: DataWave - An interactive and visual tool for creating and exploring large knowledge bases
+#+HUGO_BUNDLE: datawave
+#+DATE: 2024-06-25
+#+HUGO_CUSTOM_FRONT_MATTER: :external_url https://doi.org/10.1145/3656650.3656734
+#+HUGO_BASE_DIR: ../../../../
+#+HUGO_SECTION: ./publications
+#+AUTHOR: Lucas Elvira Martín, Teresa Onorati, Paloma Diaz Pérez
+#+EXPORT_FILE_NAME: index

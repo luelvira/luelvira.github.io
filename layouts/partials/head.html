@@ -26,4 +26,10 @@
   {{ if .Param "math" }}
     {{ partialCached "math.html" . }}
   {{ end }}
+
+{{ with site.Params.features.analytics }}
+  {{ if .enable }}
+      {{ template "_internal/google_analytics.html" . }}
+  {{ end }}
+{{ end }}
 </head>

@@ -4,8 +4,8 @@
   {{ .Content }}
   <div class="{{ .Page.Type}}-list">
     {{ $pages := .Pages.ByDate.Reverse }}
-    {{ range .Data.Pages }}
-    <li> <a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ range $pages }}
+      {{ partial "_project.html" . }}
     {{ end }}
   </div>
 </main>

@@ -193,3 +193,10 @@ draft = false
 <div class="cvskill"><div class="cvskill-name">Spanish</div><div class="cvskill-values" data-val="5"><span></span><span></span><span></span><span></span><span></span></div></div>
 
 <div class="cvskill"><div class="cvskill-name">English</div><div class="cvskill-values" data-val="3.5"><span></span><span></span><span></span><span></span><span></span></div></div>
+
+
+### Publications {#publications}
+
+-   **Poster:** [DataWave - An interactive
+    and visual tool for creating and exploring large knowledge bases](https://doi.org/10.1145/3656650.3656734), Jun, 2024
+-   [In Unity, There Is Strength: On Weighted Voting Ensembles for Hurtful Humour Detection](https://www.semanticscholar.org/paper/In-Unity%2C-There-Is-Strength%3A-On-Weighted-Voting-for-Cruz-Elvira/25836733520d910a2c197be30abded03b3c86eef?utm_source=direct_link)
