@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../abstracts/mixin";
 @use "../abstracts/functions/colors";
 @use "../abstracts/functions/size";
@@ -6,7 +7,7 @@
 @use "buttons";
 
 $bg: colors.color("background", '500')!default;
-$background-val: colors.color("background", '50', false)!default;
+$background-val: colors.color("background", '100', false)!default;
 
 .navbar {
     position: relative;
@@ -41,9 +42,11 @@ $background-val: colors.color("background", '50', false)!default;
 
     .logo {
         i {
+            $distance: 3;
             @include mixin.font-size(10);
-
-            color: colors.color(primary, 600);
+            color: $background_val;
+            text-shadow: $distance * 1px $distance * 1px $distance * 2px color.adjust($background_val, $lightness: 20 * -1%),
+                         $distance * -1px $distance * -1px $distance * 2px color.adjust($background_val, $lightness: 20 * 1%);
         }
     }
 
@@ -87,12 +90,14 @@ $background-val: colors.color("background", '50', false)!default;
             @include cards.card(
                 $color: $background_val,
                 $rounded: 'lg',
-                $shadow_intensity: 2);
+                $shadow_intensity: 10,
+                $distance: 5
+            );
             @include mixin.p-d-(0);
 
             font-weight: bold;
-            background-color: colors.color("primary", 600);
-            color: colors.color(background);
+            // background-color: colors.color("primary", 600);
+            color: colors.color(background, "800");
 
             @include mixin.media-lg {
                 @include mixin.w-(auto);
@@ -105,8 +110,9 @@ $background-val: colors.color("background", '50', false)!default;
                 );
                 &.is-active {
                       transform: scale(0.95);
-                      box-shadow: #{box-hard-shadow($bg, 5)};
-                      background-color: colors.color("primary", 300);
+                      // box-shadow: #{box-hard-shadow($bg, 5)};
+                      // background-color: colors.color("primary", 300);
+                      @include cards.shadow($intensity: 10, $bg: $background_val, $distance: 2, $inset: true);
                 }
             }
         }

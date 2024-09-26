@@ -5,6 +5,7 @@
 @use "../abstracts/mixin";
 @use "../abstracts/functions/colors";
 @use "../abstracts/functions/shadow";
+@use "../components/cards";
 
 $-box-shadow-color: color.adjust(colors.color('background', '900', false), $lightness: -10%);
 
@@ -15,20 +16,12 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
     @include mixin.p-(4);
     @include mixin.w-(full);
     @include mixin.gap(4);
-
-    box-shadow: shadow.box-shadow-generator(
-        $color: colors.color(background, "300", false),
-        $levels: 5,
-        $mode: "inset",
-        $offset-x-inc: 0,
-        $offset-y-inc: 2px,
-        $blur: 1px,
-        $spread-radius: 2px,
-        $div_value: 0.125);
+    @include cards.shadow($intensity: 10, $bg: colors.color("background", "100", false), $distance: 4, $inset: true);
 
     @include mixin.media-sm {@include mixin.grid($eqcols: 2);}
 
     @include mixin.media-lg {@include mixin.grid($eqcols: 3);}
+
 }
 
 @mixin sticky {

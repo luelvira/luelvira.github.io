@@ -6,7 +6,7 @@
 @use "../abstracts/functions/strings" as str;
 
 .body {
-    background-color: colors.color("background");
+    background-color: colors.color("background", 100);
 
     @include mixin.flex(col);
 

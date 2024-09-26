@@ -13,6 +13,7 @@
     @include mixin.w-('4/5');
 
     .cards {
+        /*
         box-shadow: shadow.box-shadow-generator(
             $color: colors.color(background, "300", false),
             $levels: 1,
@@ -31,6 +32,8 @@
         @include mixin.media-sm {
             @include mixin.grid($eqcols: 2);
         }
+        */
+        @include stickers.sticky-content;
 
         @include mixin.media-lg {
             @for $i from 0 to 4 {

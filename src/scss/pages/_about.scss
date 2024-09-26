@@ -58,7 +58,11 @@
         }
 
         article {
-            @include cards.card($rounded: lg);
+            @include cards.card(
+                $rounded: lg,
+                $color: colors.color("background", '100', false),
+                $shadow_intensity: 10,
+                $distance: 3);
 
             &:not(:nth-of-type(1)) {
                 @include mixin.m-(3, 't');
@@ -105,7 +109,8 @@
     }
 
     .cvtag {
-        @include tags.tag(sm, colors.color("background", "50", false), true);
+        @include tags.tag(sm, colors.color("background", "100", false), true);
+        color: colors.color("background", '800');
     }
 
     .cvskill {
