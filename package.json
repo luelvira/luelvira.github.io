@@ -7,7 +7,7 @@
     "dev": "run-p dev-hugo dev-sass",
     "dev-hugo": "hugo server --gc --disableFastRender",
     "dev-sass": "sass src/scss/main.scss ./assets/css/main.css --watch",
-    "build-sass": "sass src/scss/main.scss ./assets/css/main.css",
+    "build-sass": "sass src/scss/main.scss ./assets/css/main.css --style=compressed",
     "sassdoc": "npx sassdoc src/scss/ --verbose --strict",
     "stylelint": "npx stylelint 'src/scss/**/*.scss'"
   },

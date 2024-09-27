@@ -7,7 +7,9 @@
 @use "../abstracts/functions/shadow";
 @use "../components/cards";
 
-$-box-shadow-color: color.adjust(colors.color('background', '900', false), $lightness: -10%);
+$-box-shadow-color: color.adjust(
+    colors.color('background', '900', false),
+    $lightness: -10%);
 
 @mixin sticky-content($shadow: "inset") {
     @include mixin.grid($eqcols: 1);
@@ -16,12 +18,15 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
     @include mixin.p-(4);
     @include mixin.w-(full);
     @include mixin.gap(4);
-    @include cards.shadow($intensity: 10, $bg: colors.color("background", "100", false), $distance: 4, $inset: true);
+    @include cards.shadow(
+        $intensity: 10,
+        $bg: colors.color("background", "100",false),
+        $distance: 4,
+        $inset: true);
 
     @include mixin.media-sm {@include mixin.grid($eqcols: 2);}
 
     @include mixin.media-lg {@include mixin.grid($eqcols: 3);}
-
 }
 
 @mixin sticky {
@@ -40,12 +45,12 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
         "default": (#fff9b1, #00c87a)
     );
     $bg-color: list.nth(map.get($colors, default), 1);
-    $mark-color1: list.nth(map.get($colors, default), 2); 
+    $mark-color1: list.nth(map.get($colors, default), 2);
     $mark-color2: color.adjust($bg-color, $lightness: -7%);
 
     --bg-color: #{$bg-color};
     --bg-lighten: #{color.adjust($bg-color, $lightness: 7%)};
-    
+
     @each $key, $color in $colors {
         &.#{$key} {
             $bg-color: list.nth($color, 1);
@@ -71,15 +76,14 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
                                       rgba($mark-color2, 0.0) 15%);
             }
         }
-        
     }
-    
+
     &-content {
         @include mixin.p-(4);
         @include mixin.min-h-(fit);
         @include mixin.min-w-(fit);
         @include mixin.h-(full);
-        
+
         background-image: linear-gradient(
             135deg, var(--bg-color) 85%,
             var(--bg-lighten) 90%,
@@ -92,12 +96,11 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
         border-bottom-right-radius: 125px 10px;
 
         @include mixin.pcs-before {
+            @include mixin.pos-absolute($left: -10px, $bottom: -15px);
+
             z-index: 102;
             width: 32px;
             height: 40px;
-
-            @include mixin.pos-absolute($left: -10px, $bottom: -15px);
-
             background-color: var(--bg-color);
             box-shadow:
                 3px -2px 10px rgb(0 0 0 / 30%),
@@ -111,7 +114,7 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
             font-size: 0.75rem;
         }
 
-        h4 {
+        h2 {
             @include mixin.font-size('2xl');
             @include mixin.w-(full);
 
@@ -128,17 +131,19 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
 
         .mark {
             @include mixin.p-d-(1, 4);
-            @include mixin.flex(col, null, ("justify": center, "align": center));
+            @include mixin.flex(
+                col,
+                null,
+                ("justify": center, "align": center));
 
-            // border: 1px solid;
             display: inline-flex;
             position: relative;
 
             @include mixin.pcs-before {
-                z-index: 0;
-
                 @include mixin.br-rounded(xl);
 
+                box-decoration-break: clone;
+                z-index: 0;
                 transform: skewX(-30deg);
                  background-image: linear-gradient(
                     104deg,
@@ -159,13 +164,10 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
                 @include mixin.h-(full);
                 @include mixin.pos-absolute($left: 0);
 
-                box-decoration-break: clone;
-
                 @include mixin.media-lg {
                     @include mixin.w-(0);
                     @include mixin.tr-transition((width: 100%), $event: null);
                 }
-
             }
 
             @include mixin.pcs-hover {
@@ -175,9 +177,9 @@ $-box-shadow-color: color.adjust(colors.color('background', '900', false), $ligh
             }
 
             a {
-                @include mixin.font-size('xl');                    
+                @include mixin.font-size('xl');
 
-                color: black;                    
+                color: black;
                 position:relative;
             }
         }

@@ -11,6 +11,7 @@
     }
 
     @include shadow($shadow_intensity, $color, $distance);
+
     @if $color {
         background-color: #{$color};
     }
@@ -22,15 +23,16 @@
     @if not $bg {
         $bg: colors.color("background", '500', false);
     }
-    // box-shadow: shadow.box-shadow($bg, $intensity),
-    //            0 -2px 2px rgba($bg, 0.05);
-    $lighten: color.adjust($bg, $lightness:  ($intensity * 1%));
-    $darken:  color.adjust($bg, $lightness: $intensity * -1%);
+
     @if $inset {
         $inset: "inset";
     } @else {
         $inset: "";
     }
+
+    $lighten: color.adjust($bg, $lightness:  ($intensity * 1%));
+    $darken: color.adjust($bg, $lightness: $intensity * -1%);
+
     box-shadow: #{$inset} $distance * 1px $distance * 1px $distance * 2px $darken,
                 #{$inset} $distance * -1px $distance * -1px $distance * 1px $lighten;
 }

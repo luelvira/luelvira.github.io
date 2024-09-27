@@ -19,12 +19,11 @@ html {
     @include mixin.m-d-(4, 0);
 }
 
-
 h1 {
     @extend %title;
-    color: colors.color(secondary);
-
     @include mixin.font-size(6);
+
+    color: colors.color(secondary);
 }
 
 h2 {
@@ -38,11 +37,12 @@ h3, h4 {
     @include mixin.font-size(1.1);
     @extend %title;
 }
-h5, h6 {
 
+h5, h6 {
     @include mixin.font-size(0);
     @include mixin.p-(4, 'l');
     @extend %title;
+
     color: #5a5a5a;
     font-weight: 300;
 }
@@ -83,6 +83,7 @@ button {
 table, tr, td {
     border: 1px solid gray;
     border-collapse: collapse;
+
     &:is(td) {
         @include mixin.p-d-(1);
     }

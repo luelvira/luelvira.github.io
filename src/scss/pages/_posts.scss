@@ -13,26 +13,6 @@
     @include mixin.w-('4/5');
 
     .cards {
-        /*
-        box-shadow: shadow.box-shadow-generator(
-            $color: colors.color(background, "300", false),
-            $levels: 1,
-            $mode: "",
-            $offset-x-inc: 0,
-            $offset-y-inc: 2px,
-            $blur: 1px,
-            $spread-radius: 3px,
-            $div_value: 0.125);
-        @include mixin.grid($eqcols: 1);
-        @include mixin.m-(8, 't');
-        @include mixin.p-(4);
-        @include mixin.w-(full);
-        @include mixin.gap(4);
-
-        @include mixin.media-sm {
-            @include mixin.grid($eqcols: 2);
-        }
-        */
         @include stickers.sticky-content;
 
         @include mixin.media-lg {
@@ -77,95 +57,64 @@
     }
 
     &.single {
-        display: block;
         @include mixin.flex($dir: row, $flex-position: ("wrap": wrap));
         @include mixin.w-(full);
         @include mixin.reset(max-width);
-
         @include mixin.gap(10, 'x');
+
         h1, .meta {
             @include mixin.max-w-('2xl');
             @include mixin.w-('4/5');
             @include mixin.m-d-(0, auto);
         }
+
         .meta {
-            color: colors.color(background, 800);
             @include mixin.font-size('sm');
+
+            color: colors.color(background, 800);
         }
+
         .content {
             @include mixin.max-w-('2xl');
             @include mixin.w-('7/10');
             @include mixin.p-(0);
 
             margin-left: 10%;
+
             img {
                 @include mixin.w-('1/2');
                 @include mixin.m-d-(0 auto);
+
                 display: block;
             }
         }
+
         .toc {
-            @include mixin.media-max-xxl {display: none;}
             flex-grow: 1;
             max-width: 20%;
+
+            @include mixin.media-max-xxl {display: none;}
+
             &-wrap {
               @include cards.shadow(2);
               @include mixin.p-d-(4);
+
               position: sticky;
               top: 5%;
+
               h5 {
                   position: relative;
+
                   @include mixin.p-d-(0);
                   @include mixin.m-d-(2, auto);
                   @include mixin.w-(fit);
+
                   @include mixin.pcs-after {
                       @include mixin.pos-absolute($bottom: 0, $left: 10%);
-                      background-color: #7a7a7a;
                       @include mixin.w-('4/5');
                       @include mixin.h-(0.5);
-                  }
-              }
-              #TableOfContents {
-                  &>ul {
-                      @include mixin.font-size(sm);
-                      li>ul {
-                          @include mixin.font-size(xs);
-                      }
-                  }
-                  ul {
-                      @include mixin.m-(2, 'l');
-                      @include mixin.m-(2, 'b');
-                      li {
-                          @include mixin.m-(1, 'b');
-                          &.active {
-                              &>a{
-                                  color: colors.color(background, 50);
-                                  &::after {
-                                      transform: scaleY(1);
-                                  }
-                              }
 
-                          }
-                          a {
-                              display: block;
-                              position: relative;
-                              @include mixin.p-(2, 'l');
-                              @include mixin.pcs-after {
-                                  @include mixin.pos-absolute($left: 0, $top: 0);
-                                  @include mixin.w-(full);
-                                  @include mixin.h-(full);
-                                  transform: scaleY(0);
-                                  transform-origin: 0 0;
-                                  background-color: colors.color(primary, 500);
-                                  transition-property: transform;
-                                  transition-duration: .25s;
-                                  transition-timing-function: ease-in-out;
-                                  z-index: -1;
-                              }
-                          }
-                          &.bottom>a::after{transform-origin: 0 100%;}
-                          &.up>a::after {transform-origin: 0 0;}
-                      }
+                      background-color: #7a7a7a;
                   }
               }
             }
@@ -174,6 +123,61 @@
                     list-style: none;
                 }
             }
+        }
+    }
+}
+
+#TableOfContents {
+    &>ul {
+        @include mixin.font-size(sm);
+
+        li>ul {
+            @include mixin.font-size(xs);
+        }
+    }
+
+    ul {
+        @include mixin.m-(2, 'l');
+        @include mixin.m-(2, 'b');
+
+        li {
+            @include mixin.m-(1, 'b');
+
+            a {
+                display: block;
+                position: relative;
+
+                @include mixin.p-(2, 'l');
+
+                @include mixin.pcs-after {
+                    @include mixin.pos-absolute($left: 0, $top: 0);
+                    @include mixin.w-(full);
+                    @include mixin.h-(full);
+
+                    transform: scaleY(0);
+                    transform-origin: 0 0;
+                    background-color: colors.color(primary, 500);
+                    transition-property: transform;
+                    transition-duration: .25s;
+                    transition-timing-function: ease-in-out;
+                    z-index: -1;
+                }
+            }
+
+            &.active {
+                &>a{
+                    color: colors.color(background, 50);
+
+                    &::after {
+                        transform: scaleY(1);
+                    }
+                }
+
+            }
+
+            
+            &.bottom>a::after{transform-origin: 0 100%;}
+            &.up>a::after {transform-origin: 0 0;}
         }
     }
 }

@@ -43,10 +43,18 @@ $background-val: colors.color("background", '100', false)!default;
     .logo {
         i {
             $distance: 3;
+
             @include mixin.font-size(10);
+
             color: $background_val;
-            text-shadow: $distance * 1px $distance * 1px $distance * 2px color.adjust($background_val, $lightness: 20 * -1%),
-                         $distance * -1px $distance * -1px $distance * 2px color.adjust($background_val, $lightness: 20 * 1%);
+            text-shadow: $distance * 1px
+                         $distance * 1px
+                         $distance * 2px
+                         color.adjust($background_val, $lightness: 20 * -1%),
+                         $distance * -1px
+                         $distance * -1px
+                         $distance * 2px
+                         color.adjust($background_val, $lightness: 20 * 1%);
         }
     }
 
@@ -96,7 +104,6 @@ $background-val: colors.color("background", '100', false)!default;
             @include mixin.p-d-(0);
 
             font-weight: bold;
-            // background-color: colors.color("primary", 600);
             color: colors.color(background, "800");
 
             @include mixin.media-lg {
@@ -108,11 +115,15 @@ $background-val: colors.color("background", '100', false)!default;
                     $duration: 0.125s,
                     $event: hover
                 );
+
                 &.is-active {
                       transform: scale(0.95);
-                      // box-shadow: #{box-hard-shadow($bg, 5)};
-                      // background-color: colors.color("primary", 300);
-                      @include cards.shadow($intensity: 10, $bg: $background_val, $distance: 2, $inset: true);
+
+                      @include cards.shadow(
+                          $intensity: 10,
+                          $bg: $background_val,
+                          $distance: 2,
+                          $inset: true);
                 }
             }
         }

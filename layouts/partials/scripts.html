@@ -1,2 +1,2 @@
-{{ $main := resources.Get "src/js/main.js" | js.Build "js/main.js" }}
+{{ $main := resources.Get "src/js/main.js" | js.Build "js/main.js" | minify }}
 <script src="{{ $main.RelPermalink }}" async type="module"> </script> 

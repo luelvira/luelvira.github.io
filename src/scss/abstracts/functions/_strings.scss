@@ -23,8 +23,12 @@
 
 @function replace($search, $replace, $string) {
     $index: string.index($string, $search);
+
     @if $index {
-        @return string.slice($string, 1, $index - 1) + $replace + replace($search, $replace, string.slice($string, $index + string.length($search)));
+        @return string.slice($string, 1, $index - 1) + $replace + replace(
+            $search,
+            $replace,
+            string.slice($string, $index + string.length($search)));
     }
     
     @return $string;

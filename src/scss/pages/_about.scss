@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @use "sass:math";
 @use "sass:color";
 @use "../abstracts/mixin";
@@ -6,6 +7,7 @@
 @use "../components/tags";
 @use "../components/buttons";
 @use "../abstracts/functions/shadow";
+
 .authors {
     .content {
         @include mixin.p-(6, 'lr');
@@ -110,6 +112,7 @@
 
     .cvtag {
         @include tags.tag(sm, colors.color("background", "100", false), true);
+
         color: colors.color("background", '800');
     }
 

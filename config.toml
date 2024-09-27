@@ -50,13 +50,6 @@ enableRobotsTXT = true
 [params]
     math = true
     description = 'Discover innovative software development projects, practical tutorials, and insights from a passionate software engineer dedicated to solving real-world challenges.'
-    [params.features]
-        [params.features.analytics]
-            enable = true
-
-[services]
-    [services.googleAnalytics]
-        ID = 'G-WPWSHPQKS1'
 
 [taxonomies]
     category    = 'categories'

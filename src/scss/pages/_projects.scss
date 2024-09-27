@@ -48,6 +48,7 @@
            @include stickers.sticky;
        }
     }
+
     .sticky-content--wrap {
         @include mixin.h-(full);
         

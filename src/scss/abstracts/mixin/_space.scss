@@ -79,17 +79,20 @@
 
 @mixin margin-bem {
     $dirs: ('x': 'lr', 'y': 'tb');
+
     @for $i from 1 to 13 {
         @each $key, $val in $dirs {
             .m-#{$key}-#{$i} {
                 @include m-($i, $val);
             }
         }
+
         @each $key in ('l', 'r', 't', 'b') {
             .m-#{$key}-#{$i} {
                 @include m-($i, $key);
             }
         }
+
         .m-auto {
             margin: auto;
         }

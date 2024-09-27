@@ -1,7 +1,6 @@
 #+TITLE: Curriculum
 #+AUTHOR: Lucas Elvira Martín
 #+DATE: 2024-05-26
-#+DESCRIPTION: Some description
 #+exclude_tags: noexport noexporthugo
 #+SETUPFILE: ../../../../personal_web/template.org
 #+EXPORT_FILE_NAME: _index.md
